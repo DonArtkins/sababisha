@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
-import { BentoTilt } from "@/components/BentoTilt";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { CyberText } from "@/components/CyberText";
 import { Pagination } from "@/components/Pagination";
@@ -31,28 +30,28 @@ const FILTERS = ["All", "Sababisha Team", "Development Team", "Teams Moments"];
 const ITEMS_PER_PAGE = 6;
 
 const GalleryCard = ({ item, className }: { item: any, className?: string }) => (
-  <BentoTilt data-flip-id={item.id} className={`gallery-card group relative rounded-3xl overflow-hidden bg-gray-100 interactive cursor-none ${className}`}>
-    <OptimizedImage 
-      src={item.image} 
-      alt={item.title}
-      wrapperClassName="absolute inset-0 w-full h-full"
-      imageClassName="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-    />
-    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-      <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-1">
-        {item.category}
-      </span>
-      <h3 className="text-white font-display text-xl font-bold">
-        {item.title}
-      </h3>
+  <div
+    data-flip-id={item.id}
+    className={`gallery-card group interactive cursor-none ${className ?? ""}`}
+  >
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
+      <OptimizedImage
+        src={item.image}
+        alt={item.title}
+        wrapperClassName="absolute inset-0 w-full h-full"
+        imageClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
     </div>
-  </BentoTilt>
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
+      {item.category}
+    </span>
+    <h3 className="font-display text-3xl text-[#111111] leading-tight">{item.title}</h3>
+  </div>
 );
 
 const GalleryCardMobile = ({ item, className }: { item: any, className?: string }) => (
   <div className={`gallery-card interactive cursor-none ${className ?? ''}`}>
-    <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
         src={item.image}
         alt={item.title}
@@ -60,10 +59,10 @@ const GalleryCardMobile = ({ item, className }: { item: any, className?: string 
         imageClassName="w-full h-full object-cover"
       />
     </div>
-    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-1 block">
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
       {item.category}
     </span>
-    <h3 className="font-display text-xl text-[#111111] leading-tight">{item.title}</h3>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight">{item.title}</h3>
   </div>
 );
 
@@ -138,7 +137,7 @@ export function Gallery() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
           {FILTERS.map((filter) => (
             <button
               key={filter}
@@ -154,8 +153,8 @@ export function Gallery() {
           ))}
         </div>
 
-        {/* Mobile grid — always-visible card text, no hover required */}
-        <div className="md:hidden grid grid-cols-1 gap-6 w-full relative">
+        {/* Mobile grid */}
+        <div className="md:hidden grid grid-cols-1 gap-10 w-full relative">
           {GALLERY_DATA.map((item) => {
             const matchesFilter = activeFilter === "All" || item.category === activeFilter;
             const isVisible = matchesFilter &&
@@ -172,10 +171,10 @@ export function Gallery() {
           })}
         </div>
 
-        {/* Desktop grid — BentoTilt cards with GSAP Flip */}
+        {/* Desktop grid */}
         <div 
           ref={gridRef}
-          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full min-h-[400px] relative"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 w-full min-h-[400px] relative"
         >
           {GALLERY_DATA.map((item) => {
             const matchesFilter = activeFilter === "All" || item.category === activeFilter;
@@ -187,7 +186,7 @@ export function Gallery() {
               <GalleryCard 
                 key={item.id} 
                 item={item} 
-                className={`aspect-[4/3] ${!isVisible ? "hidden" : ""}`} 
+                className={!isVisible ? "hidden" : ""}
               />
             );
           })}
