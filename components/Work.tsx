@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 import Link from 'next/link';
+import { ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 import { CyberText } from "./CyberText";
 import { Reveal } from "./Reveal";
@@ -165,65 +166,63 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-card group relative block rounded-2xl overflow-hidden shadow-md h-56 interactive cursor-none"
+                  className="project-card block interactive cursor-none"
                 >
-                  {/* Background image */}
-                  <OptimizedImage
-                    src={project.image}
-                    alt={project.title}
-                    wrapperClassName="absolute inset-0 w-full h-full"
-                    imageClassName="w-full h-full object-cover"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80" />
-                  {/* Always-visible content */}
-                  <div className="absolute inset-0 flex flex-col justify-between p-5">
-                    <span className="self-start bg-accent/90 text-white text-[10px] font-sans uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full">
-                      {project.category}
-                    </span>
-                    <div className="flex items-end justify-between gap-3">
-                      <h3 className="text-white font-display text-xl font-bold drop-shadow-md leading-tight">
-                        {project.title}
-                      </h3>
-                      <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-bold transition-transform duration-300 group-active:scale-95">
-                        ↗
-                      </span>
-                    </div>
+                  {/* Image */}
+                  <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+                    <OptimizedImage
+                      src={project.image}
+                      alt={project.title}
+                      wrapperClassName="absolute inset-0 w-full h-full"
+                      imageClassName="w-full h-full object-cover"
+                    />
                   </div>
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2">
+                    <span className="text-accent">{project.category}</span>
+                    <span>•</span>
+                    <span>{new URL(project.link).hostname}</span>
+                  </div>
+                  {/* Title */}
+                  <h3 className="font-display text-xl text-[#111111] leading-tight mb-4">{project.title}</h3>
+                  {/* CTA */}
+                  <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
+                    Visit Website <ArrowRight className="w-4 h-4" />
+                  </span>
                 </Link>
               );
             }
 
-            // Page variant — horizontal media-object card
+            // Page variant — RD-blogs style card
             return (
               <Link
                 key={project.id}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-card group flex items-stretch gap-4 rounded-2xl overflow-hidden bg-card border border-border shadow-sm interactive cursor-none"
+                className="project-card block interactive cursor-none"
               >
-                {/* Thumbnail */}
-                <div className="relative w-32 shrink-0 overflow-hidden">
+                {/* Image */}
+                <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
                   <OptimizedImage
                     src={project.image}
                     alt={project.title}
                     wrapperClassName="absolute inset-0 w-full h-full"
-                    imageClassName="w-full h-full object-cover transition-transform duration-300 group-active:scale-105"
+                    imageClassName="w-full h-full object-cover"
                   />
                 </div>
-                {/* Content */}
-                <div className="flex flex-col justify-center py-4 pr-4 gap-1.5">
-                  <span className="text-accent text-[10px] font-sans uppercase tracking-widest font-semibold">
-                    {project.category}
-                  </span>
-                  <h3 className="text-foreground font-display text-lg font-bold leading-tight">
-                    {project.title}
-                  </h3>
-                  <span className="mt-1 inline-flex items-center gap-1 text-xs font-sans font-semibold text-accent">
-                    Visit Website <span>↗</span>
-                  </span>
+                {/* Meta row */}
+                <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2">
+                  <span className="text-accent">{project.category}</span>
+                  <span>•</span>
+                  <span>{new URL(project.link).hostname}</span>
                 </div>
+                {/* Title */}
+                <h3 className="font-display text-xl text-[#111111] leading-tight mb-4">{project.title}</h3>
+                {/* CTA */}
+                <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
+                  Visit Website <ArrowRight className="w-4 h-4" />
+                </span>
               </Link>
             );
           })}

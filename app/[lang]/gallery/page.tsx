@@ -50,6 +50,23 @@ const GalleryCard = ({ item, className }: { item: any, className?: string }) => 
   </BentoTilt>
 );
 
+const GalleryCardMobile = ({ item, className }: { item: any, className?: string }) => (
+  <div className={`gallery-card interactive cursor-none ${className ?? ''}`}>
+    <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+      <OptimizedImage
+        src={item.image}
+        alt={item.title}
+        wrapperClassName="absolute inset-0 w-full h-full"
+        imageClassName="w-full h-full object-cover"
+      />
+    </div>
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-1 block">
+      {item.category}
+    </span>
+    <h3 className="font-display text-xl text-[#111111] leading-tight">{item.title}</h3>
+  </div>
+);
+
 export function Gallery() {
   const containerRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -137,9 +154,28 @@ export function Gallery() {
           ))}
         </div>
 
+        {/* Mobile grid — always-visible card text, no hover required */}
+        <div className="md:hidden grid grid-cols-1 gap-6 w-full relative">
+          {GALLERY_DATA.map((item) => {
+            const matchesFilter = activeFilter === "All" || item.category === activeFilter;
+            const isVisible = matchesFilter &&
+              filteredItems.findIndex(p => p.id === item.id) >= (currentPage - 1) * ITEMS_PER_PAGE &&
+              filteredItems.findIndex(p => p.id === item.id) < currentPage * ITEMS_PER_PAGE;
+
+            return (
+              <GalleryCardMobile
+                key={item.id}
+                item={item}
+                className={!isVisible ? "hidden" : ""}
+              />
+            );
+          })}
+        </div>
+
+        {/* Desktop grid — BentoTilt cards with GSAP Flip */}
         <div 
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full min-h-[400px] relative"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full min-h-[400px] relative"
         >
           {GALLERY_DATA.map((item) => {
             const matchesFilter = activeFilter === "All" || item.category === activeFilter;

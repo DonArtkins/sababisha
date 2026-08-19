@@ -45,6 +45,21 @@ const TeamMemberCard = ({ member, className }: { member: any, className?: string
   </BentoTilt>
 );
 
+const TeamMemberCardMobile = ({ member }: { member: any }) => (
+  <div className="group interactive cursor-none">
+    <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+      <OptimizedImage
+        src={member.image}
+        alt={member.name}
+        wrapperClassName="absolute inset-0 w-full h-full"
+        imageClassName="w-full h-full object-cover grayscale opacity-80"
+      />
+    </div>
+    <h3 className="font-display text-xl text-[#111111] leading-tight mb-1">{member.name}</h3>
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold">{member.role}</span>
+  </div>
+);
+
 export function Team() {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -87,9 +102,16 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Executive Management
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-1 gap-6 w-full">
             {TEAM.management.map(member => (
-              <TeamMemberCard key={member.id} member={member} className="aspect-[4/3] md:aspect-[16/9]" />
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-2 gap-6 w-full">
+            {TEAM.management.map(member => (
+              <TeamMemberCard key={member.id} member={member} className="aspect-[16/9]" />
             ))}
           </div>
         </div>
@@ -100,9 +122,16 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Team Leads
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-2 gap-4 w-full">
             {TEAM.leads.map(member => (
-              <TeamMemberCard key={member.id} member={member} className="aspect-[3/4] md:aspect-[4/5]" />
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 w-full">
+            {TEAM.leads.map(member => (
+              <TeamMemberCard key={member.id} member={member} className="aspect-[4/5]" />
             ))}
           </div>
         </div>
@@ -113,7 +142,14 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Supervisors
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-2 gap-4 w-full">
+            {TEAM.supervisors.map(member => (
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-4 gap-6 w-full">
             {TEAM.supervisors.map(member => (
               <TeamMemberCard key={member.id} member={member} className="aspect-square" />
             ))}
