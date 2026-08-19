@@ -34,7 +34,22 @@ const TeamMemberCard = ({ member }: { member: any }) => (
         imageClassName="w-full h-full object-cover grayscale opacity-80 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
       />
     </div>
-    <h3 className="font-display text-2xl md:text-3xl text-[#111111] leading-tight mb-2">{member.name}</h3>
+    <h3 className="font-display text-3xl text-[#111111] leading-tight mb-2">{member.name}</h3>
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold">{member.role}</span>
+  </div>
+);
+
+const TeamMemberCardMobile = ({ member }: { member: any }) => (
+  <div className="group interactive cursor-none">
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
+      <OptimizedImage
+        src={member.image}
+        alt={member.name}
+        wrapperClassName="absolute inset-0 w-full h-full"
+        imageClassName="w-full h-full object-cover grayscale opacity-80"
+      />
+    </div>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight mb-2">{member.name}</h3>
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold">{member.role}</span>
   </div>
 );
@@ -81,7 +96,14 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Executive Management
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-1 gap-10 w-full">
+            {TEAM.management.map(member => (
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-2 gap-x-8 gap-y-12 w-full">
             {TEAM.management.map(member => (
               <TeamMemberCard key={member.id} member={member} />
             ))}
@@ -94,7 +116,14 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Team Leads
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12 md:gap-x-8 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
+            {TEAM.leads.map(member => (
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-3 gap-x-8 gap-y-12 w-full">
             {TEAM.leads.map(member => (
               <TeamMemberCard key={member.id} member={member} />
             ))}
@@ -107,7 +136,14 @@ export function Team() {
             <span className="w-8 h-px bg-gray-300"></span>
             Supervisors
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 md:gap-x-8 w-full">
+          {/* Mobile layout */}
+          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
+            {TEAM.supervisors.map(member => (
+              <TeamMemberCardMobile key={member.id} member={member} />
+            ))}
+          </div>
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-4 gap-x-8 gap-y-12 w-full">
             {TEAM.supervisors.map(member => (
               <TeamMemberCard key={member.id} member={member} />
             ))}

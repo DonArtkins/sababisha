@@ -29,7 +29,7 @@ const GALLERY_DATA = [
 const FILTERS = ["All", "Sababisha Team", "Development Team", "Teams Moments"];
 const ITEMS_PER_PAGE = 6;
 
-const GalleryCard = ({ item, className }: { item: any; className?: string }) => (
+const GalleryCard = ({ item, className }: { item: any, className?: string }) => (
   <div
     data-flip-id={item.id}
     className={`gallery-card group interactive cursor-none ${className ?? ""}`}
@@ -45,7 +45,24 @@ const GalleryCard = ({ item, className }: { item: any; className?: string }) => 
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
       {item.category}
     </span>
-    <h3 className="font-display text-2xl md:text-3xl text-[#111111] leading-tight">{item.title}</h3>
+    <h3 className="font-display text-3xl text-[#111111] leading-tight">{item.title}</h3>
+  </div>
+);
+
+const GalleryCardMobile = ({ item, className }: { item: any, className?: string }) => (
+  <div className={`gallery-card interactive cursor-none ${className ?? ''}`}>
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
+      <OptimizedImage
+        src={item.image}
+        alt={item.title}
+        wrapperClassName="absolute inset-0 w-full h-full"
+        imageClassName="w-full h-full object-cover"
+      />
+    </div>
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
+      {item.category}
+    </span>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight">{item.title}</h3>
   </div>
 );
 
@@ -56,9 +73,7 @@ export function Gallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const flipStateRef = useRef<any>(null);
 
-  const filteredItems = GALLERY_DATA.filter(
-    item => activeFilter === "All" || item.category === activeFilter
-  );
+  const filteredItems = GALLERY_DATA.filter(item => activeFilter === "All" || item.category === activeFilter);
   const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
 
   const handleFilterChange = (filter: string) => {
@@ -76,15 +91,15 @@ export function Gallery() {
 
   useLayoutEffect(() => {
     if (!gridRef.current || !flipStateRef.current) return;
+    
     Flip.from(flipStateRef.current, {
       targets: ".gallery-card",
       duration: 0.6,
       ease: "power3.inOut",
       stagger: 0.05,
       absolute: true,
-      onEnter: elements =>
-        gsap.fromTo(elements, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4 }),
-      onLeave: elements => gsap.to(elements, { opacity: 0, scale: 0.9, duration: 0.4 }),
+      onEnter: elements => gsap.fromTo(elements, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4 }),
+      onLeave: elements => gsap.to(elements, { opacity: 0, scale: 0.9, duration: 0.4 })
     });
     flipStateRef.current = null;
   }, [activeFilter, currentPage]);
@@ -123,7 +138,7 @@ export function Gallery() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
-          {FILTERS.map(filter => (
+          {FILTERS.map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterChange(filter)}
@@ -138,20 +153,16 @@ export function Gallery() {
           ))}
         </div>
 
-        {/* Unified grid — same card on all screen sizes */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 w-full min-h-[400px] relative"
-        >
-          {GALLERY_DATA.map(item => {
+        {/* Mobile grid */}
+        <div className="md:hidden grid grid-cols-1 gap-10 w-full relative">
+          {GALLERY_DATA.map((item) => {
             const matchesFilter = activeFilter === "All" || item.category === activeFilter;
-            const isVisible =
-              matchesFilter &&
+            const isVisible = matchesFilter &&
               filteredItems.findIndex(p => p.id === item.id) >= (currentPage - 1) * ITEMS_PER_PAGE &&
               filteredItems.findIndex(p => p.id === item.id) < currentPage * ITEMS_PER_PAGE;
 
             return (
-              <GalleryCard
+              <GalleryCardMobile
                 key={item.id}
                 item={item}
                 className={!isVisible ? "hidden" : ""}
@@ -160,10 +171,31 @@ export function Gallery() {
           })}
         </div>
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
+        {/* Desktop grid */}
+        <div 
+          ref={gridRef}
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 w-full min-h-[400px] relative"
+        >
+          {GALLERY_DATA.map((item) => {
+            const matchesFilter = activeFilter === "All" || item.category === activeFilter;
+            const isVisible = matchesFilter && 
+              filteredItems.findIndex(p => p.id === item.id) >= (currentPage - 1) * ITEMS_PER_PAGE && 
+              filteredItems.findIndex(p => p.id === item.id) < currentPage * ITEMS_PER_PAGE;
+
+            return (
+              <GalleryCard 
+                key={item.id} 
+                item={item} 
+                className={!isVisible ? "hidden" : ""}
+              />
+            );
+          })}
+        </div>
+
+        <Pagination 
+          currentPage={currentPage} 
+          totalPages={totalPages} 
+          onPageChange={handlePageChange} 
         />
       </section>
     </main>
