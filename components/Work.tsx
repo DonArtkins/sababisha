@@ -145,8 +145,8 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
         <div
           className={
             variant === "home"
-              ? "md:hidden grid grid-cols-1 gap-4 w-full"
-              : "md:hidden grid grid-cols-1 gap-4 w-full"
+              ? "md:hidden grid grid-cols-1 gap-10 w-full"
+              : "md:hidden grid grid-cols-1 gap-10 w-full"
           }
         >
           {ALL_PROJECTS.map((project, index) => {
@@ -169,7 +169,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                   className="project-card block interactive cursor-none"
                 >
                   {/* Image */}
-                  <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+                  <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
                     <OptimizedImage
                       src={project.image}
                       alt={project.title}
@@ -178,13 +178,13 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                     />
                   </div>
                   {/* Meta row */}
-                  <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2">
+                  <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-3">
                     <span className="text-accent">{project.category}</span>
                     <span>•</span>
                     <span>{new URL(project.link).hostname}</span>
                   </div>
                   {/* Title */}
-                  <h3 className="font-display text-xl text-[#111111] leading-tight mb-4">{project.title}</h3>
+                  <h3 className="font-display text-2xl text-[#111111] leading-tight mb-5">{project.title}</h3>
                   {/* CTA */}
                   <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
                     Visit Website <ArrowRight className="w-4 h-4" />
@@ -203,7 +203,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                 className="project-card block interactive cursor-none"
               >
                 {/* Image */}
-                <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+                <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
                   <OptimizedImage
                     src={project.image}
                     alt={project.title}
@@ -212,13 +212,13 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                   />
                 </div>
                 {/* Meta row */}
-                <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2">
+                <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-3">
                   <span className="text-accent">{project.category}</span>
                   <span>•</span>
                   <span>{new URL(project.link).hostname}</span>
                 </div>
                 {/* Title */}
-                <h3 className="font-display text-xl text-[#111111] leading-tight mb-4">{project.title}</h3>
+                <h3 className="font-display text-2xl text-[#111111] leading-tight mb-5">{project.title}</h3>
                 {/* CTA */}
                 <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
                   Visit Website <ArrowRight className="w-4 h-4" />

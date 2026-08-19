@@ -52,7 +52,7 @@ const GalleryCard = ({ item, className }: { item: any, className?: string }) => 
 
 const GalleryCardMobile = ({ item, className }: { item: any, className?: string }) => (
   <div className={`gallery-card interactive cursor-none ${className ?? ''}`}>
-    <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
         src={item.image}
         alt={item.title}
@@ -60,10 +60,10 @@ const GalleryCardMobile = ({ item, className }: { item: any, className?: string 
         imageClassName="w-full h-full object-cover"
       />
     </div>
-    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-1 block">
+    <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
       {item.category}
     </span>
-    <h3 className="font-display text-xl text-[#111111] leading-tight">{item.title}</h3>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight">{item.title}</h3>
   </div>
 );
 
@@ -155,7 +155,7 @@ export function Gallery() {
         </div>
 
         {/* Mobile grid — always-visible card text, no hover required */}
-        <div className="md:hidden grid grid-cols-1 gap-6 w-full relative">
+        <div className="md:hidden grid grid-cols-1 gap-10 w-full relative">
           {GALLERY_DATA.map((item) => {
             const matchesFilter = activeFilter === "All" || item.category === activeFilter;
             const isVisible = matchesFilter &&

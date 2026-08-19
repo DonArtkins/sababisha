@@ -47,7 +47,7 @@ const TeamMemberCard = ({ member, className }: { member: any, className?: string
 
 const TeamMemberCardMobile = ({ member }: { member: any }) => (
   <div className="group interactive cursor-none">
-    <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-gray-100 relative">
+    <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
         src={member.image}
         alt={member.name}
@@ -55,7 +55,7 @@ const TeamMemberCardMobile = ({ member }: { member: any }) => (
         imageClassName="w-full h-full object-cover grayscale opacity-80"
       />
     </div>
-    <h3 className="font-display text-xl text-[#111111] leading-tight mb-1">{member.name}</h3>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight mb-2">{member.name}</h3>
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold">{member.role}</span>
   </div>
 );
@@ -103,7 +103,7 @@ export function Team() {
             Executive Management
           </h2>
           {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-1 gap-6 w-full">
+          <div className="md:hidden grid grid-cols-1 gap-10 w-full">
             {TEAM.management.map(member => (
               <TeamMemberCardMobile key={member.id} member={member} />
             ))}
@@ -123,7 +123,7 @@ export function Team() {
             Team Leads
           </h2>
           {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-2 gap-4 w-full">
+          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
             {TEAM.leads.map(member => (
               <TeamMemberCardMobile key={member.id} member={member} />
             ))}
@@ -143,7 +143,7 @@ export function Team() {
             Supervisors
           </h2>
           {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-2 gap-4 w-full">
+          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
             {TEAM.supervisors.map(member => (
               <TeamMemberCardMobile key={member.id} member={member} />
             ))}
