@@ -72,8 +72,11 @@ export function PreLoader() {
         
         {/* Branding & Logo */}
         <div className="flex flex-col items-center mb-12">
-          {/* We reuse the gradient sphere concept from the main logo */}
-          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-700 via-purple-600 to-orange-500 mb-6 animate-pulse" />
+          <img 
+            src="/logo.png" 
+            alt="Sababisha Solutions Logo" 
+            className="w-24 h-24 object-contain mb-6 animate-pulse"
+          />
           
           <h1 className="font-serif text-3xl tracking-tight mb-2 text-white">
             Sababisha Solutions

@@ -47,13 +47,13 @@ export function Footer() {
           <div className="footer-col lg:col-span-1 flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <OptimizedImage 
-                src="/images/img2.jpg" 
-                alt="Sababisha Logo" 
-                wrapperClassName="w-10 h-10 rounded-full shrink-0 shadow-sm" 
-                imageClassName="w-full h-full object-cover rounded-full" 
+                src="/logo.png" 
+                alt="Sababisha Solutions Logo"
+                wrapperClassName="w-12 h-12 rounded-full shrink-0 shadow-sm"
+                imageClassName="w-full h-full object-contain rounded-full"
               />
               <div>
-                <h3 className="font-sans font-semibold text-lg text-[#111111] leading-tight">Sababisha Solutions</h3>
+                <h3 className="font-sans font-semibold text-lg text-[#111111] leading-tight">Sababisha Solutions Limited</h3>
                 <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-gray-500">WE MAKE IT HAPPEN</p>
               </div>
             </div>

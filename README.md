@@ -22,14 +22,14 @@ A modern, high-performance company website built with **Next.js 16**, **Tailwind
 
 ## 🛠️ Tech Stack
 
-| Category       | Technology                                  |
-| -------------- | ------------------------------------------- |
-| Framework      | [Next.js 16.3.1](https://nextjs.org)        |
-| Styling        | [Tailwind CSS 4.3](https://tailwindcss.com) |
-| Animations     | [GSAP 3](https://gsap.com), [Motion](https://motion.dev), [Lenis](https://lenis.darkroom.engineering) |
-| UI Primitives  | [Radix UI](https://radix-ui.com)            |
-| Icons          | [Lucide React](https://lucide.dev)          |
-| Language       | [TypeScript 7](https://typescriptlang.org)  |
+| Category      | Technology                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| Framework     | [Next.js 16.3.1](https://nextjs.org)                                                                  |
+| Styling       | [Tailwind CSS 4.3](https://tailwindcss.com)                                                           |
+| Animations    | [GSAP 3](https://gsap.com), [Motion](https://motion.dev), [Lenis](https://lenis.darkroom.engineering) |
+| UI Primitives | [Radix UI](https://radix-ui.com)                                                                      |
+| Icons         | [Lucide React](https://lucide.dev)                                                                    |
+| Language      | [TypeScript 7](https://typescriptlang.org)                                                            |
 
 ## 📁 Project Structure
 
@@ -73,7 +73,7 @@ sababisha/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/sababisha.git
+git clone https://github.com/DonArtkins/sababisha.git
 cd sababisha
 
 # Install dependencies
@@ -87,33 +87,33 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ### Scripts
 
-| Command           | Description                          |
-| ----------------- | ------------------------------------ |
-| `npm run dev`     | Start development server (Turbopack) |
-| `npm run build`   | Create production build              |
-| `npm run start`   | Start production server              |
-| `npm run lint`    | Run Next.js linter                   |
-| `npm run clean`   | Remove `.next` and `node_modules`    |
+| Command         | Description                          |
+| --------------- | ------------------------------------ |
+| `npm run dev`   | Start development server (Turbopack) |
+| `npm run build` | Create production build              |
+| `npm run start` | Start production server              |
+| `npm run lint`  | Run Next.js linter                   |
+| `npm run clean` | Remove `.next` and `node_modules`    |
 
 ## 🌍 Routing
 
 Routes follow a **locale-prefixed** pattern inspired by Binance:
 
-| URL Pattern                      | Page          |
-| -------------------------------- | ------------- |
-| `/en`                            | Home          |
-| `/en/services`                   | Services      |
-| `/en/products`                   | Products      |
-| `/en/contact`                    | Contact       |
-| `/en/blog`                       | Blog          |
-| `/en/faq`                        | FAQ           |
-| `/en/team`                       | Team          |
-| `/en/gallery`                    | Gallery       |
-| `/en/testimonials`               | Testimonials  |
-| `/en/explore/projects`           | Projects      |
-| `/en/explore/rd-blogs`           | R&D Blogs     |
-| `/en/explore/ai-topics`          | AI Topics     |
-| `/en/explore/careers`            | Careers       |
+| URL Pattern             | Page         |
+| ----------------------- | ------------ |
+| `/en`                   | Home         |
+| `/en/services`          | Services     |
+| `/en/products`          | Products     |
+| `/en/contact`           | Contact      |
+| `/en/blog`              | Blog         |
+| `/en/faq`               | FAQ          |
+| `/en/team`              | Team         |
+| `/en/gallery`           | Gallery      |
+| `/en/testimonials`      | Testimonials |
+| `/en/explore/projects`  | Projects     |
+| `/en/explore/rd-blogs`  | R&D Blogs    |
+| `/en/explore/ai-topics` | AI Topics    |
+| `/en/explore/careers`   | Careers      |
 
 The root `/` redirects permanently to `/en`.
 
@@ -127,4 +127,4 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-**Sababisha Solutions** — *We make it happen.*
+**Sababisha Solutions** — _We make it happen._

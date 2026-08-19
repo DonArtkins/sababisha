@@ -117,7 +117,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       >
         {/* Optional: Add a sleek brand text or logo in the middle of the sweep */}
         <div className="absolute inset-0 flex items-center justify-center text-[#EFEFEF]">
-          <span className="font-serif text-3xl italic opacity-50 tracking-wider">Sababisha Solutions</span>
+          <span className="font-serif text-3xl italic opacity-50 tracking-wider">Sababisha Solutions Limited</span>
         </div>
       </div>
     </div>
