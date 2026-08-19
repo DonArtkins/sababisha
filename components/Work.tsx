@@ -140,49 +140,138 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
           </div>
         )}
 
-        {/* Grid */}
-        <div 
-          ref={gridRef} 
+        {/* ── Mobile grid (touch devices, no flip) ── */}
+        <div
           className={
-            variant === "home" 
-              ? "grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 w-full relative"
-              : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full min-h-[400px] relative"
+            variant === "home"
+              ? "md:hidden grid grid-cols-1 gap-4 w-full"
+              : "md:hidden grid grid-cols-1 gap-4 w-full"
           }
         >
           {ALL_PROJECTS.map((project, index) => {
             const matchesFilter = activeFilter === "All" || project.category === activeFilter;
-            const isVisible = variant === "home" 
-              ? index < 4 
-              : matchesFilter && 
-                filteredProjects.findIndex(p => p.id === project.id) >= (currentPage - 1) * ITEMS_PER_PAGE && 
+            const isVisible = variant === "home"
+              ? index < 4
+              : matchesFilter &&
+                filteredProjects.findIndex(p => p.id === project.id) >= (currentPage - 1) * ITEMS_PER_PAGE &&
+                filteredProjects.findIndex(p => p.id === project.id) < currentPage * ITEMS_PER_PAGE;
+
+            if (!isVisible) return null;
+
+            if (variant === "home") {
+              return (
+                <Link
+                  key={project.id}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-card group relative block rounded-2xl overflow-hidden shadow-md h-56 interactive cursor-none"
+                >
+                  {/* Background image */}
+                  <OptimizedImage
+                    src={project.image}
+                    alt={project.title}
+                    wrapperClassName="absolute inset-0 w-full h-full"
+                    imageClassName="w-full h-full object-cover"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80" />
+                  {/* Always-visible content */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-5">
+                    <span className="self-start bg-accent/90 text-white text-[10px] font-sans uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full">
+                      {project.category}
+                    </span>
+                    <div className="flex items-end justify-between gap-3">
+                      <h3 className="text-white font-display text-xl font-bold drop-shadow-md leading-tight">
+                        {project.title}
+                      </h3>
+                      <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-bold transition-transform duration-300 group-active:scale-95">
+                        ↗
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+
+            // Page variant — horizontal media-object card
+            return (
+              <Link
+                key={project.id}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card group flex items-stretch gap-4 rounded-2xl overflow-hidden bg-card border border-border shadow-sm interactive cursor-none"
+              >
+                {/* Thumbnail */}
+                <div className="relative w-32 shrink-0 overflow-hidden">
+                  <OptimizedImage
+                    src={project.image}
+                    alt={project.title}
+                    wrapperClassName="absolute inset-0 w-full h-full"
+                    imageClassName="w-full h-full object-cover transition-transform duration-300 group-active:scale-105"
+                  />
+                </div>
+                {/* Content */}
+                <div className="flex flex-col justify-center py-4 pr-4 gap-1.5">
+                  <span className="text-accent text-[10px] font-sans uppercase tracking-widest font-semibold">
+                    {project.category}
+                  </span>
+                  <h3 className="text-foreground font-display text-lg font-bold leading-tight">
+                    {project.title}
+                  </h3>
+                  <span className="mt-1 inline-flex items-center gap-1 text-xs font-sans font-semibold text-accent">
+                    Visit Website <span>↗</span>
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* ── Desktop grid (hover / flip cards) ── */}
+        <div
+          ref={gridRef}
+          className={
+            variant === "home"
+              ? "hidden md:grid md:grid-cols-2 gap-4 lg:gap-6 w-full relative"
+              : "hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full min-h-[400px] relative"
+          }
+        >
+          {ALL_PROJECTS.map((project, index) => {
+            const matchesFilter = activeFilter === "All" || project.category === activeFilter;
+            const isVisible = variant === "home"
+              ? index < 4
+              : matchesFilter &&
+                filteredProjects.findIndex(p => p.id === project.id) >= (currentPage - 1) * ITEMS_PER_PAGE &&
                 filteredProjects.findIndex(p => p.id === project.id) < currentPage * ITEMS_PER_PAGE;
 
             if (variant === "home") {
               const isLarge = index === 0 || index === 3;
               return (
-                <BentoTilt key={project.id} data-flip-id={project.id} className={`project-card ${isLarge ? "md:col-span-2 h-64 md:h-80" : "col-span-1 h-64 md:h-72"} ${!isVisible ? "hidden" : ""}`}>
-                  <Link 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                <BentoTilt key={project.id} data-flip-id={project.id} className={`project-card ${isLarge ? "md:col-span-2 h-80" : "col-span-1 h-72"} ${!isVisible ? "hidden" : ""}`}>
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group relative block w-full h-full interactive cursor-none [perspective:1000px]"
                   >
                     <div className="w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-3xl shadow-lg relative">
                       {/* Front Side */}
                       <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl overflow-hidden bg-gray-100">
-                        <OptimizedImage 
-                          src={project.image} 
+                        <OptimizedImage
+                          src={project.image}
                           alt={project.title}
                           wrapperClassName="absolute inset-0 w-full h-full"
                           imageClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         {/* Glassy shine overlay */}
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-[#111111]/80" />
-                        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                        <div className="absolute inset-0 flex flex-col justify-end p-8">
                           <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 drop-shadow-md">
                             {project.category}
                           </span>
-                          <h3 className="text-white font-display text-2xl md:text-3xl font-bold drop-shadow-md">
+                          <h3 className="text-white font-display text-3xl font-bold drop-shadow-md">
                             {project.title}
                           </h3>
                         </div>
@@ -201,19 +290,19 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
             }
 
             return (
-              <Link 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                key={project.id} 
-                data-flip-id={project.id} 
+              <Link
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={project.id}
+                data-flip-id={project.id}
                 className={`project-card group relative aspect-[4/3] interactive cursor-none [perspective:1000px] ${!isVisible ? "hidden" : ""}`}
               >
                 <div className="w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-2xl shadow-lg relative">
                   {/* Front Side */}
                   <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden bg-gray-100">
-                    <OptimizedImage 
-                      src={project.image} 
+                    <OptimizedImage
+                      src={project.image}
                       alt={project.title}
                       wrapperClassName="absolute inset-0 w-full h-full"
                       imageClassName="w-full h-full object-cover"
@@ -227,7 +316,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                       </h3>
                     </div>
                   </div>
-                  
+
                   {/* Back Side */}
                   <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-card [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-border">
                     <h3 className="text-foreground font-display text-2xl font-bold mb-4">{project.title}</h3>
