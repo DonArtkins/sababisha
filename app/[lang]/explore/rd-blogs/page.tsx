@@ -1,7 +1,10 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CyberText } from "@/components/CyberText";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { Pagination } from "@/components/Pagination";
 
 const BLOGS = [
   {
@@ -20,7 +23,7 @@ const BLOGS = [
     date: "15 July, 2024",
     category: "Performance",
     image: "/images/img5.jpg",
-    slug: "#"
+    slug: "/en/explore/rd-blogs/caching-strategies"
   },
   {
     title: "Next.js (v14)",
@@ -29,7 +32,7 @@ const BLOGS = [
     date: "07 June, 2024",
     category: "Frontend",
     image: "/images/img5.jpg",
-    slug: "#"
+    slug: "/en/explore/rd-blogs/nextjs-v14"
   },
   {
     title: "Postman R&D",
@@ -38,7 +41,7 @@ const BLOGS = [
     date: "3 May, 2024",
     category: "API",
     image: "/images/img1.jpg",
-    slug: "#"
+    slug: "/en/explore/rd-blogs/postman-rd"
   },
   {
     title: "Flutter Introduction",
@@ -47,11 +50,21 @@ const BLOGS = [
     date: "3 May, 2024",
     category: "Mobile",
     image: "/images/img5.jpg",
-    slug: "#"
+    slug: "/en/explore/rd-blogs/flutter-introduction"
   }
 ];
 
+const ITEMS_PER_PAGE = 3;
+
 export function RDBlogs() {
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const totalPages = Math.ceil(BLOGS.length / ITEMS_PER_PAGE);
+  const currentBlogs = BLOGS.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   return (
     <main className="bg-transparent pt-32 min-h-screen text-[#111111]">
       <div className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -66,8 +79,8 @@ export function RDBlogs() {
           <p className="text-gray-600 font-sans text-lg">Our R&D Blogs Include</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {BLOGS.map((blog, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {currentBlogs.map((blog, i) => (
             <Link href={blog.slug} key={i} className="group cursor-none interactive">
               <div className="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 bg-gray-100 relative">
                 <OptimizedImage 
@@ -97,6 +110,12 @@ export function RDBlogs() {
             </Link>
           ))}
         </div>
+        
+        <Pagination 
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
       
     </main>

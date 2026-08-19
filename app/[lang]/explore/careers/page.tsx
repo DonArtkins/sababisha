@@ -27,18 +27,32 @@ const JOBS = [
   }
 ];
 
+import { Pagination } from "@/components/Pagination";
+
+const ITEMS_PER_PAGE = 3;
+
 export function Careers() {
   const [selectedJob, setSelectedJob] = useState<typeof JOBS[0] | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(JOBS.length / ITEMS_PER_PAGE);
+  const currentJobs = JOBS.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   // Handle body scroll locking when modal is open
   useEffect(() => {
     if (selectedJob) {
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     } else {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     };
   }, [selectedJob]);
 
@@ -75,8 +89,8 @@ export function Careers() {
           </p>
         </div>
         
-        <div className="flex flex-col gap-5 mb-24">
-          {JOBS.map((job) => (
+        <div className="flex flex-col gap-5 mb-12">
+          {currentJobs.map((job) => (
             <div 
               key={job.id} 
               onClick={() => setSelectedJob(job)}
@@ -101,6 +115,14 @@ export function Careers() {
           ))}
         </div>
 
+        <div className="mb-24">
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+
         {/* Why Join Us Section */}
         <div className="bg-white rounded-[3rem] p-10 md:p-16 shadow-sm border border-gray-100">
           <div className="max-w-3xl mx-auto text-center">
@@ -114,16 +136,16 @@ export function Careers() {
 
       {/* Custom Modal */}
       {selectedJob && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overscroll-contain">
           <div 
             className="modal-backdrop absolute inset-0 bg-[#111111]/40 backdrop-blur-sm" 
             onClick={closeModal}
           ></div>
           
-          <div className="modal-content relative bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="modal-content relative bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl border border-gray-100 flex flex-col max-h-[90vh]">
             
             {/* Modal Header */}
-            <div className="px-8 pt-8 pb-6 border-b border-gray-100 flex justify-between items-start">
+            <div className="px-8 pt-8 pb-6 border-b border-gray-100 flex justify-between items-start shrink-0">
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full ${selectedJob.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
@@ -145,7 +167,7 @@ export function Careers() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-8 overflow-y-auto font-sans">
+            <div className="p-8 overflow-y-auto font-sans overscroll-contain">
               <div className="mb-8">
                 <h3 className="text-lg font-bold text-[#111111] mb-3">Program Description</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -164,7 +186,7 @@ export function Careers() {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-8 pt-6 border-t border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="p-8 pt-6 border-t border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0 rounded-b-[2.5rem]">
               <div className="flex items-center gap-2 text-sm text-gray-500">
                 <Mail className="w-4 h-4" /> Apply via email
               </div>
@@ -172,9 +194,9 @@ export function Careers() {
               {selectedJob.status === "Active" ? (
                 <a 
                   href={`mailto:${selectedJob.email}?subject=Application for ${selectedJob.title}`}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none"
                 >
-                  Apply Now <ArrowUpRight className="w-4 h-4" />
+                  <CyberText text="Apply Now" speed={20} /> <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
                 </a>
               ) : (
                 <button 

@@ -1,7 +1,10 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CyberText } from "@/components/CyberText";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { Pagination } from "@/components/Pagination";
 
 const TOPICS = [
   {
@@ -20,7 +23,7 @@ const TOPICS = [
     date: "5/3/2026",
     category: "NLP & Machine Learning",
     image: "/images/img6.jpg",
-    slug: "#"
+    slug: "/en/explore/ai-topics/nlp-pytorch"
   },
   {
     title: "LlamaIndex",
@@ -29,7 +32,7 @@ const TOPICS = [
     date: "2026",
     category: "Data Frameworks",
     image: "/images/img1.jpg",
-    slug: "#"
+    slug: "/en/explore/ai-topics/llamaindex"
   },
   {
     title: "QLoRA",
@@ -38,7 +41,7 @@ const TOPICS = [
     date: "2026",
     category: "Model Optimization",
     image: "/images/img6.jpg",
-    slug: "#"
+    slug: "/en/explore/ai-topics/qlora"
   },
   {
     title: "Make.com Automation",
@@ -47,7 +50,7 @@ const TOPICS = [
     date: "2026",
     category: "Automation & AI Agents",
     image: "/images/img1.jpg",
-    slug: "#"
+    slug: "/en/explore/ai-topics/make-automation"
   },
   {
     title: "LoRA PEFT",
@@ -56,11 +59,21 @@ const TOPICS = [
     date: "2026",
     category: "AI Training",
     image: "/images/img6.jpg",
-    slug: "#"
+    slug: "/en/explore/ai-topics/lora-peft"
   }
 ];
 
+const ITEMS_PER_PAGE = 3;
+
 export function AITopics() {
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const totalPages = Math.ceil(TOPICS.length / ITEMS_PER_PAGE);
+  const currentTopics = TOPICS.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   return (
     <main className="bg-transparent pt-32 min-h-screen text-[#111111]">
       <div className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -75,8 +88,8 @@ export function AITopics() {
           <p className="text-gray-600 font-sans text-lg">Our AI Topics Include</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {TOPICS.map((topic, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {currentTopics.map((topic, i) => (
             <Link href={topic.slug} key={i} className="group cursor-none interactive">
               <div className="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 bg-gray-100 relative">
                 <OptimizedImage 
@@ -106,6 +119,12 @@ export function AITopics() {
             </Link>
           ))}
         </div>
+        
+        <Pagination 
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
       
     </main>
