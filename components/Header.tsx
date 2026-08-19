@@ -176,13 +176,13 @@ export function Header() {
       <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 p-6 md:px-12 flex justify-between items-center text-[#111111] bg-transparent transition-colors">
         <Link href="/en" className="flex items-center gap-3 font-display font-bold tracking-tight cursor-none interactive">
           <OptimizedImage 
-            src="/images/img2.jpg" 
-            alt="Logo" 
+            src="/logo.png" 
+            alt="Sababisha Solutions Logo" 
             wrapperClassName="w-10 h-10 rounded-full shrink-0 shadow-sm" 
-            imageClassName="w-full h-full object-cover rounded-full" 
+            imageClassName="w-full h-full object-contain rounded-full" 
           />
           <div className="flex flex-col items-start">
-            <span className="text-[#111111] text-xl md:text-2xl leading-none">Sababisha Solutions</span>
+            <span className="text-[#111111] text-xl md:text-2xl leading-none">Sababisha Solutions Limited</span>
             <span className="text-[9px] md:text-[10px] font-sans font-semibold tracking-widest text-accent uppercase mt-1">We make it happen</span>
           </div>
         </Link>
