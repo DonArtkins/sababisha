@@ -12,6 +12,47 @@ import { OptimizedImage } from "./OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function WritingText({ words }: { words: string[] }) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[currentWordIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && currentText === word) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && currentText === "") {
+      setIsDeleting(false);
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+    } else {
+      const delay = isDeleting ? 40 : 80;
+      timeout = setTimeout(() => {
+        setCurrentText(prev => 
+          isDeleting 
+            ? word.substring(0, prev.length - 1)
+            : word.substring(0, prev.length + 1)
+        );
+      }, delay);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words]);
+
+  const longestWord = words.reduce((a, b) => a.length > b.length ? a : b);
+
+  return (
+    <span className="relative inline-block text-accent">
+      <span className="invisible whitespace-pre">{longestWord}</span>
+      <span className="absolute left-0 top-0 whitespace-pre">
+        {currentText}
+        <span className="w-[2px] h-[1em] bg-accent inline-block align-middle ml-[1px] animate-[pulse_1s_infinite]"></span>
+      </span>
+    </span>
+  );
+}
+
 const SLIDES = [
   {
     image: "/images/img3.jpg",
@@ -90,18 +131,18 @@ export function Hero() {
           </div>
           <div>
             <p className="font-sans font-bold text-sm text-[#111111]">100+ Enterprise Clients</p>
-            <p className="font-sans text-xs text-gray-500">Read Our <Link href="#" className="font-semibold text-[#111111] underline underline-offset-2 hover:text-accent transition-colors interactive cursor-none">Success Stories</Link></p>
+            <p className="font-sans text-xs text-gray-500">Read Our <AnimatedLink href="#testimonials" className="font-semibold text-[#111111] underline underline-offset-2 hover:text-accent transition-colors interactive cursor-none">Success Stories</AnimatedLink></p>
           </div>
         </div>
 
         {/* Huge Title (Serif) */}
-        <h1 className="font-display text-[5rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] text-[#111111] mb-8 tracking-tighter">
-          Sababisha<span className="text-gray-500 font-sans text-[3rem] md:text-[4rem] font-light align-top ml-1 -mt-4 inline-block">+</span>
+        <h1 className="font-display text-[5rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] text-accent mb-8 tracking-tighter">
+          Sababisha<span className="font-sans text-[3rem] md:text-[4rem] font-light align-top ml-1 -mt-4 inline-block">+</span>
         </h1>
 
         {/* Description */}
-        <p className="font-sans text-lg md:text-xl text-gray-600 font-medium max-w-[400px] mb-10 leading-relaxed border-b border-gray-200 pb-8">
-          Digital Solutions for Your Business — Up To 50x Faster Integration.
+        <p className="font-sans text-lg md:text-xl text-gray-600 font-medium max-w-[420px] mb-10 leading-relaxed border-b border-gray-200 pb-8">
+          Digital Solutions for Your <WritingText words={["BUSINESS", "AGENCY", "STARTUP", "SAAS"]} /> <br/> — Up To 50x Faster Integration.
         </p>
 
         {/* Small Review Block */}
@@ -171,26 +212,32 @@ export function Hero() {
         </button>
 
         {/* Floating Chat Bubbles */}
-        <div className="absolute top-[35%] left-0 z-30 flex flex-col gap-3 floating-card">
-          <div className="bg-white px-5 py-3 rounded-full rounded-tl-md shadow-lg flex items-center gap-3">
-            <div className="w-5 h-5 bg-[#FF5A36]/20 rounded flex items-center justify-center text-[#FF5A36]">
-              <Check className="w-3.5 h-3.5" />
-            </div>
-            <span className="font-sans text-sm font-medium text-[#111111]">How is the fit?</span>
-          </div>
-          <div className="bg-white px-5 py-3 rounded-full rounded-bl-md shadow-lg flex items-center gap-3 ml-8">
+        <div className="absolute top-[35%] left-[-20px] md:left-0 z-30 flex flex-col gap-3 floating-card">
+          <div className="bg-white px-5 py-3 rounded-full rounded-tl-md shadow-lg flex items-center gap-3 w-max">
             <div className="w-5 h-5 bg-blue-100 rounded flex items-center justify-center text-blue-600">
               <Check className="w-3.5 h-3.5" />
             </div>
-            <span className="font-sans text-sm font-medium text-[#111111]">Do you like the design?</span>
+            <span className="font-sans text-sm font-bold text-[#111111]">Simplify</span>
+          </div>
+          <div className="bg-white px-5 py-3 rounded-full shadow-lg flex items-center gap-3 ml-6 w-max">
+            <div className="w-5 h-5 bg-emerald-100 rounded flex items-center justify-center text-emerald-600">
+              <Check className="w-3.5 h-3.5" />
+            </div>
+            <span className="font-sans text-sm font-bold text-[#111111]">Secure</span>
+          </div>
+          <div className="bg-white px-5 py-3 rounded-full rounded-bl-md shadow-lg flex items-center gap-3 ml-12 w-max">
+            <div className="w-5 h-5 bg-[#FF5A36]/20 rounded flex items-center justify-center text-[#FF5A36]">
+              <Check className="w-3.5 h-3.5" />
+            </div>
+            <span className="font-sans text-sm font-bold text-[#111111]">Succeed</span>
           </div>
         </div>
 
         {/* Top Right Glass Card */}
         <div className="absolute top-12 right-[-20px] bg-white/40 backdrop-blur-xl border border-white/60 p-6 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] w-48 z-20 floating-card" style={{ animationDelay: '1s' }}>
           <p className="font-sans text-[10px] font-bold tracking-wider text-gray-700 uppercase mb-2">— UP TO</p>
-          <p className="font-display text-6xl text-[#111111] leading-none mb-3">60%</p>
-          <p className="font-sans text-xs text-gray-800 font-medium leading-relaxed">More sales this week</p>
+          <p className="font-display text-6xl text-[#111111] leading-none mb-3">50x</p>
+          <p className="font-sans text-xs text-gray-800 font-medium leading-relaxed">Faster integrations</p>
         </div>
 
         {/* Bottom Right Glass Card */}
