@@ -58,7 +58,7 @@ export function FaqSection() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 bg-[#F8F9FA]">
+    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 bg-background">
       <div className="max-w-4xl mx-auto">
         
         <Reveal className="text-center mb-16 flex flex-col items-center">

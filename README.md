@@ -1,6 +1,6 @@
 # Sababisha Solutions
 
-A modern, high-performance company website built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, and a polished, interactive UI.
+A modern, high-performance company website for **Sababisha Solutions Limited** — a premier innovative technology firm specializing in fintech solutions, expert consultancy, and custom enterprise-level software development. Built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, and a polished, interactive UI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.1-black?logo=nextdotjs)](https://nextjs.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
@@ -19,6 +19,35 @@ A modern, high-performance company website built with **Next.js 16**, **Tailwind
 - **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/sw/products`)
 - **SEO Optimized** — Dynamic sitemap, robots.txt, and structured metadata
 - **Accessibility** — Skip-to-content link, focus-visible outlines, semantic HTML
+
+## 🏢 About Sababisha Solutions
+
+### About Us
+
+We are a premier innovative technology firm based in Nairobi, Kenya.
+We specialize in fintech solutions, expert consultancy, and custom Enterprise level software development.
+
+Our team is dedicated to transforming innovative ideas into powerful digital solutions tailored to your business needs.
+
+Partner with us to drive growth and achieve your digital transformation goals.
+
+### Our Mission
+
+**Empowering Businesses Through Innovation**
+
+Innovation is the cornerstone of our approach. We strive to revolutionize the way businesses operate by harnessing cutting-edge technologies and creative solutions. Our goal is to empower businesses to thrive in a dynamic and competitive landscape.
+
+We are dedicated to being your trusted partner, delivering top-notch services and expertise tailored to meet the unique needs of each client.
+
+Our commitment to excellence and passion for technology fuels our efforts to help you navigate the ever-evolving digital landscape with confidence. We believe in the power of innovation to drive progress and transform industries. By staying ahead of the curve and embracing change, we enable businesses to seize new opportunities and achieve sustainable growth.
+
+### Our Vision
+
+**Driving Digital Evolution with Innovative Solutions**
+
+To innovation, reliability, and client success. We strive to create a future where businesses of all sizes can harness the power of technology to achieve their goals and realize their full potential.
+
+By continuously pushing the boundaries of what's possible, we aim to set new standards in the IT industry and be the go-to ally for companies seeking to thrive in the digital age.
 
 ## 🛠️ Tech Stack
 
@@ -127,4 +156,4 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-**Sababisha Solutions** — _We make it happen._
+**Sababisha Solutions** — _We Make It Happen._

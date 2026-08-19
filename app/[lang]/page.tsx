@@ -5,7 +5,6 @@ import { Work } from "@/components/Work";
 import { Products } from "@/components/Products";
 import { Brands } from "@/components/Brands";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { FaqSection } from "@/components/FaqSection";
 import { FooterCTA } from "@/components/FooterCTA";
 
 export function Home() {
@@ -17,7 +16,6 @@ export function Home() {
       <Products />
       <Brands />
       <TestimonialsSection />
-      <FaqSection />
       <FooterCTA />
     </main>
   );

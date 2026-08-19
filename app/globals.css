@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Colors */
+  --background: #EFEFEF;
+  --foreground: #111111;
+  --accent: #FF5A36;
+  --card: #FFFFFF;
+  --muted: #666666;
+  --border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  
+  /* Fonts */
   --font-sans: "Inter", sans-serif;
   --font-display: "DM Serif Display", serif;
   
-  --color-background: #EFEFEF;
-  --color-foreground: #111111;
-  --color-accent: #FF5A36;
-  --color-card: #FFFFFF;
+  /* Radii */
+  --radius-executive: 1.5rem; /* rounded-2xl */
+  --radius-preloader: 1rem; /* rounded-xl */
+
+  /* Theme Toggle */
+  --toggle-bg: rgba(0, 0, 0, 0.05);
+  --toggle-btn: #FFFFFF;
+  
+  /* Ambient / Loading variables */
+  --loader-glow-color: rgba(255, 90, 54, 0.05);
+  --loader-glow-color-inner: rgba(255, 90, 54, 0.1);
+  --loader-logo-bg: #FFFFFF;
+  --loader-logo-border: rgba(0, 0, 0, 0.05);
+  --loader-text-accent: rgba(0, 0, 0, 0.4);
+  --loader-divider-bg: rgba(0, 0, 0, 0.1);
+  --loader-track-bg: rgba(0, 0, 0, 0.05);
+  
+  /* Spacing Tokens */
+  --spacing-container-x: 1.5rem; /* px-6 */
+  --spacing-container-x-md: 3rem; /* px-12 */
+  --spacing-section-y: 6rem; /* py-24 */
+  --spacing-loader-logo-size: 6rem; /* w-24 */
+  --spacing-loader-logo-size-small: 5rem; /* w-20 */
+  --spacing-loader-logo-padding: 0.375rem; /* p-1.5 */
+  --spacing-loader-logo-padding-small: 0.25rem; /* p-1 */
+  --spacing-loader-logo-mb: 2rem; /* mb-8 */
+  --spacing-loader-logo-mb-large: 2.5rem; /* mb-10 */
+  --spacing-loader-divider-mb: 2.5rem; /* mb-10 */
+  --spacing-loader-divider-width: 3rem; /* w-12 */
+  --spacing-loader-divider-height: 1px; /* h-[1px] */
+  --spacing-loader-track-height: 2px; /* h-[2px] */
+  --spacing-loader-spinner-size: 2.5rem; /* w-10 h-10 */
+  --spacing-loader-spinner-border: 2px; /* border-2 */
+}
+
+.dark {
+  /* Colors override in dark mode */
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --card: #1a1a1a;
+  --muted: #a0a0a0;
+  --border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(10, 10, 10, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Theme Toggle override */
+  --toggle-bg: rgba(255, 255, 255, 0.05);
+  --toggle-btn: #1a1a1a;
+  
+  /* Ambient / Loading variables override */
+  --loader-glow-color: rgba(255, 90, 54, 0.03);
+  --loader-glow-color-inner: rgba(255, 90, 54, 0.15);
+  --loader-logo-bg: #FFFFFF;
+  --loader-logo-border: rgba(255, 255, 255, 0.05);
+  --loader-text-accent: rgba(255, 255, 255, 0.4);
+  --loader-divider-bg: rgba(255, 255, 255, 0.1);
+  --loader-track-bg: rgba(255, 255, 255, 0.06);
+}
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  
+  --color-toggle-bg: var(--toggle-bg);
+  --color-toggle-btn: var(--toggle-btn);
+  
+  --color-loader-glow: var(--loader-glow-color);
+  --color-loader-glow-inner: var(--loader-glow-color-inner);
+  --color-loader-logo-bg: var(--loader-logo-bg);
+  --color-loader-logo-border: var(--loader-logo-border);
+  --color-loader-text-accent: var(--loader-text-accent);
+  --color-loader-divider-bg: var(--loader-divider-bg);
+  --color-loader-track-bg: var(--loader-track-bg);
+  
+  --radius-executive: var(--radius-executive);
+  --radius-preloader: var(--radius-preloader);
+  
+  --spacing-container-x: var(--spacing-container-x);
+  --spacing-container-x-md: var(--spacing-container-x-md);
+  --spacing-section-y: var(--spacing-section-y);
+  
+  --spacing-loader-logo-size: var(--spacing-loader-logo-size);
+  --spacing-loader-logo-size-small: var(--spacing-loader-logo-size-small);
+  --spacing-loader-logo-padding: var(--spacing-loader-logo-padding);
+  --spacing-loader-logo-padding-small: var(--spacing-loader-logo-padding-small);
+  --spacing-loader-logo-mb: var(--spacing-loader-logo-mb);
+  --spacing-loader-logo-mb-large: var(--spacing-loader-logo-mb-large);
+  --spacing-loader-divider-mb: var(--spacing-loader-divider-mb);
+  --spacing-loader-divider-width: var(--spacing-loader-divider-width);
+  --spacing-loader-divider-height: var(--spacing-loader-divider-height);
+  --spacing-loader-track-height: var(--spacing-loader-track-height);
+  --spacing-loader-spinner-size: var(--spacing-loader-spinner-size);
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 94%;
-    --foreground: 0 0% 7%;
-  }
-
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--background);
+    color: var(--foreground);
     cursor: none; /* Hide default cursor for custom cursor */
     overflow-x: hidden;
+    transition: background-color 300ms ease, color 300ms ease;
   }
 
   /* Comprehensive keyboard navigation focus ring */
@@ -35,6 +139,70 @@
     width: 0px;
     background: transparent;
   }
+
+  /* Global dark mode style overrides for existing elements */
+  .dark {
+    /* Backgrounds transition */
+    &.bg-\[\#EFEFEF\], & .bg-\[\#EFEFEF\] {
+      background-color: var(--background) !important;
+    }
+    &.bg-white, & .bg-white {
+      background-color: var(--card) !important;
+    }
+    &.bg-gray-50, & .bg-gray-50,
+    &.bg-gray-100, & .bg-gray-100,
+    &.bg-gray-200, & .bg-gray-200 {
+      background-color: var(--background) !important;
+    }
+    &.bg-white\/95, & .bg-white\/95 {
+      background-color: rgba(26, 26, 26, 0.95) !important;
+    }
+    &.bg-white\/60, & .bg-white\/60 {
+      background-color: rgba(10, 10, 10, 0.6) !important;
+    }
+
+    /* Texts transition */
+    &.text-\[\#111111\], & .text-\[\#111111\] {
+      color: var(--foreground) !important;
+    }
+    
+    /* Allow accent color hovers to override */
+    &.hover\:text-\[\#FF5A36\]:hover, & .hover\:text-\[\#FF5A36\]:hover,
+    &.hover\:text-accent:hover, & .hover\:text-accent:hover,
+    &.group-hover\:text-accent:hover, & .group-hover\:text-accent:hover,
+    &.group:hover .group-hover\:text-accent,
+    &.group:hover .group-hover\:text-\[\#FF5A36\] {
+      color: var(--accent) !important;
+    }
+    &.text-gray-700, & .text-gray-700,
+    &.text-gray-600, & .text-gray-600,
+    &.text-gray-500, & .text-gray-500 {
+      color: var(--muted) !important;
+    }
+    &.text-gray-400, & .text-gray-400 {
+      color: #666666 !important;
+    }
+    &.hover\:text-\[\#111111\]:hover, & .hover\:text-\[\#111111\]:hover {
+      color: var(--foreground) !important;
+    }
+
+    /* Borders transition */
+    &.border-gray-100, & .border-gray-100,
+    &.border-gray-200, & .border-gray-200,
+    &.border-gray-300, & .border-gray-300 {
+      border-color: var(--border) !important;
+    }
+    &.border-gray-200\/40, & .border-gray-200\/40 {
+      border-color: var(--border) !important;
+    }
+
+    /* Hovers transition */
+    &.hover\:bg-gray-50:hover, & .hover\:bg-gray-50:hover,
+    &.hover\:bg-gray-100:hover, & .hover\:bg-gray-100:hover,
+    &.hover\:bg-gray-200:hover, & .hover\:bg-gray-200:hover {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -48,10 +216,10 @@
   }
 
   .glass-panel {
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
   }
 

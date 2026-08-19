@@ -189,9 +189,9 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                       </div>
 
                       {/* Back Side */}
-                      <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl bg-[#111111] [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-gray-800">
-                        <h3 className="text-white font-display text-2xl font-bold mb-4">{project.title}</h3>
-                        <p className="text-gray-400 font-sans text-sm mb-6">{project.link}</p>
+                      <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl bg-card [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-border">
+                        <h3 className="text-foreground font-display text-2xl font-bold mb-4">{project.title}</h3>
+                        <p className="text-muted font-sans text-sm mb-6">{project.link}</p>
                         <Button variant="secondary" size="sm">Visit Website</Button>
                       </div>
                     </div>
@@ -229,9 +229,9 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                   </div>
                   
                   {/* Back Side */}
-                  <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-[#111111] [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-gray-800">
-                    <h3 className="text-white font-display text-2xl font-bold mb-4">{project.title}</h3>
-                    <p className="text-gray-400 font-sans text-sm mb-6">{project.link}</p>
+                  <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-card [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-border">
+                    <h3 className="text-foreground font-display text-2xl font-bold mb-4">{project.title}</h3>
+                    <p className="text-muted font-sans text-sm mb-6">{project.link}</p>
                     <Button variant="secondary" size="sm">Visit Website</Button>
                   </div>
                 </div>

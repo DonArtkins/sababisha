@@ -40,13 +40,13 @@ export function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold rounded-full interactive cursor-none transition-all duration-300 transform active:scale-95';
+  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold rounded-full interactive cursor-none transition-all duration-300 transform active:scale-95 disabled:opacity-40 disabled:pointer-events-none disabled:scale-100';
   
   const variants = {
-    primary: 'bg-[#111111] text-white hover:bg-black/80 shadow-lg hover:shadow-xl hover:-translate-y-0.5',
+    primary: 'bg-[#111111] text-white hover:bg-black/80 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90 shadow-lg hover:shadow-xl hover:-translate-y-0.5',
     secondary: 'bg-[#FF5A36] text-white hover:bg-[#E84E2D] shadow-[0_0_20px_rgba(255,90,54,0.3)] hover:shadow-[0_0_30px_rgba(255,90,54,0.4)] hover:scale-105',
-    outline: 'border-2 border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white',
-    ghost: 'bg-transparent text-[#111111] hover:bg-gray-100',
+    outline: 'border-2 border-foreground text-foreground hover:bg-foreground hover:text-white dark:hover:text-background',
+    ghost: 'bg-transparent text-foreground hover:bg-foreground/10',
   };
 
   const sizes = {

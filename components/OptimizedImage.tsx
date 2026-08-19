@@ -7,6 +7,7 @@ interface OptimizedImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElem
   alt?: string;
   wrapperClassName?: string;
   imageClassName?: string;
+  priority?: boolean;
 }
 
 export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(

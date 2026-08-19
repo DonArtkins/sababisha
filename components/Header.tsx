@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
+import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +10,7 @@ import { CyberText } from "./CyberText";
 import { AnimatedLink } from "./AnimatedLink";
 import { Button } from "./Button";
 import { OptimizedImage } from "./OptimizedImage";
+import { ThemeToggle } from "./ThemeToggle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -173,16 +175,20 @@ export function Header() {
       <Link href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-6 focus:left-6 z-[100] bg-[#111111] text-white px-6 py-3 rounded-full font-sans font-bold text-sm shadow-xl outline-none ring-2 ring-[#FF5A36] ring-offset-2 ring-offset-[#EFEFEF]">
         Skip to content
       </Link>
-      <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 p-6 md:px-12 flex justify-between items-center text-[#111111] bg-transparent transition-colors">
+      <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 p-4 md:px-12 md:py-4 flex justify-between items-center text-[#111111] bg-white/60 backdrop-blur-xl border-b border-gray-200/40 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all">
         <Link href="/en" className="flex items-center gap-3 font-display font-bold tracking-tight cursor-none interactive">
-          <OptimizedImage 
-            src="/logo.png" 
-            alt="Sababisha Solutions Logo" 
-            wrapperClassName="w-10 h-10 rounded-full shrink-0 shadow-sm" 
-            imageClassName="w-full h-full object-contain rounded-full" 
-          />
+          <div className="relative w-14 h-14 bg-loader-logo-bg rounded-full shadow-md flex items-center justify-center ring-2 ring-foreground/10 shrink-0">
+            <Image 
+              src="/logo.png" 
+              alt="Sababisha Solutions Logo" 
+              fill
+              unoptimized
+              priority
+              className="object-contain rounded-full p-1 relative z-10"
+            />
+          </div>
           <div className="flex flex-col items-start">
-            <span className="text-[#111111] text-xl md:text-2xl leading-none">Sababisha Solutions Limited</span>
+            <span className="text-[#111111] text-xl md:text-2xl leading-none font-bold">Sababisha Solutions</span>
             <span className="text-[9px] md:text-[10px] font-sans font-semibold tracking-widest text-accent uppercase mt-1">We make it happen</span>
           </div>
         </Link>
@@ -190,23 +196,24 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6 font-sans text-sm font-semibold">
           <TopLevelLink href="/en/services">Services</TopLevelLink>
-          <span className="w-1 h-1 bg-[#111111] rounded-full"></span>
+          <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           
           <TopLevelLink href="/en/products">Products</TopLevelLink>
-          <span className="w-1 h-1 bg-[#111111] rounded-full"></span>
+          <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           <ExploreDropdown />
           
-          <span className="w-1 h-1 bg-[#111111] rounded-full"></span>
+          <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           <TopLevelLink href="/en/team">Team</TopLevelLink>
 
-          <span className="w-1 h-1 bg-[#111111] rounded-full"></span>
+          <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           <TopLevelLink href="/en/gallery">Gallery</TopLevelLink>
           
-          <span className="w-1 h-1 bg-[#111111] rounded-full"></span>
+          <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           <TopLevelLink href="/en/faq">FAQ</TopLevelLink>
         </nav>
         
         <div className="flex gap-6 items-center">
+          <ThemeToggle />
           <div className="hidden md:block">
             <Button variant="outline" size="sm" href="/en/contact">
               Contact Us
@@ -224,24 +231,64 @@ export function Header() {
       {/* Fullscreen Menu Portal */}
       <div 
         ref={menuRef}
-        className="fixed inset-0 bg-[#EFEFEF] z-[100] transform -translate-y-full opacity-0 flex flex-col justify-center px-6 md:px-32"
+        className="fixed inset-0 bg-[#EFEFEF] dark:bg-background z-[100] transform -translate-y-full opacity-0 flex flex-col justify-center px-6 md:px-32 py-12"
       >
         <button 
           onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 md:top-12 md:right-16 text-[#111111] flex items-center gap-2 uppercase text-xs tracking-widest font-sans font-semibold interactive cursor-none hover:opacity-70 transition-colors"
+          className="absolute top-6 right-6 md:top-12 md:right-16 text-[#111111] dark:text-[#f0f0f0] flex items-center gap-2 uppercase text-xs tracking-widest font-sans font-semibold interactive cursor-none hover:opacity-70 transition-colors"
         >
           <X className="w-8 h-8" />
         </button>
 
-        <nav className="flex flex-col gap-4 md:gap-8 font-display font-bold text-4xl md:text-7xl tracking-tighter">
-          <div className="menu-link w-fit"><AnimatedLink href="/en" className="text-[#111111] hover:text-[#FF5A36]">Home</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/services" className="text-[#111111] hover:text-[#FF5A36]">Services</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/products" className="text-[#111111] hover:text-[#FF5A36]">Products</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/explore/projects" className="text-[#111111] hover:text-[#FF5A36]">Explore</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/team" className="text-[#111111] hover:text-[#FF5A36]">Team</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/gallery" className="text-[#111111] hover:text-[#FF5A36]">Gallery</AnimatedLink></div>
-          <div className="menu-link w-fit"><AnimatedLink href="/en/contact" className="text-[#111111] hover:text-[#FF5A36]">Contact</AnimatedLink></div>
-        </nav>
+        {/* Scrollable Nav Container */}
+        <div className="w-full max-h-[75vh] overflow-y-auto pr-2 flex flex-col justify-between gap-8">
+          <nav className="flex flex-col gap-3 md:gap-5 font-display font-bold text-3xl md:text-6xl tracking-tighter">
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Home</AnimatedLink>
+            </div>
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en/services" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Services</AnimatedLink>
+            </div>
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en/products" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Products</AnimatedLink>
+            </div>
+            
+            {/* Explore Submenu */}
+            <div className="menu-link flex flex-col gap-2 mt-1">
+              <span className="text-[#111111] dark:text-foreground/60 text-xs uppercase tracking-[0.2em] font-sans font-semibold opacity-60">Explore</span>
+              <div className="flex flex-col gap-2 pl-4 border-l-2 border-[#FF5A36]">
+                {EXPLORE_LINKS.map((link) => (
+                  <Link 
+                    key={link.path} 
+                    href={link.path} 
+                    className="font-sans text-lg text-[#111111] dark:text-foreground hover:text-[#FF5A36] font-semibold flex items-center gap-2 transition-colors"
+                  >
+                    {link.name}
+                    <span className="text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#FF5A36]/10 text-[#FF5A36] font-bold">{link.tag}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en/team" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Team</AnimatedLink>
+            </div>
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en/gallery" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Gallery</AnimatedLink>
+            </div>
+            <div className="menu-link w-fit">
+              <AnimatedLink href="/en/faq" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">FAQ</AnimatedLink>
+            </div>
+          </nav>
+
+          {/* Theme Toggler and Contact Us Button inside Mobile Menu */}
+          <div className="menu-link pt-6 border-t border-[#111111]/10 dark:border-white/10 flex items-center gap-6">
+            <ThemeToggle />
+            <Button variant="outline" size="sm" href="/en/contact">
+              Contact Us
+            </Button>
+          </div>
+        </div>
       </div>
     </>
   );
