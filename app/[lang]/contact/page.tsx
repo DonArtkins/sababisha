@@ -74,7 +74,7 @@ export function Contact() {
                 <h3 className="text-[#111111] font-display text-xl mb-1">Call Us</h3>
                 <p className="text-gray-600 font-sans text-sm mb-1">We usually respond immediately</p>
                 <Link href="tel:+254751101532" className="text-[#111111] font-sans font-semibold text-sm hover:text-[#FF5A36] transition-colors interactive cursor-none">
-                  +254 751 101 532
+                  0751101532 / 0715088150
                 </Link>
               </div>
             </div>
@@ -87,7 +87,7 @@ export function Contact() {
                 <h3 className="text-[#111111] font-display text-xl mb-1">Physical Presence</h3>
                 <p className="text-gray-600 font-sans text-sm mb-1">Visit our headquarters</p>
                 <p className="text-[#111111] font-sans font-semibold text-sm">
-                  123 Innovation Drive<br/>Tech Hub, Nairobi, Kenya
+                  Ngong, Nairobi,<br/>Zambia Road,<br/>Along Wakaba Close,<br/>Mega-Hill Court, Suite B3.
                 </p>
               </div>
             </div>
