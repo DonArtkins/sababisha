@@ -17,11 +17,11 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 const FILTERS = ["All", "Loan Management", "Legal Management", "Financial Analytics", "Government Projects"];
 
 const ALL_PROJECTS = [
-  { id: 1, title: "NJUMU POS", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
-  { id: 2, title: "SHERIA PRO", category: "Legal Management", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
   { id: 3, title: "MAZIWA", category: "Loan Management", image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
-  { id: 4, title: "KIAMIS", category: "Government Projects", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
+  { id: 2, title: "SHERIA PRO", category: "Legal Management", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
   { id: 5, title: "FINSIGHT", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://finsights.mcb.co.ke" },
+  { id: 4, title: "KIAMIS", category: "Government Projects", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
+  { id: 1, title: "NJUMU POS", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
   { id: 6, title: "PRUDMAT", category: "Loan Management", image: "/images/img1.jpg", link: "https://prudmat.org" },
   { id: 7, title: "DATA G", category: "Financial Analytics", image: "/images/img5.jpg", link: "https://datag.co.ke" },
   { id: 8, title: "MEMBERS PORTAL", category: "Government Projects", image: "/images/img1.jpg", link: "https://membersportal.kar.co.ke" },

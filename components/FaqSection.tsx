@@ -1,36 +1,118 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
+interface FaqItem {
+  value: string;
+  question: string;
+  answer: React.ReactNode;
+}
+
+const FAQS: FaqItem[] = [
   {
     value: "faq-1",
-    question: "What industries do you serve?",
-    answer: "We primarily serve the Fintech, Healthcare, Logistics, and E-commerce sectors, but our custom software solutions are adaptable to any industry requiring scalable enterprise systems."
+    question: "What does Sababisha Solutions do?",
+    answer:
+      "Sababisha Solutions is a fintech company that builds simple, scalable digital systems and provides technology solutions to help businesses streamline operations, improve efficiency, and grow."
   },
   {
     value: "faq-2",
-    question: "How long does a typical project take?",
-    answer: "Project timelines vary based on complexity. A standard web application might take 2-3 months, while complex enterprise systems or ERP implementations can take 6 months to a year."
+    question: "What types of businesses do you work with?",
+    answer:
+      "We work with startups, SMEs, and established enterprises across various industries looking to digitize their processes, improve financial systems, or build custom software solutions."
   },
   {
     value: "faq-3",
-    question: "Do you provide ongoing support after launch?",
-    answer: "Yes, we offer comprehensive SLA-based support and maintenance packages to ensure your systems remain secure, updated, and performant."
+    question: "What solutions do you offer?",
+    answer: (
+      <div>
+        <p>We provide a range of tailored digital and fintech solutions, including:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>Innovative fintech solutions</li>
+          <li>Expert consultancy</li>
+          <li>Advanced analytics</li>
+          <li>Ongoing support and maintenance</li>
+          <li>Custom software development</li>
+          <li>Enterprise systems development</li>
+        </ul>
+      </div>
+    )
   },
   {
     value: "faq-4",
-    question: "What is your technology stack?",
-    answer: "We use modern, scalable technologies including React, Node.js, Python, PostgreSQL, and cloud infrastructure like AWS and Google Cloud Platform."
+    question: "Can you build a system tailored to my business needs?",
+    answer:
+      "Yes. We specialize in developing customized solutions designed specifically around your business requirements to ensure scalability, efficiency, and ease of use."
+  },
+  {
+    value: "faq-5",
+    question: "How long does it take to develop a system?",
+    answer:
+      "Project timelines vary depending on complexity and scope. Simple solutions may take a few weeks, while more advanced systems can take several months. We provide clear timelines after an initial consultation."
+  },
+  {
+    value: "faq-6",
+    question: "Do you offer support after the system is delivered?",
+    answer:
+      "Yes. We provide continuous support, system maintenance, updates, and performance monitoring to ensure your solution remains reliable and up to date."
+  },
+  {
+    value: "faq-7",
+    question: "How do I get started with Sababisha Solutions?",
+    answer:
+      "You can get started by contacting us through our website or reaching out directly via phone at +254 751101532. Our team will schedule a consultation to understand your needs and recommend the best solution."
+  },
+  {
+    value: "faq-8",
+    question: "Do you help businesses that are not tech-savvy?",
+    answer:
+      "Absolutely. We design intuitive, user-friendly systems and guide you through every step, ensuring a smooth transition into digital operations."
+  },
+  {
+    value: "faq-9",
+    question: "Can you integrate with existing systems?",
+    answer: (
+      <div>
+        <p>Yes. We can integrate our solutions with a wide range of existing platforms and services, including:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>Mobile money platforms such as M-Pesa</li>
+          <li>Banking systems</li>
+          <li>Credit Reference Bureaus (CRBs)</li>
+          <li>Payment gateways</li>
+          <li>CRM and ERP systems</li>
+        </ul>
+        <p className="mt-2">This ensures seamless data flow and efficient business operations.</p>
+      </div>
+    )
+  },
+  {
+    value: "faq-10",
+    question: "Do you offer fintech-specific solutions?",
+    answer:
+      "Yes. As a fintech-focused company, we develop solutions such as payment systems, digital wallets, financial dashboards, lending platforms, and transaction management systems."
+  },
+  {
+    value: "faq-11",
+    question: "How secure is our data?",
+    answer: (
+      <div>
+        <p>
+          We take data security very seriously. Sababisha Solutions is a certified Data Controller, and we adhere to strict data protection standards, including encryption and secure system architecture. You can view our certification details here:{" "}
+          <Link href="#" className="text-accent underline">
+            Data Controller Certificate
+          </Link>
+        </p>
+      </div>
+    )
   }
 ];
-
-import { Reveal } from "./Reveal";
 
 export function FaqSection() {
   const containerRef = useRef<HTMLElement>(null);
