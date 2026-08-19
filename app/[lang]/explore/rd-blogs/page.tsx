@@ -1,28 +1,53 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CyberText } from "@/components/CyberText";
 import { OptimizedImage } from "@/components/OptimizedImage";
 
 const BLOGS = [
   {
-    title: "The Future of FinTech: Beyond the Monolith",
-    excerpt: "Exploring micro-frontends and decentralized architectures in modern banking systems.",
-    date: "August 15, 2026",
-    category: "Engineering",
-    image: "/images/img1.jpg"
+    title: "Prometheus, Grafana & Alertmanager",
+    excerpt: "An Integrated Monitoring and Alerting System.",
+    author: "John Korio",
+    date: "4 Oct, 2024",
+    category: "Monitoring",
+    image: "/images/img1.jpg",
+    slug: "/en/explore/rd-blogs/prometheus-grafana"
   },
   {
-    title: "Implementing Zero-Trust Security in Legacy ERPs",
-    excerpt: "A practical guide to securing legacy systems without disrupting core business operations.",
-    date: "July 22, 2026",
-    category: "Security",
-    image: "/images/img5.jpg"
+    title: "Caching Strategies",
+    excerpt: "Optimize performance with effective caching techniques.",
+    author: "Bethwel Kitoo",
+    date: "15 July, 2024",
+    category: "Performance",
+    image: "/images/img5.jpg",
+    slug: "#"
   },
   {
-    title: "Optimizing PostgreSQL for High-Frequency Trading",
-    excerpt: "Techniques and configurations to achieve sub-millisecond latencies in relational databases.",
-    date: "June 10, 2026",
-    category: "Database",
-    image: "/images/img5.jpg"
+    title: "Next.js (v14)",
+    excerpt: "Latest features in Next.js version 14 framework.",
+    author: "Heman Alany",
+    date: "07 June, 2024",
+    category: "Frontend",
+    image: "/images/img5.jpg",
+    slug: "#"
+  },
+  {
+    title: "Postman R&D",
+    excerpt: "API testing and development with Postman tool.",
+    author: "John Korio",
+    date: "3 May, 2024",
+    category: "API",
+    image: "/images/img1.jpg",
+    slug: "#"
+  },
+  {
+    title: "Flutter Introduction",
+    excerpt: "Introduction to Flutter for cross-platform app development.",
+    author: "Civious Rumaita",
+    date: "3 May, 2024",
+    category: "Mobile",
+    image: "/images/img5.jpg",
+    slug: "#"
   }
 ];
 
@@ -43,7 +68,7 @@ export function RDBlogs() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {BLOGS.map((blog, i) => (
-            <div key={i} className="group cursor-none interactive">
+            <Link href={blog.slug} key={i} className="group cursor-none interactive">
               <div className="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 bg-gray-100 relative">
                 <OptimizedImage 
                   src={blog.image} 
@@ -56,6 +81,8 @@ export function RDBlogs() {
                 <span className="text-accent">{blog.category}</span>
                 <span>•</span>
                 <span>{blog.date}</span>
+                <span>•</span>
+                <span>{blog.author}</span>
               </div>
               <h3 className="font-display text-2xl text-[#111111] leading-tight mb-3 group-hover:text-accent transition-colors">
                 {blog.title}
@@ -63,11 +90,11 @@ export function RDBlogs() {
               <p className="text-gray-500 font-sans text-sm mb-6 line-clamp-2">
                 {blog.excerpt}
               </p>
-              <button className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold group-hover:gap-3 transition-all">
+              <div className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold group-hover:gap-3 transition-all">
                 <CyberText text="Read Article" speed={40} />
                 <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
