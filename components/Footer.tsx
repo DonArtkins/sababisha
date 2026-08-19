@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Link from 'next/link';
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mail, Phone, Play, ChevronRight, Globe, Shield, Lock, LifeBuoy } from "lucide-react";
@@ -46,15 +47,18 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="footer-col lg:col-span-1 flex flex-col gap-6">
             <div className="flex items-center gap-3">
-              <OptimizedImage 
-                src="/logo.png" 
-                alt="Sababisha Solutions Logo"
-                wrapperClassName="w-12 h-12 rounded-full shrink-0 shadow-sm"
-                imageClassName="w-full h-full object-contain rounded-full"
-              />
+              <div className="relative w-12 h-12 bg-loader-logo-bg rounded-full shadow-sm flex items-center justify-center ring-2 ring-foreground/10 shrink-0">
+                <Image 
+                  src="/logo.png" 
+                  alt="Sababisha Solutions Logo" 
+                  fill
+                  unoptimized
+                  className="object-contain rounded-full p-1 relative z-10"
+                />
+              </div>
               <div>
                 <h3 className="font-sans font-semibold text-lg text-[#111111] leading-tight">Sababisha Solutions Limited</h3>
-                <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-gray-500">WE MAKE IT HAPPEN</p>
+                <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-accent font-semibold">WE MAKE IT HAPPEN</p>
               </div>
             </div>
             <p className="text-gray-600 font-sans text-sm leading-relaxed mt-2">

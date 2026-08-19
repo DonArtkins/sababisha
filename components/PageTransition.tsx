@@ -53,7 +53,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
     const ctx = gsap.context(() => {
       // Setup the old page DOM so it stays visually frozen on screen
-      const oldWrapperStyle = `position: absolute; top: 0; left: 0; width: 100vw; height: max-content; transform: translateY(-${oldData.scrollY}px); background-color: #EFEFEF; pointer-events: none; z-index: 10;`;
+      const oldWrapperStyle = `position: absolute; top: 0; left: 0; width: 100vw; height: max-content; transform: translateY(-${oldData.scrollY}px); background-color: var(--background); pointer-events: none; z-index: 10;`;
       if (ghostContainerRef.current) {
         ghostContainerRef.current.innerHTML = `<div style="${oldWrapperStyle}">${oldData.html}</div>`;
       }
@@ -113,11 +113,12 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       {/* The Sweep Overlay (The "Curtain") */}
       <div 
         ref={overlayRef}
-        className="fixed inset-0 z-50 bg-[#111111] hidden pointer-events-none"
+        className="fixed inset-0 z-50 bg-background border-y border-border/10 hidden pointer-events-none"
       >
         {/* Optional: Add a sleek brand text or logo in the middle of the sweep */}
-        <div className="absolute inset-0 flex items-center justify-center text-[#EFEFEF]">
-          <span className="font-serif text-3xl italic opacity-50 tracking-wider">Sababisha Solutions Limited</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+          <span className="font-display text-3xl text-foreground/80 tracking-tight">Sababisha Solutions</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-semibold">We Make It Happen</span>
         </div>
       </div>
     </div>

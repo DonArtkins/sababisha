@@ -50,7 +50,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="bg-[#EFEFEF] min-h-screen text-[#111111] font-sans flex flex-col">
+    <div className="bg-background min-h-screen text-foreground font-sans flex flex-col transition-colors duration-300">
       <PreLoader />
       <CustomCursor />
       <ScrollProgress />
