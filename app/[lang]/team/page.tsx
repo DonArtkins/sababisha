@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { BentoTilt } from "@/components/BentoTilt";
 import { OptimizedImage } from "@/components/OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,37 +24,17 @@ const TEAM = {
   ]
 };
 
-const TeamMemberCard = ({ member, className }: { member: any, className?: string }) => (
-  <BentoTilt className={`group relative rounded-3xl overflow-hidden bg-gray-100 interactive cursor-none ${className}`}>
-    <OptimizedImage 
-      src={member.image} 
-      alt={member.name}
-      wrapperClassName="absolute inset-0 w-full h-full"
-      imageClassName="w-full h-full object-cover grayscale opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100"
-    />
-    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#111111]/90" />
-    <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-      <h3 className="text-white font-display text-2xl md:text-3xl font-bold drop-shadow-md">
-        {member.name}
-      </h3>
-      <span className="text-accent text-sm font-sans uppercase tracking-widest font-semibold mt-1 drop-shadow-md">
-        {member.role}
-      </span>
-    </div>
-  </BentoTilt>
-);
-
-const TeamMemberCardMobile = ({ member }: { member: any }) => (
+const TeamMemberCard = ({ member }: { member: any }) => (
   <div className="group interactive cursor-none">
     <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
         src={member.image}
         alt={member.name}
         wrapperClassName="absolute inset-0 w-full h-full"
-        imageClassName="w-full h-full object-cover grayscale opacity-80"
+        imageClassName="w-full h-full object-cover grayscale opacity-80 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
       />
     </div>
-    <h3 className="font-display text-2xl text-[#111111] leading-tight mb-2">{member.name}</h3>
+    <h3 className="font-display text-2xl md:text-3xl text-[#111111] leading-tight mb-2">{member.name}</h3>
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold">{member.role}</span>
   </div>
 );
@@ -98,60 +77,39 @@ export function Team() {
 
         {/* Management */}
         <div className="team-section mb-24">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-8 flex items-center gap-4">
+          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
             <span className="w-8 h-px bg-gray-300"></span>
             Executive Management
           </h2>
-          {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-1 gap-10 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 w-full">
             {TEAM.management.map(member => (
-              <TeamMemberCardMobile key={member.id} member={member} />
-            ))}
-          </div>
-          {/* Desktop layout */}
-          <div className="hidden md:grid md:grid-cols-2 gap-6 w-full">
-            {TEAM.management.map(member => (
-              <TeamMemberCard key={member.id} member={member} className="aspect-[16/9]" />
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </div>
 
         {/* Leads */}
         <div className="team-section mb-24">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-8 flex items-center gap-4">
+          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
             <span className="w-8 h-px bg-gray-300"></span>
             Team Leads
           </h2>
-          {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12 md:gap-x-8 w-full">
             {TEAM.leads.map(member => (
-              <TeamMemberCardMobile key={member.id} member={member} />
-            ))}
-          </div>
-          {/* Desktop layout */}
-          <div className="hidden md:grid md:grid-cols-3 gap-6 w-full">
-            {TEAM.leads.map(member => (
-              <TeamMemberCard key={member.id} member={member} className="aspect-[4/5]" />
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </div>
 
         {/* Supervisors */}
         <div className="team-section">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-8 flex items-center gap-4">
+          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
             <span className="w-8 h-px bg-gray-300"></span>
             Supervisors
           </h2>
-          {/* Mobile layout */}
-          <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 md:gap-x-8 w-full">
             {TEAM.supervisors.map(member => (
-              <TeamMemberCardMobile key={member.id} member={member} />
-            ))}
-          </div>
-          {/* Desktop layout */}
-          <div className="hidden md:grid md:grid-cols-4 gap-6 w-full">
-            {TEAM.supervisors.map(member => (
-              <TeamMemberCard key={member.id} member={member} className="aspect-square" />
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </div>
