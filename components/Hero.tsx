@@ -55,17 +55,29 @@ function WritingText({ words }: { words: string[] }) {
 
 const SLIDES = [
   {
-    image: "/images/img3.jpg",
-    title: "Enterprise Solutions"
+    image: "/images/hero-banner/maziwa.png",
+    title: "Maziwa Platform",
   },
   {
-    image: "/images/img6.jpg",
-    title: "Global Reach"
+    image: "/images/hero-banner/sheria-pro.png",
+    title: "Sheria Pro",
   },
   {
-    image: "/images/img1.jpg",
-    title: "Seamless Integration"
-  }
+    image: "/images/hero-banner/tiba.png",
+    title: "TIBA Health",
+  },
+  {
+    image: "/images/hero-banner/core-services.png",
+    title: "Core Services",
+  },
+  {
+    image: "/images/hero-banner/product-view.png",
+    title: "Product View",
+  },
+  {
+    image: "/images/hero-banner/contact-us.png",
+    title: "Contact Us",
+  },
 ];
 
 export function Hero() {
@@ -177,7 +189,7 @@ export function Hero() {
       <div ref={rightContentRef} className="w-full lg:w-[55%] relative h-[600px] md:h-[700px] flex items-center justify-center mt-12 lg:mt-0">
         
         {/* Large Rounded Orange Container */}
-        <div className="absolute right-0 w-[85%] md:w-[65%] h-[90%] bg-[#FF5A36] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+        <div className="absolute right-0 w-[85%] md:w-[65%] h-[90%] bg-[#FF5A36] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl">
           {SLIDES.map((slide, i) => (
             <div 
               key={i} 
@@ -191,26 +203,26 @@ export function Hero() {
                 priority={i === 0}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#FF5A36]/60 to-transparent mix-blend-multiply"></div>
-              <div className="absolute top-8 left-8">
-                <div className="bg-[#111111]/90 backdrop-blur-xl border border-[#111111]/50 px-5 py-2.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-                  <p className="text-white font-sans text-sm font-semibold uppercase tracking-wider">{slide.title}</p>
+              <div className="absolute top-8 left-8 z-20">
+                <div className="bg-white/95 backdrop-blur-md border border-white px-5 py-2.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
+                  <p className="text-[#111111] font-sans text-sm font-semibold uppercase tracking-wider">{slide.title}</p>
                 </div>
               </div>
             </div>
           ))}
-        </div>
 
-        {/* Play Button */}
-        <button 
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="absolute top-1/2 left-1/2 md:left-[45%] lg:left-[40%] -translate-x-4 -translate-y-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl interactive cursor-none hover:scale-110 transition-transform z-30"
-        >
-          {isPlaying ? (
-            <Pause className="w-6 h-6 text-[#111111]" fill="currentColor" />
-          ) : (
-            <Play className="w-6 h-6 text-[#111111] ml-1" fill="currentColor" />
-          )}
-        </button>
+          {/* Play Button — centered in banner */}
+          <button 
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl interactive cursor-none hover:scale-110 transition-transform z-30"
+          >
+            {isPlaying ? (
+              <Pause className="w-6 h-6 text-[#111111]" fill="currentColor" />
+            ) : (
+              <Play className="w-6 h-6 text-[#111111] ml-1" fill="currentColor" />
+            )}
+          </button>
+        </div>
 
         {/* Floating Chat Bubbles */}
         <div className="absolute top-[35%] left-[-20px] md:left-0 z-30 flex flex-col gap-3 floating-card">
@@ -244,7 +256,7 @@ export function Hero() {
         {/* Bottom Right Glass Card */}
         <div className="absolute bottom-16 right-4 md:right-10 bg-white/30 backdrop-blur-xl border border-white/50 p-5 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.1)] w-[280px] flex items-center gap-4 z-20 floating-card" style={{ animationDelay: '0.5s' }}>
           <div className="w-24 h-24 bg-white rounded-2xl p-2 shrink-0 overflow-hidden shadow-sm">
-            <OptimizedImage src="/images/img6.jpg" alt="Product" wrapperClassName="w-full h-full rounded-xl" imageClassName="w-full h-full object-cover rounded-xl" />
+            <OptimizedImage src="/images/projects/maziwa-bg.png" alt="Maziwa Platform" wrapperClassName="w-full h-full rounded-xl" imageClassName="w-full h-full object-cover rounded-xl" />
           </div>
           <div className="flex-1">
             <p className="font-sans text-sm font-medium text-[#111111] leading-tight mb-2">Maziwa Platform</p>
