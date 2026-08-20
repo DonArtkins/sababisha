@@ -1,5 +1,6 @@
 import type {
   AITopic,
+  Brand,
   GalleryItem,
   Product,
   RDBlog,
@@ -217,6 +218,75 @@ export const PRODUCTS: Product[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
+// Trusted brands / clients shown in the home marquee
+export const BRANDS: Brand[] = [
+  {
+    name: "Ministry of Agriculture",
+    domain: "kilimo.go.ke",
+    logo: "/images/brands/ministry-of-agriculture.png",
+  },
+  {
+    name: "Alpic Micro-Credit",
+    domain: "alpic.co.ke",
+    logo: "/images/brands/alpic-micro-credit.png",
+  },
+  {
+    name: "CPHRM Group",
+    domain: "career.cphrmgroup.co.ke",
+    logo: "/images/brands/cphrm-group.png",
+  },
+  {
+    name: "Dataghala",
+    domain: "dataghala.com",
+    logo: "/images/brands/dataghala.png",
+  },
+  {
+    name: "Ecent Ventures",
+    domain: "ecentventures.com",
+    logo: "/images/brands/ecent-ventures.png",
+  },
+  {
+    name: "FI",
+    domain: "fi.co.ke",
+    logo: "/images/brands/fi.png",
+  },
+  {
+    name: "Fulusi Capital",
+    domain: "fulusicapital.co.ke",
+    logo: "/images/brands/fulusi-capital.png",
+  },
+  {
+    name: "WestZone Capital",
+    domain: "westzonecapital.com",
+    logo: "/images/brands/westzone-capital.png",
+  },
+  {
+    name: "Gepha Mart",
+    domain: "gephamart.com",
+    logo: "/images/brands/gepha-mart.png",
+  },
+  {
+    name: "Jamcroc Micro Credit",
+    domain: "jamcroc.com",
+    logo: "/images/brands/jamcroc-micro-credit.png",
+  },
+  {
+    name: "Jomoaa",
+    domain: "jomoaa.com",
+    logo: "/images/brands/jomoaa.png",
+  },
+  {
+    name: "Olion Ventures",
+    domain: "olionventures.com",
+    logo: "/images/brands/olion-ventures.png",
+  },
+  {
+    name: "Ozol Investments",
+    domain: "ozolinvestments.com",
+    logo: "/images/brands/ozol-investments.png",
   },
 ];
 
