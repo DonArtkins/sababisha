@@ -1,10 +1,17 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { ArrowUpRight, X, Mail, AlertCircle, Info } from "lucide-react";
 import { CyberText } from "@/components/CyberText";
 import { Pagination } from "@/components/Pagination";
 import gsap from "gsap";
+
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false },
+);
 
 const JOBS = [
   { 
@@ -218,6 +225,16 @@ export function Careers() {
             className="modal-scrollable min-h-0 flex-1 overflow-y-auto overscroll-contain p-5 font-sans touch-pan-y sm:p-8"
             style={{ WebkitOverflowScrolling: "touch" }}
           >
+            <div className="mx-auto mb-6 w-full max-w-[200px]">
+              <Player
+                autoplay
+                keepLastFrame
+                loop
+                src="/lottie/careers-info.json"
+                style={{ height: "160px", width: "100%" }}
+              />
+            </div>
+
             <div className="mb-8">
               <h3 className="mb-3 text-base font-bold text-[#111111] sm:text-lg">Program Description</h3>
               <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
@@ -242,12 +259,12 @@ export function Careers() {
             </div>
 
             {selectedJob.status === "Active" ? (
-              <a
+              <Link
                 href={`mailto:${selectedJob.email}?subject=Application for ${selectedJob.title}`}
                 className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FF5A36] px-6 py-3 font-sans text-sm font-bold tracking-wide text-white transition-all hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 interactive cursor-none sm:w-auto sm:px-8 sm:py-4"
               >
                 <CyberText text="Apply Now" speed={20} /> <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-              </a>
+              </Link>
             ) : (
               <button
                 disabled

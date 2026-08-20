@@ -5,7 +5,7 @@ export interface Product {
   desc: string;
   features: string[];
   image: string;
-  link: string;
+  link?: string;
 }
 
 export interface Service {

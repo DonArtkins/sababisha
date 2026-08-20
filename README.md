@@ -1,6 +1,6 @@
 # Sababisha Solutions
 
-A modern, high-performance company website for **Sababisha Solutions Limited** — a Nairobi-based technology firm specializing in fintech platforms, expert consultancy, enterprise systems, analytics, custom software, and long-term support. Built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, service-aware contact flows, Lottie status modals, and a polished, interactive UI.
+A modern, high-performance company website for **Sababisha Solutions Limited** — a Nairobi-based technology firm specializing in fintech platforms, expert consultancy, enterprise systems, analytics, custom software, and long-term support. Built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, service-aware contact flows, Lottie-powered modals, and a polished, interactive UI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.1-black?logo=nextdotjs)](https://nextjs.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
@@ -19,9 +19,9 @@ A modern, high-performance company website for **Sababisha Solutions Limited** �
 - **Services Catalog** — Data-backed service cards with six-card pagination limits, dynamic counters, and animated inquiry links
 - **Service-Aware Contact Form** — `/en/contact?service=...` preselects and prefills the exact service inquiry
 - **Email Delivery** — Contact and newsletter submissions are sent through server-only Resend API routes
-- **Status Modals** — Shared success/error Lottie modal for contact and newsletter responses
+- **Status Modals** — All user-facing modals use local Lottie animations (`FormStatusModal`, `LiveSiteUnavailableModal`, careers job details)
 - **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/en/products`)
-- **SEO Optimized** — Dynamic sitemap, robots.txt, canonical metadata, Open Graph, and Twitter card metadata
+- **SEO Optimized** — Dynamic sitemap, robots.txt, HTML sitemap page, canonical metadata, Open Graph, and Twitter card metadata
 - **Accessibility** — Skip-to-content link, focus-visible outlines, semantic HTML
 
 ## About Sababisha Solutions
@@ -60,6 +60,7 @@ By continuously pushing the boundaries of what's possible, we aim to set new sta
 | Framework     | [Next.js 16.3.1](https://nextjs.org)                                                                  |
 | Styling       | [Tailwind CSS 4.3](https://tailwindcss.com)                                                           |
 | Animations    | [GSAP 3](https://gsap.com), [Motion](https://motion.dev), [Lenis](https://lenis.darkroom.engineering) |
+| Lottie        | [`@lottiefiles/react-lottie-player`](https://www.npmjs.com/package/@lottiefiles/react-lottie-player) (local JSON in `public/lottie/`) |
 | UI Primitives | [Radix UI](https://radix-ui.com)                                                                      |
 | Icons         | [Lucide React](https://lucide.dev)                                                                    |
 | Email         | [Resend](https://resend.com) via `lib/email.ts`                                                       |
@@ -98,8 +99,10 @@ sababisha/
 ├── layouts/                # Layout wrappers
 ├── lib/                    # Data, email, form, type, and utility helpers
 ├── research/               # Internal setup notes (not a public route)
-│   └── RESEND.md           # Resend domain verify + .vercel.app guidance
+│   ├── RESEND.md           # Resend domain verify + .vercel.app guidance
+│   └── LOTTIE-MODALS.md    # Modal inventory + Lottie UX convention
 ├── public/                 # Static assets, icons, and Lottie animations
+│   └── lottie/             # Local JSON for all production modals
 └── app/globals.css         # Global styles + Tailwind theme
 ```
 
@@ -210,7 +213,19 @@ The contact page:
 - Prefills the message with service details
 - Validates name, email, phone, service, and message fields on the client and server
 - Uses a honeypot `website` field to silently ignore bot submissions
-- Shows shared Lottie success/error modals
+- Shows shared Lottie success/error modals (`FormStatusModal` + `/lottie/form-success.json` / `form-error.json`)
+
+## Modals and Lottie UX
+
+Every user-facing modal uses a **local Lottie** from `public/lottie/` (not a static icon as the primary visual). Player is loaded with `dynamic(..., { ssr: false })`.
+
+| Modal | Component | Asset |
+| ----- | --------- | ----- |
+| Form success / error | `components/FormStatusModal.tsx` | `form-success.json`, `form-error.json` |
+| Live site unavailable | `components/LiveSiteUnavailableModal.tsx` | `site-unavailable.json` |
+| Careers job details | `app/[lang]/explore/careers/page.tsx` | `careers-info.json` |
+
+Full inventory and contributor rules: [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md).
 
 ## Forms and Email Delivery
 
@@ -235,14 +250,18 @@ UI success only means the API route accepted Resend’s response. Use the Resend
 - `app/layout.tsx` defines global metadata, `metadataBase`, canonical URL, keywords, Open Graph, Twitter cards, and indexing robots directives.
 - `app/[lang]/services/page.tsx` defines services-specific metadata.
 - `app/[lang]/contact/layout.tsx` defines contact-specific metadata while keeping the page interactive.
-- `app/sitemap.ts` automatically discovers public `page.tsx` files under `app/[lang]/` and assigns priorities (home highest; services/contact/products elevated; legal/sitemap pages lower).
+- `app/sitemap.ts` automatically discovers public `page.tsx` files under `app/[lang]/` and assigns priorities (home highest; services/contact/products elevated; legal/sitemap pages lower). Lottie files under `public/lottie/` are static assets and are **not** sitemap entries.
+- `app/[lang]/sitemap-page/page.tsx` is the human-readable HTML sitemap; keep its link groups aligned with public routes.
 - `app/robots.ts` allows public content and disallows `/api/`, `/_next/`, `/bugs/`, and `/research/`.
 - `SITE_URL` must match the public origin so sitemap URLs, robots `host`/`sitemap`, and canonical metadata stay consistent.
-- When routes or crawl rules change, also update `README.md`, `CONTRIBUTING.md`, and `AGENTS.md`.
+- When routes, crawl rules, email, or modal/Lottie conventions change, also update `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and the matching `research/` note.
 
 ## Research Notes
 
-Internal setup guides live in [`research/`](./research/). Start with [`research/RESEND.md`](./research/RESEND.md) for Resend API keys, `onboarding@resend.dev` testing, domain verification, and `.vercel.app` workarounds.
+Internal setup guides live in [`research/`](./research/):
+
+- [`research/RESEND.md`](./research/RESEND.md) — Resend API keys, `onboarding@resend.dev` testing, domain verification, and `.vercel.app` workarounds
+- [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md) — modal inventory, Player rules, and required Lottie UX convention
 
 ## Contributing
 

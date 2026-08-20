@@ -2,7 +2,7 @@
 
 This note documents how to get email working with [Resend](https://resend.com) without repeating the same dashboard failures. It is project-agnostic: use placeholders, never commit real API keys.
 
-**Related project docs:** [`README.md`](../README.md) (env + SEO overview), [`CONTRIBUTING.md`](../CONTRIBUTING.md) (contributor Resend checklist), [`AGENTS.md`](../AGENTS.md) (agent conventions). Sababisha-specific env names in this repo are `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `SABABISHA_CONTACT_EMAIL` — see `.env.example`.
+**Related project docs:** [`README.md`](../README.md) (env + SEO overview), [`CONTRIBUTING.md`](../CONTRIBUTING.md) (contributor Resend checklist), [`AGENTS.md`](../AGENTS.md) (agent conventions), [`LOTTIE-MODALS.md`](./LOTTIE-MODALS.md) (form success/error Lottie modals). Sababisha-specific env names in this repo are `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `CONTACT_TO_EMAIL` — see `.env.example`.
 
 Official docs worth bookmarking:
 

@@ -16,6 +16,11 @@ type RouteConfig = {
  * Contact/services stay elevated because they drive inquiry conversion.
  * New pages under app/[lang]/ are still auto-discovered; add an entry here
  * when the default priority is wrong.
+ *
+ * Not included: static assets such as public/lottie/*.json (modals use these
+ * for UX; they are not App Router pages). When public routes or modal/Lottie
+ * conventions change, sync README.md, CONTRIBUTING.md, AGENTS.md, and
+ * research/LOTTIE-MODALS.md. Also update app/[lang]/sitemap-page/page.tsx.
  */
 const ROUTE_CONFIG: Record<string, RouteConfig> = {
   "": { changeFrequency: "daily", priority: 1.0 },

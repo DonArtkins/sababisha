@@ -6,10 +6,10 @@ import { Reveal } from "./Reveal";
 import { Pagination } from "./Pagination";
 import { BentoTilt } from "./BentoTilt";
 import { OptimizedImage } from "./OptimizedImage";
-import Link from 'next/link';
 import { ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 import { AnimatedLink } from "./AnimatedLink";
+import { LiveSiteUnavailableModal } from "./LiveSiteUnavailableModal";
 import { PRODUCTS } from "@/lib/db";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
   const containerRef = useRef<HTMLElement>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [unavailableItem, setUnavailableItem] = useState<string | null>(null);
 
   const ITEMS_PER_PAGE = variant === "home" ? 4 : 6;
   const totalPages = Math.ceil(PRODUCTS.length / ITEMS_PER_PAGE);
@@ -113,13 +114,24 @@ export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
                   </div>
 
                   <div>
-                    <AnimatedLink
-                      href={product.link}
-                      className="inline-flex items-center gap-1.5 font-sans text-xs md:text-sm font-semibold text-foreground hover:text-accent transition-colors interactive cursor-none"
-                      icon={<ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />}
-                    >
-                      Explore Product
-                    </AnimatedLink>
+                    {product.link ? (
+                      <AnimatedLink
+                        href={product.link}
+                        className="inline-flex items-center gap-1.5 font-sans text-xs md:text-sm font-semibold text-foreground hover:text-accent transition-colors interactive cursor-none"
+                        icon={<ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />}
+                      >
+                        Explore Product
+                      </AnimatedLink>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setUnavailableItem(product.title)}
+                        className="inline-flex items-center gap-1.5 font-sans text-xs md:text-sm font-semibold text-foreground hover:text-accent transition-colors interactive cursor-none"
+                      >
+                        Explore Product
+                        <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -141,6 +153,12 @@ export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
           </div>
         )}
       </div>
+
+      <LiveSiteUnavailableModal
+        open={Boolean(unavailableItem)}
+        itemName={unavailableItem || undefined}
+        onClose={() => setUnavailableItem(null)}
+      />
     </section>
   );
 }

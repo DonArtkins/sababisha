@@ -9,7 +9,6 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { CyberText } from "./CyberText";
 import { AnimatedLink } from "./AnimatedLink";
 import { Button } from "./Button";
-import { OptimizedImage } from "./OptimizedImage";
 import { ThemeToggle } from "./ThemeToggle";
 
 gsap.registerPlugin(ScrollTrigger);
