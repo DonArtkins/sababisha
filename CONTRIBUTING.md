@@ -2,12 +2,14 @@
 
 Thank you for your interest in contributing to Sababisha Solutions! We welcome contributions of all kinds — bug fixes, new features, documentation improvements, and more.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
+- [Environment and Resend](#environment-and-resend)
 - [Development Workflow](#development-workflow)
 - [Project Conventions](#project-conventions)
+- [SEO, Sitemap, and Robots](#seo-sitemap-and-robots)
 - [Submitting Changes](#submitting-changes)
 - [Reporting Issues](#reporting-issues)
 
@@ -27,22 +29,60 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
    ```bash
    npm install
    ```
-4. **Create a branch** for your work:
+4. **Configure env vars** for local work:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in a Resend API key and use the development sender described below.
+5. **Create a branch** for your work:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-5. **Start** the development server:
+6. **Start** the development server:
    ```bash
    npm run dev
    ```
+
+## Environment and Resend
+
+Contact and newsletter delivery use Resend through `lib/email.ts`. Never commit `.env.local` or real API keys.
+
+| Variable            | Purpose                                                |
+| ------------------- | ------------------------------------------------------ |
+| `SITE_URL`          | Canonical origin for metadata, sitemap, and robots.txt |
+| `RESEND_API_KEY`    | Server-only Resend API key                             |
+| `RESEND_FROM_EMAIL` | Sender identity passed to Resend as `from`             |
+| `CONTACT_TO_EMAIL`  | Inbox that receives form notifications (`to`)          |
+
+### Development (required)
+
+Always test with Resend’s shared test sender:
+
+```env
+RESEND_FROM_EMAIL="Sababisha Website <onboarding@resend.dev>"
+CONTACT_TO_EMAIL=your-resend-account-email@example.com
+```
+
+- `onboarding@resend.dev` can only send to the email on your Resend account.
+- Confirm the message shows **Delivered** in the Resend dashboard, not only a success modal in the UI.
+
+### Production
+
+1. Verify a domain you own in [Resend → Domains](https://resend.com/domains).
+2. Point `RESEND_FROM_EMAIL` at an address on that verified domain.
+3. Set `CONTACT_TO_EMAIL` to the real team inbox.
+4. On Vercel, set the same keys for Production (and Preview if needed), then redeploy.
+
+`*.vercel.app` hosts cannot be verified as Resend sending domains. Hosting on a free Vercel URL is fine if `from` uses a verified custom domain. Full guide: [`research/RESEND.md`](./research/RESEND.md).
 
 ## Development Workflow
 
 1. Make your changes in the appropriate directories
 2. Test your changes locally (`npm run dev`)
-3. Ensure the project builds without errors (`npm run build`)
-4. Commit your changes with a clear, descriptive message
-5. Push to your fork and submit a Pull Request
+3. If you touch forms or email, send a real test with `onboarding@resend.dev` and check Resend → Emails
+4. Ensure the project builds without errors (`npm run build`)
+5. Commit your changes with a clear, descriptive message
+6. Push to your fork and submit a Pull Request
 
 ## Project Conventions
 
@@ -54,6 +94,7 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
 - **Utilities** go in `lib/`
 - **Shared data** such as products, services, gallery items, AI topics, R&D blogs, and teams lives in `lib/db.ts`
 - **API route handlers** go in `app/api/` and must keep secrets server-side
+- **Research notes** go in `research/` (internal docs, not public routes)
 
 ### Code Style
 
@@ -83,6 +124,9 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
 - Keep honeypot fields in place for bot resistance
 - Send email through the server-only Resend helper in `lib/email.ts`; never expose `RESEND_API_KEY` to client code
 - Use `FormStatusModal` for success and error states instead of browser alerts
+- Treat Resend non-success responses as form failures in the UI
+- Do not ship production with `onboarding@resend.dev` as the permanent sender
+- When email conventions change, update `README.md`, `AGENTS.md`, `.env.example`, and `research/RESEND.md`
 
 ### Commit Messages
 
@@ -94,6 +138,18 @@ fix: resolve header dropdown z-index issue
 docs: update README with routing table
 refactor: extract animation logic into custom hook
 ```
+
+## SEO, Sitemap, and Robots
+
+When you add or change public pages, service/contact flows, or crawl behavior:
+
+1. Add or update route metadata (`title`, `description`, `canonical`, Open Graph / Twitter) on the page or a colocated `layout.tsx`
+2. Confirm `app/sitemap.ts` discovers the new `page.tsx` (automatic) and add a `ROUTE_CONFIG` entry if priority should differ from the default
+3. Update `app/robots.ts` if a path must be disallowed (API, private folders, internal docs)
+4. Keep `SITE_URL` accurate so sitemap, robots, and `metadataBase` stay aligned
+5. Sync docs in `README.md`, `CONTRIBUTING.md`, and `AGENTS.md`
+
+Current crawl rules in `app/robots.ts`: allow `/`; disallow `/api/`, `/_next/`, `/bugs/`, `/research/`.
 
 ## Submitting Changes
 
@@ -114,8 +170,9 @@ refactor: extract animation logic into custom hook
 - [ ] No raw HTML `<a>`, `<img>` tags — use Next.js components
 - [ ] Changes are responsive (tested on mobile + desktop)
 - [ ] Form changes include inline validation, loading states, success/error modal states, and server validation
+- [ ] Email changes use `lib/email.ts`, keep Resend secrets server-side, and were tested with `onboarding@resend.dev` when possible
 - [ ] SEO changes update relevant metadata, sitemap priorities, robots rules, and documentation
-- [ ] Documentation is updated in `README.md`, `CONTRIBUTING.md`, and `AGENTS.md` when conventions or workflows change
+- [ ] Documentation is updated in `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and `research/RESEND.md` when email or crawl conventions change
 - [ ] Commit messages are clear and descriptive
 
 ## Reporting Issues
@@ -126,9 +183,10 @@ When reporting a bug, please include:
 2. **Steps to reproduce** — How to trigger the issue
 3. **Environment** — Browser, OS, Node.js version
 4. **Screenshots** — If applicable
+5. **Email issues** — Resend dashboard status (**Failed** / **Delivered**) and the exact error from the email detail page (never paste live API keys)
 
 Open an issue on GitHub with the label `bug` for bugs or `enhancement` for feature requests.
 
 ---
 
-Thank you for helping make Sababisha Solutions better! 🚀
+Thank you for helping make Sababisha Solutions better!

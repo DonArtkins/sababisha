@@ -9,6 +9,11 @@ const nextConfig = {
       },
     ],
   },
+  // Ensure brand PNGs are available to API routes that embed them via CID
+  outputFileTracingIncludes: {
+    '/api/contact': ['./public/logo.png', './public/email/**/*'],
+    '/api/newsletter': ['./public/logo.png', './public/email/**/*'],
+  },
   async redirects() {
     return [
       {

@@ -188,6 +188,7 @@ export function Hero() {
                 alt={slide.title} 
                 wrapperClassName="w-full h-full"
                 imageClassName="w-full h-full object-cover object-center mix-blend-luminosity opacity-80"
+                priority={i === 0}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#FF5A36]/60 to-transparent mix-blend-multiply"></div>
               <div className="absolute top-8 left-8">

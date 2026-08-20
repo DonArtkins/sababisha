@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   EMAIL_PATTERN,
   PHONE_PATTERN,
-  escapeHtml,
   getContactServiceBySlug,
   normalizeLongText,
   normalizeText,
 } from "@/lib/form-utils";
 import { getMailSettings, sendEmailWithResend } from "@/lib/email";
+import {
+  getBrandEmailAttachments,
+  renderContactInquiryEmail,
+} from "@/lib/email-templates";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -92,29 +95,16 @@ export async function POST(request: NextRequest) {
     message,
   ].join("\n");
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; color: #111111; line-height: 1.6;">
-      <p style="margin: 0 0 16px; color: #ff5a36; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px;">Sababisha website inquiry</p>
-      <h1 style="margin: 0 0 20px; font-size: 28px;">${escapeHtml(safeService.title)}</h1>
-      <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-        <tbody>
-          <tr><td style="padding: 8px 0; color: #666666;">Name</td><td style="padding: 8px 0; font-weight: 700;">${escapeHtml(name)}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666666;">Email</td><td style="padding: 8px 0; font-weight: 700;">${escapeHtml(email)}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666666;">Phone</td><td style="padding: 8px 0; font-weight: 700;">${escapeHtml(phone || "Not provided")}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666666;">Company</td><td style="padding: 8px 0; font-weight: 700;">${escapeHtml(company || "Not provided")}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666666;">Category</td><td style="padding: 8px 0; font-weight: 700;">${escapeHtml(safeService.category)}</td></tr>
-        </tbody>
-      </table>
-      <div style="border: 1px solid #eeeeee; border-radius: 18px; padding: 18px; margin-bottom: 18px; background: #fafafa;">
-        <h2 style="font-size: 16px; margin: 0 0 8px;">Service summary</h2>
-        <p style="margin: 0;">${escapeHtml(safeService.desc)}</p>
-      </div>
-      <div style="border: 1px solid #eeeeee; border-radius: 18px; padding: 18px;">
-        <h2 style="font-size: 16px; margin: 0 0 8px;">Message</h2>
-        <p style="white-space: pre-line; margin: 0;">${escapeHtml(message)}</p>
-      </div>
-    </div>
-  `;
+  const html = renderContactInquiryEmail({
+    name,
+    email,
+    phone,
+    company,
+    serviceTitle: safeService.title,
+    serviceCategory: safeService.category,
+    serviceDesc: safeService.desc,
+    message,
+  });
 
   const result = await sendEmailWithResend({
     from,
@@ -123,6 +113,7 @@ export async function POST(request: NextRequest) {
     subject: emailSubject,
     html,
     text: plainText,
+    attachments: getBrandEmailAttachments(),
     tags: [{ name: "source", value: "contact_form" }],
   });
 
