@@ -213,31 +213,31 @@ export default function PrometheusArticle() {
           <ul className="list-none space-y-3 mb-8">
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Prometheus Security: A Guide to TLS and Basic Authentication… | by Abdullah Eid | Medium</a>
+              <Link href="https://medium.com/@abdullaeid/prometheus-security-a-guide-to-tls-and-basic-authentication-5c8f0c8e0c8e" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Prometheus Security: A Guide to TLS and Basic Authentication… | by Abdullah Eid | Medium</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">AlertManager and Prometheus Complete Setup on Linux – devconnected</a>
+              <Link href="https://devconnected.com/alertmanager-and-prometheus-complete-setup/" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">AlertManager and Prometheus Complete Setup on Linux – devconnected</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Install Grafana on Debian or Ubuntu | Grafana documentation</a>
+              <Link href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Install Grafana on Debian or Ubuntu | Grafana documentation</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Configure security | Grafana documentation</a>
+              <Link href="https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Configure security | Grafana documentation</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Set up Grafana HTTPS for secure web traffic | Grafana documentation</a>
+              <Link href="https://grafana.com/docs/grafana/latest/setup-grafana/set-up-https/" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Set up Grafana HTTPS for secure web traffic | Grafana documentation</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Installation | Prometheus</a>
+              <Link href="https://prometheus.io/docs/prometheus/latest/installation/" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">Installation | Prometheus</Link>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#FF5A36] font-bold mt-1">→</span>
-              <a href="#" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">YouTube Tutorial</a>
+              <Link href="https://www.youtube.com/results?search_query=prometheus+grafana+alertmanager+setup" target="_blank" rel="noopener noreferrer" className="text-[#111111] hover:text-[#FF5A36] transition-colors underline decoration-gray-300 underline-offset-4 interactive cursor-none">YouTube Tutorial</Link>
             </li>
           </ul>
         </div>

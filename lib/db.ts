@@ -51,8 +51,8 @@ export const PRODUCTS: Product[] = [
       "Supply Chain Management",
       "Project Management",
     ],
-    image: "/images/img2.jpg",
-    link: "https://sababisha.com",
+    image: "/images/products/microsoft-business-central-erp.png",
+    link: "https://erp.sababisha.com/BC200",
   },
   {
     id: 5,
@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
       "Communication Hub",
     ],
     image: "/images/projects/members-portal-bg.png",
-    link: "https://sababisha.com",
+    link: "https://membersportal.kar.co.ke",
   },
   {
     id: 6,
@@ -86,8 +86,8 @@ export const PRODUCTS: Product[] = [
     category: "Support",
     desc: "A customer support and call centre platform for ticket handling, agent performance, call tracking, customer history, escalation workflows, service-level monitoring, and real-time support analytics.",
     features: ["Call Tracking", "Agent Management", "Performance Reporting"],
-    image: "/images/img5.jpg",
-    link: "https://sababisha.com",
+    image: "/images/products/sababisha-call-center.png",
+    link: "https://callcenter.sababisha.com",
   },
   {
     id: 8,
@@ -99,8 +99,8 @@ export const PRODUCTS: Product[] = [
       "Timetable Management",
       "Parent Communication",
     ],
-    image: "/images/img6.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 9,
@@ -108,8 +108,8 @@ export const PRODUCTS: Product[] = [
     category: "Customer Engagement",
     desc: "A customer loyalty and rewards portal for points management, promotions, redemption workflows, customer segmentation, engagement analytics, campaign tracking, and repeat-business growth.",
     features: ["Points System", "Customer Analytics", "Promotions Management"],
-    image: "/images/img1.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 10,
@@ -121,8 +121,8 @@ export const PRODUCTS: Product[] = [
       "Payment Scheduling",
       "Compliance Tracking",
     ],
-    image: "/images/img2.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 11,
@@ -134,8 +134,8 @@ export const PRODUCTS: Product[] = [
       "Payroll Processing",
       "Recruitment Tools",
     ],
-    image: "/images/img3.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 12,
@@ -147,8 +147,7 @@ export const PRODUCTS: Product[] = [
       "Maintenance Scheduling",
       "Fuel Management",
     ],
-    image: "/images/img4.jpg",
-    link: "https://sababisha.com",
+    image: "/images/products/fleet-management.png",
   },
   {
     id: 13,
@@ -160,8 +159,8 @@ export const PRODUCTS: Product[] = [
       "Maintenance Requests",
       "Financial Reporting",
     ],
-    image: "/images/img5.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 14,
@@ -173,8 +172,8 @@ export const PRODUCTS: Product[] = [
       "Loan Management",
       "Financial Reporting",
     ],
-    image: "/images/img6.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 15,
@@ -182,8 +181,7 @@ export const PRODUCTS: Product[] = [
     category: "Accounting",
     desc: "Accounting and petty cash software for expense capture, approvals, reconciliations, budgets, ledgers, management reports, audit trails, and better visibility into day-to-day financial control.",
     features: ["Expense Tracking", "Financial Reporting", "Budget Management"],
-    image: "/images/img1.jpg",
-    link: "https://sababisha.com",
+    image: "/images/products/accounting-software.png",
   },
   {
     id: 16,
@@ -191,8 +189,8 @@ export const PRODUCTS: Product[] = [
     category: "Finance",
     desc: "A credit scoring and risk assessment tool that helps lenders evaluate borrowers using structured data, scoring rules, affordability checks, portfolio insights, and responsible lending workflows.",
     features: ["Risk Assessment", "Automated Scoring", "Reporting Tools"],
-    image: "/images/img2.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 17,
@@ -204,8 +202,8 @@ export const PRODUCTS: Product[] = [
       "Resource Allocation",
       "Client Management",
     ],
-    image: "/images/img3.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 18,
@@ -217,90 +215,31 @@ export const PRODUCTS: Product[] = [
       "Transaction Monitoring",
       "Security Features",
     ],
-    image: "/images/img4.jpg",
-    link: "https://sababisha.com",
+    image:
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
 // Gallery Data
 export const GALLERY_DATA: GalleryItem[] = [
-  // Sababisha
   {
     id: 1,
-    title: "Annual Strategy Meet",
-    desc: "Leadership and delivery teams align on product roadmaps, client success priorities, fintech innovation, and the operational goals guiding Sababisha Solutions' next phase of growth.",
+    title: "The Sababisha Solutions Family",
+    desc: "The Sababisha Solutions family all together for a late-night photo — leadership, engineering, product, support, and operations side by side in branded gear, capturing the people behind every platform we ship.",
     image: "/images/gallery/sababisha-team.png",
     category: "Sababisha Team",
   },
   {
     id: 2,
-    title: "Office Expansion",
-    desc: "A look at the growing workspace behind our software engineering, implementation, client support, and digital transformation work for organizations across Kenya and Africa.",
-    image: "/images/gallery/sababisha-team.png",
-    category: "Sababisha Team",
+    title: "The Sababisha Dev Team",
+    desc: "The Sababisha Dev Team — the group behind the code, implementation, and integration of the softwares and solutions under Sababisha, from architecture and features through testing, deployment, and client go-live.",
+    image: "/images/gallery/development-team.png",
+    category: "Development Team",
   },
   {
     id: 3,
-    title: "Client Workshop",
-    desc: "Collaborative sessions where our team maps real business workflows, validates user needs, clarifies reporting requirements, and shapes practical systems before development begins.",
-    image: "/images/gallery/sababisha-team.png",
-    category: "Sababisha Team",
-  },
-  // Development
-  {
-    id: 4,
-    title: "Hackathon 2026",
-    desc: "Focused innovation sessions where engineers prototype AI, fintech, automation, analytics, and enterprise software ideas that can become useful client-ready solutions.",
-    image: "/images/gallery/development-team.png",
-    category: "Development Team",
-  },
-  {
-    id: 5,
-    title: "Sprint Planning",
-    desc: "Our development team breaks product goals into clear milestones, technical tasks, quality checks, and deployment priorities for dependable software delivery.",
-    image: "/images/gallery/development-team.png",
-    category: "Development Team",
-  },
-  {
-    id: 6,
-    title: "Launch Day",
-    desc: "Deployment moments where engineering, QA, support, and client teams bring tested platforms into production with training, monitoring, and rollout support.",
-    image: "/images/gallery/development-team.png",
-    category: "Development Team",
-  },
-  // Moments
-  {
-    id: 7,
-    title: "Team Retreat",
-    desc: "A culture moment for reflection, learning, planning, and team connection so our people can keep delivering thoughtful, high-quality technology work.",
-    image: "/images/gallery/team-moments.png",
-    category: "Teams Moments",
-  },
-  {
-    id: 8,
-    title: "Friday Social",
-    desc: "Informal team time that strengthens collaboration across product, engineering, design, support, and leadership after a week of building client systems.",
-    image: "/images/gallery/team-moments.png",
-    category: "Teams Moments",
-  },
-  {
-    id: 9,
-    title: "Award Ceremony",
-    desc: "Celebrating delivery excellence, client impact, technical improvement, teamwork, and the people who help Sababisha Solutions make digital transformation practical.",
-    image: "/images/gallery/team-moments.png",
-    category: "Teams Moments",
-  },
-  {
-    id: 10,
-    title: "Community Outreach",
-    desc: "Our team engaging beyond the office through knowledge sharing, digital skills conversations, and community-centered support for practical technology adoption.",
-    image: "/images/gallery/team-moments.png",
-    category: "Teams Moments",
-  },
-  {
-    id: 11,
-    title: "Offsite Brainstorm",
-    desc: "Focused ideation sessions for new products, better client experiences, stronger internal systems, and technology strategies that match real market needs.",
+    title: "Celebrating How Far We've Come",
+    desc: "The Sababisha team and family coming together to share memories and celebrate how far they have come — milestones, shipped products, and hard-won achievements over a delicious celebratory cake.",
     image: "/images/gallery/team-moments.png",
     category: "Teams Moments",
   },
@@ -442,13 +381,13 @@ export const TEAM: TeamDirectory = {
       id: 1,
       name: "David Opiyo",
       role: "Chief Executive Officer",
-      image: "/images/img5.jpg",
+      image: "/images/team/david-opiyo.jpg",
     },
     {
       id: 2,
       name: "Sarah M.",
       role: "Chief Operating Officer",
-      image: "/images/img6.jpg",
+      image: "/images/team/sarah-m.jpg",
     },
   ],
   leads: [
@@ -456,40 +395,45 @@ export const TEAM: TeamDirectory = {
       id: 3,
       name: "John K.",
       role: "Lead Engineer",
-      image: "/images/img1.jpg",
+      image: "/images/team/john-k.jpg",
     },
     {
       id: 4,
       name: "Mercy N.",
       role: "Product Manager",
-      image: "/images/img5.jpg",
+      image: "/images/team/mercy-n.jpg",
     },
-    { id: 5, name: "Peter W.", role: "Design Lead", image: "/images/img6.jpg" },
+    {
+      id: 5,
+      name: "Peter W.",
+      role: "Design Lead",
+      image: "/images/team/peter-w.jpg",
+    },
   ],
   supervisors: [
     {
       id: 6,
       name: "Grace O.",
       role: "QA Supervisor",
-      image: "/images/img1.jpg",
+      image: "/images/team/grace-o.jpg",
     },
     {
       id: 7,
       name: "Daniel K.",
       role: "Backend Supervisor",
-      image: "/images/img5.jpg",
+      image: "/images/team/daniel-k.jpg",
     },
     {
       id: 8,
       name: "Lucy M.",
       role: "Frontend Supervisor",
-      image: "/images/img6.jpg",
+      image: "/images/team/lucy-m.jpg",
     },
     {
       id: 9,
       name: "Kevin M.",
       role: "DevOps Supervisor",
-      image: "/images/img1.jpg",
+      image: "/images/team/kevin-m.jpg",
     },
   ],
 };

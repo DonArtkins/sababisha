@@ -9,6 +9,7 @@ Thank you for your interest in contributing to Sababisha Solutions! We welcome c
 - [Environment and Resend](#environment-and-resend)
 - [Development Workflow](#development-workflow)
 - [Project Conventions](#project-conventions)
+- [Modals and Lottie](#modals-and-lottie)
 - [SEO, Sitemap, and Robots](#seo-sitemap-and-robots)
 - [Submitting Changes](#submitting-changes)
 - [Reporting Issues](#reporting-issues)
@@ -104,8 +105,9 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 - Use Next.js `<Link>` for internal navigation (never `<a>` tags)
 - Use Next.js `<Image>` or the `<OptimizedImage>` wrapper for images (never `<img>` tags)
 - Use `@/` path alias for imports (e.g., `@/components/Button`)
-- Use existing shared components such as `AnimatedLink`, `Pagination`, `Button`, and `FormStatusModal` before creating new UI patterns
+- Use existing shared components such as `AnimatedLink`, `Pagination`, `Button`, `FormStatusModal`, and `LiveSiteUnavailableModal` before creating new UI patterns
 - Keep light and dark mode classes in sync for new forms, dropdowns, cards, and modals
+- Place new Lottie JSON under `public/lottie/` and document it in [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md)
 
 ### Naming Conventions
 
@@ -123,10 +125,27 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 - Validate form fields on both the client and server
 - Keep honeypot fields in place for bot resistance
 - Send email through the server-only Resend helper in `lib/email.ts`; never expose `RESEND_API_KEY` to client code
-- Use `FormStatusModal` for success and error states instead of browser alerts
+- Use `FormStatusModal` for success and error states instead of browser alerts (Lottie assets: `form-success.json`, `form-error.json`)
 - Treat Resend non-success responses as form failures in the UI
 - Do not ship production with `onboarding@resend.dev` as the permanent sender
 - When email conventions change, update `README.md`, `AGENTS.md`, `.env.example`, and `research/RESEND.md`
+
+### Modals and Lottie
+
+All user-facing modals must use a **local Lottie** from `public/lottie/` for the primary visual — do not ship icon-only status modals.
+
+| Modal | Reuse | Asset |
+| ----- | ----- | ----- |
+| Form success / error | `FormStatusModal` | `/lottie/form-success.json`, `/lottie/form-error.json` |
+| Live site unavailable | `LiveSiteUnavailableModal` | `/lottie/site-unavailable.json` |
+| Careers job details | careers page modal | `/lottie/careers-info.json` |
+
+Rules:
+
+- Load `@lottiefiles/react-lottie-player` with `dynamic(..., { ssr: false })`
+- Prefer local JSON over remote CDN URLs for production modals
+- Match existing modal behavior (portal, GSAP open/close, Lenis lock, Escape to close)
+- When adding a modal, add the JSON asset and update `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md)
 
 ### Commit Messages
 
@@ -141,15 +160,18 @@ refactor: extract animation logic into custom hook
 
 ## SEO, Sitemap, and Robots
 
-When you add or change public pages, service/contact flows, or crawl behavior:
+When you add or change public pages, service/contact flows, modal/Lottie UX, or crawl behavior:
 
 1. Add or update route metadata (`title`, `description`, `canonical`, Open Graph / Twitter) on the page or a colocated `layout.tsx`
 2. Confirm `app/sitemap.ts` discovers the new `page.tsx` (automatic) and add a `ROUTE_CONFIG` entry if priority should differ from the default
-3. Update `app/robots.ts` if a path must be disallowed (API, private folders, internal docs)
-4. Keep `SITE_URL` accurate so sitemap, robots, and `metadataBase` stay aligned
-5. Sync docs in `README.md`, `CONTRIBUTING.md`, and `AGENTS.md`
+3. Update `app/[lang]/sitemap-page/page.tsx` link groups when public routes change
+4. Update `app/robots.ts` if a path must be disallowed (API, private folders, internal docs)
+5. Keep `SITE_URL` accurate so sitemap, robots, and `metadataBase` stay aligned
+6. Sync docs in `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and the relevant `research/` note (`RESEND.md`, `LOTTIE-MODALS.md`)
 
 Current crawl rules in `app/robots.ts`: allow `/`; disallow `/api/`, `/_next/`, `/bugs/`, `/research/`.
+
+`public/lottie/` files are static assets and are not sitemap routes.
 
 ## Submitting Changes
 
@@ -169,10 +191,11 @@ Current crawl rules in `app/robots.ts`: allow `/`; disallow `/api/`, `/_next/`, 
 - [ ] New pages are placed in `app/[lang]/` directory
 - [ ] No raw HTML `<a>`, `<img>` tags — use Next.js components
 - [ ] Changes are responsive (tested on mobile + desktop)
-- [ ] Form changes include inline validation, loading states, success/error modal states, and server validation
+- [ ] Form changes include inline validation, loading states, Lottie success/error modal states, and server validation
+- [ ] New or changed modals use local Lottie from `public/lottie/` (see `research/LOTTIE-MODALS.md`)
 - [ ] Email changes use `lib/email.ts`, keep Resend secrets server-side, and were tested with `onboarding@resend.dev` when possible
-- [ ] SEO changes update relevant metadata, sitemap priorities, robots rules, and documentation
-- [ ] Documentation is updated in `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and `research/RESEND.md` when email or crawl conventions change
+- [ ] SEO changes update relevant metadata, `app/sitemap.ts` priorities, HTML sitemap groups, robots rules, and documentation
+- [ ] Documentation is updated in `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and `research/` (`RESEND.md`, `LOTTIE-MODALS.md`) when email, modal, or crawl conventions change
 - [ ] Commit messages are clear and descriptive
 
 ## Reporting Issues

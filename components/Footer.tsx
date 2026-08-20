@@ -15,7 +15,6 @@ const Whatsapp = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/s
 
 import { AnimatedLink } from "./AnimatedLink";
 import { FormStatusModal } from "./FormStatusModal";
-import { OptimizedImage } from "./OptimizedImage";
 import { EMAIL_PATTERN } from "@/lib/form-utils";
 
 gsap.registerPlugin(ScrollTrigger);
