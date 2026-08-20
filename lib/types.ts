@@ -69,3 +69,9 @@ export interface TeamDirectory {
   leads: TeamMember[];
   supervisors: TeamMember[];
 }
+
+export interface Brand {
+  name: string;
+  domain: string;
+  logo: string;
+}

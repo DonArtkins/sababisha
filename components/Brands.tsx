@@ -4,36 +4,21 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "./Reveal";
+import { BRANDS } from "@/lib/db";
+import type { Brand } from "@/lib/types";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BRANDS = [
-  { name: "Ministry of Agriculture", domain: "kilimo.go.ke" },
-  { name: "Alpic Micro-Credit", domain: "alpic.co.ke" },
-  { name: "CPHRM Group", domain: "career.cphrmgroup.co.ke" },
-  { name: "Dataghala", domain: "dataghala.com" },
-  { name: "Ecent Ventures", domain: "ecentventures.com" },
-  { name: "FI", domain: "fi.co.ke" },
-  { name: "Fulusi Capital", domain: "fulusicapital.co.ke" },
-  { name: "WestZone Capital", domain: "westzonecapital.com" },
-  { name: "Gepha Mart", domain: "gephamart.com" },
-  { name: "Jamcroc Micro Credit", domain: "jamcroc.com" },
-  { name: "Jomoaa", domain: "jomoaa.com" },
-  { name: "Olion Ventures", domain: "olionventures.com" },
-  { name: "Ozol Investments", domain: "ozolinvestments.com" },
-];
-
-function BrandCard({ brand }: { brand: typeof BRANDS[0] }) {
+function BrandCard({ brand }: { brand: Brand }) {
   const [imgError, setImgError] = useState(false);
   return (
     <div className="flex flex-col items-center justify-center w-[160px] md:w-[200px] h-[120px] md:h-[140px] bg-card border border-border rounded-2xl shadow-sm mx-3 flex-shrink-0 transition-transform hover:scale-105 interactive cursor-none group">
       {!imgError ? (
         <Image
-          src={`https://logo.clearbit.com/${brand.domain}`}
-          alt={brand.name}
+          src={brand.logo}
+          alt={`${brand.name} logo`}
           width={64}
           height={64}
-          unoptimized
           className="w-12 h-12 md:w-16 md:h-16 object-contain mb-3 grayscale group-hover:grayscale-0 transition-all duration-300"
           onError={() => setImgError(true)}
         />
