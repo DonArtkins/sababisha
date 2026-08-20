@@ -408,3 +408,81 @@ export function renderNewsletterSignupEmail(input: { email: string }) {
       "This notification was sent from the newsletter form on sababisha.com.",
   });
 }
+
+export function renderArticleCommentEmail(input: {
+  name: string;
+  email: string;
+  message: string;
+  sourceLabel: string;
+  articleTitle: string;
+  articleCategory: string;
+  articleAuthor: string;
+  articleDate: string;
+  articleExcerpt: string;
+  articleUrl: string;
+}) {
+  const {
+    name,
+    email,
+    message,
+    sourceLabel,
+    articleTitle,
+    articleCategory,
+    articleAuthor,
+    articleDate,
+    articleExcerpt,
+    articleUrl,
+  } = input;
+
+  const details = `
+    <p style="margin: 0 0 22px; font-family: ${FONT_SANS}; font-size: 16px; line-height: 1.6; color: ${BRAND.muted};">
+      A reader left a comment on a ${escapeHtml(sourceLabel)} article.
+    </p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px;">
+      <tbody>
+        ${detailRow("Name", escapeHtml(name))}
+        ${detailRow(
+          "Email",
+          `<a href="mailto:${escapeHtml(email)}" style="color: ${BRAND.accent}; text-decoration: none;">${escapeHtml(email)}</a>`,
+        )}
+        ${detailRow("Article type", escapeHtml(sourceLabel))}
+        ${detailRow("Category", escapeHtml(articleCategory))}
+        ${detailRow("Author", escapeHtml(articleAuthor))}
+        ${detailRow("Published", escapeHtml(articleDate), true)}
+      </tbody>
+    </table>
+    ${sectionCard(
+      "Article",
+      `<p style="margin: 0 0 10px; font-size: 18px; font-weight: 700;">${escapeHtml(articleTitle)}</p>
+      <p style="margin: 0 0 12px; color: ${BRAND.muted}; font-size: 14px;">${escapeHtml(articleExcerpt)}</p>
+      <p style="margin: 0;">
+        <a href="${escapeHtml(articleUrl)}" style="color: ${BRAND.accent}; text-decoration: none; font-weight: 700;">
+          View article →
+        </a>
+      </p>`,
+    )}
+    ${sectionCard(
+      "Comment",
+      `<p style="margin: 0; white-space: pre-line;">${escapeHtml(message)}</p>`,
+    )}
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top: 8px;">
+      <tr>
+        <td style="border-radius: 999px; background: ${BRAND.accent};">
+          <a href="mailto:${escapeHtml(email)}" style="display: inline-block; padding: 14px 22px; font-family: ${FONT_SANS}; font-size: 14px; font-weight: 700; color: #ffffff; text-decoration: none;">
+            Reply to ${escapeHtml(name.split(" ")[0] || "reader")}
+          </a>
+        </td>
+      </tr>
+    </table>
+  `;
+
+  return renderBrandedEmailShell({
+    preheader: `New comment from ${name} · ${articleTitle}`,
+    eyebrow: `${sourceLabel} comment`,
+    title: articleTitle,
+    accentWord: articleTitle.split(" ").slice(-1)[0],
+    bodyHtml: details,
+    footerNote:
+      "This notification was sent from an article comment form on sababisha.com. Reply to this email to reach the reader directly.",
+  });
+}

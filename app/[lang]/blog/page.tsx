@@ -46,7 +46,7 @@ export function Blog() {
           {posts.map((post, i) => (
             <article key={i} className="group cursor-none interactive">
               <div className="aspect-video rounded-3xl mb-6 overflow-hidden relative shadow-sm border border-gray-100">
-                <OptimizedImage src={post.img} alt={post.title} wrapperClassName="absolute inset-0 w-full h-full" imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <OptimizedImage src={post.img} alt={post.title} priority={i === 0} loading="eager" wrapperClassName="absolute inset-0 w-full h-full" imageClassName="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               </div>
               <div className="flex items-center gap-4 text-xs font-sans font-semibold tracking-wide text-accent mb-3 uppercase">
                 <span>{post.category}</span>

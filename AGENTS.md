@@ -29,7 +29,8 @@ sababisha/
 │   ├── robots.ts               # Robots.txt generator
 │   ├── api/                    # Server route handlers
 │   │   ├── contact/route.ts    # Service inquiry email endpoint
-│   │   └── newsletter/route.ts # Footer newsletter email endpoint
+│   │   ├── newsletter/route.ts # Footer newsletter email endpoint
+│   │   └── comment/route.ts    # Article comment email endpoint (R&D + AI)
 │   └── [lang]/                 # Dynamic locale segment (e.g. /en, /sw)
 │       ├── page.tsx            # Home page
 │       ├── blog/page.tsx
@@ -83,20 +84,21 @@ This project uses **Binance-style locale-prefixed routing**:
 7. **Styling**: Tailwind CSS 4.3 is used via PostCSS (`@tailwindcss/postcss`). Theme tokens are in `app/globals.css` under `@theme`. No `tailwind.config.js` file — configuration is CSS-first.
 8. **Services Data**: Service cards are driven by `SERVICES` in `lib/db.ts` and the `Service` type in `lib/types.ts`. Each service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`.
 9. **Services Page**: The services page uses a six-card page limit, dynamic counters from service data, and `AnimatedLink` CTAs to `/en/contact?service={slug}`. Keep cards compact and avoid large fixed heights that strand the CTA far below the content.
-10. **Forms**: Contact and newsletter forms validate on the client and server, include honeypot fields, submit to `app/api/contact` and `app/api/newsletter`, and show `FormStatusModal` success/error states with local Lottie files from `public/lottie/`.
+10. **Forms**: Contact, newsletter, and article comment forms validate on the client and server, include honeypot fields, submit to `app/api/contact`, `app/api/newsletter`, and `app/api/comment`, and show `FormStatusModal` success/error states with local Lottie files from `public/lottie/`.
 11. **Lottie Modals (required UX)**: Every user-facing modal must use a local Lottie animation from `public/lottie/` — never a static Lucide icon as the primary modal visual. Load `@lottiefiles/react-lottie-player` with `dynamic(..., { ssr: false })`.
-    - `FormStatusModal` → `/lottie/form-success.json`, `/lottie/form-error.json` (contact + newsletter)
-    - `LiveSiteUnavailableModal` → `/lottie/site-unavailable.json` (Products + Work)
-    - Careers job details modal → `/lottie/careers-info.json`
-    - Reuse existing modal components before creating new ones; add a matching JSON asset when a new modal is required.
-    - Full inventory and Player rules: [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md).
+   - `FormStatusModal` → `/lottie/form-success.json`, `/lottie/form-error.json` (contact, newsletter, article comments)
+   - `LiveSiteUnavailableModal` → `/lottie/site-unavailable.json` (Products + Work)
+   - Careers job details modal → `/lottie/careers-info.json`
+   - Reuse existing modal components before creating new ones; add a matching JSON asset when a new modal is required.
+   - Full inventory and Player rules: [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md).
 12. **Email Delivery (Resend)**: Email is sent server-side through `lib/email.ts` using Resend's HTTP API. Keep secrets in environment variables only — never client-side.
-    - Resend keys used by this app: `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, plus the app inbox `CONTACT_TO_EMAIL` (the `to` recipient).
-    - **Development:** always set `RESEND_FROM_EMAIL` to `Sababisha Website <onboarding@resend.dev>` and set `CONTACT_TO_EMAIL` to the Resend account email. The `resend.dev` sender can only deliver to that account inbox.
-    - **Production:** verify a domain you own in Resend → Domains, then set `RESEND_FROM_EMAIL` to an address on that verified domain (for example `Sababisha Website <support@sababisha.com>`).
-    - Resend verifies the **`from` domain**, not the website hostname. An app on `*.vercel.app` cannot use `@….vercel.app` as `from`; send from a verified custom domain instead (or keep using `onboarding@resend.dev` for throwaway demos only).
-    - Gate UI success on Resend accepting the send; confirm **Delivered** in the Resend dashboard when cutting over.
-    - Full walkthrough: [`research/RESEND.md`](./research/RESEND.md).
+   - Resend keys used by this app: `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, plus the app inbox `CONTACT_TO_EMAIL` (the `to` recipient).
+   - **Development:** always set `RESEND_FROM_EMAIL` to `Sababisha Website <onboarding@resend.dev>` and set `CONTACT_TO_EMAIL` to the Resend account email. The `resend.dev` sender can only deliver to that account inbox.
+   - **Production:** verify a domain you own in Resend → Domains, then set `RESEND_FROM_EMAIL` to an address on that verified domain (for example `Sababisha Website <support@sababisha.com>`).
+   - Resend verifies the **`from` domain**, not the website hostname. An app on `*.vercel.app` cannot use `@….vercel.app` as `from`; send from a verified custom domain instead (or keep using `onboarding@resend.dev` for throwaway demos only).
+   - Gate UI success on Resend accepting the send; confirm **Delivered** in the Resend dashboard when cutting over.
+   - Full walkthrough: [`research/RESEND.md`](./research/RESEND.md).
+   - Article comments use `renderArticleCommentEmail` and include the article title, type (R&D Blog / AI Topic), category, author, date, excerpt, and URL. Reuse `ArticleCommentForm` on detail pages — do not duplicate inline comment forms.
 13. **SEO and Crawl Files**: Update route metadata, `app/sitemap.ts`, `app/robots.ts`, and root markdown docs (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`) whenever public routes, service/contact flows, email delivery behavior, modal/Lottie UX conventions, or crawl rules change. Also update [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md) when modal inventory changes.
     - Global SEO lives in `app/layout.tsx` (`metadataBase`, canonical, Open Graph, Twitter, robots).
     - Route SEO examples: `app/[lang]/services/page.tsx`, `app/[lang]/contact/layout.tsx`.

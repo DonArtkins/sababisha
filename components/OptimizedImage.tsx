@@ -16,7 +16,6 @@ export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
     const [isLoaded, setIsLoaded] = useState(false);
     const hasObjectFitClass = /\bobject-(contain|cover|fill|none|scale-down)\b/.test(imageClassName);
     const resolvedImageClassName = hasObjectFitClass ? imageClassName : `object-cover ${imageClassName}`;
-    const imageLoading = priority ? undefined : loading;
 
     return (
       <div className={`relative overflow-hidden bg-gray-50 ${wrapperClassName}`} style={style}>
@@ -28,7 +27,7 @@ export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
             fill
             unoptimized
             priority={priority}
-            loading={imageLoading}
+            loading={loading}
             onLoad={() => setIsLoaded(true)}
             className={`relative z-10 transition-opacity duration-700 ease-out ${
               isLoaded ? "opacity-100" : "opacity-0"

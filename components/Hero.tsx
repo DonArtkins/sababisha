@@ -189,7 +189,7 @@ export function Hero() {
       <div ref={rightContentRef} className="w-full lg:w-[55%] relative h-[600px] md:h-[700px] flex items-center justify-center mt-12 lg:mt-0">
         
         {/* Large Rounded Orange Container */}
-        <div className="absolute right-0 w-[85%] md:w-[65%] h-[90%] bg-[#FF5A36] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl">
+        <div className="absolute right-0 lg:right-[7.75rem] w-[85%] md:w-[65%] h-[90%] bg-[#FF5A36] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl">
           {SLIDES.map((slide, i) => (
             <div 
               key={i} 

@@ -18,7 +18,7 @@ A modern, high-performance company website for **Sababisha Solutions Limited** �
 - **Responsive Design** — Fully responsive from mobile to ultra-wide
 - **Services Catalog** — Data-backed service cards with six-card pagination limits, dynamic counters, and animated inquiry links
 - **Service-Aware Contact Form** — `/en/contact?service=...` preselects and prefills the exact service inquiry
-- **Email Delivery** — Contact and newsletter submissions are sent through server-only Resend API routes
+- **Email Delivery** — Contact, newsletter, and article comment submissions are sent through server-only Resend API routes
 - **Status Modals** — All user-facing modals use local Lottie animations (`FormStatusModal`, `LiveSiteUnavailableModal`, careers job details)
 - **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/en/products`)
 - **SEO Optimized** — Dynamic sitemap, robots.txt, HTML sitemap page, canonical metadata, Open Graph, and Twitter card metadata
@@ -77,7 +77,8 @@ sababisha/
 │   ├── robots.ts           # Robots.txt config
 │   ├── api/                # Server route handlers
 │   │   ├── contact/        # Service inquiry email endpoint
-│   │   └── newsletter/     # Newsletter subscription endpoint
+│   │   ├── newsletter/     # Newsletter subscription endpoint
+│   │   └── comment/        # Article comment email endpoint
 │   └── [lang]/             # Dynamic locale segment
 │       ├── page.tsx         # Home
 │       ├── services/
@@ -139,7 +140,7 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 | `SITE_URL`          | Canonical site origin used by metadata, sitemap, and robots.txt      |
 | `RESEND_API_KEY`    | Server-only API key for contact and newsletter email delivery        |
 | `RESEND_FROM_EMAIL` | Sender identity (`from`). Use `onboarding@resend.dev` in development |
-| `CONTACT_TO_EMAIL`  | Inbox that receives service inquiries and newsletter signups (`to`)  |
+| `CONTACT_TO_EMAIL`  | Inbox that receives inquiries, newsletter signups, and article comments (`to`) |
 
 #### Development (default for local testing)
 
@@ -215,6 +216,16 @@ The contact page:
 - Uses a honeypot `website` field to silently ignore bot submissions
 - Shows shared Lottie success/error modals (`FormStatusModal` + `/lottie/form-success.json` / `form-error.json`)
 
+### Article comment forms (R&D Blogs + AI Topics)
+
+Detail pages reuse `components/ArticleCommentForm.tsx`, which:
+
+- Validates name, email, and message on the client and server
+- Uses a honeypot `website` field to silently ignore bot submissions
+- Posts to `/api/comment` with the article source (`rd-blog` | `ai-topic`) and slug
+- Looks up article metadata server-side and emails title, type, category, author, date, excerpt, and URL
+- Shows the same Lottie `FormStatusModal` success/error states as contact and newsletter
+
 ## Modals and Lottie UX
 
 Every user-facing modal uses a **local Lottie** from `public/lottie/` (not a static icon as the primary visual). Player is loaded with `dynamic(..., { ssr: false })`.
@@ -235,8 +246,9 @@ Form submissions are handled by App Router API routes:
 | ----------------- | ----------------------------------------------- |
 | `/api/contact`    | Sends service inquiries to the configured inbox |
 | `/api/newsletter` | Sends footer newsletter signup notifications    |
+| `/api/comment`    | Sends R&D Blog / AI Topic article comments      |
 
-Both routes normalize input, escape HTML, validate fields, and call Resend through `lib/email.ts`. API keys are never exposed to the browser.
+These routes normalize input, escape HTML, validate fields, and call Resend through `lib/email.ts`. API keys are never exposed to the browser.
 
 | Stage             | `RESEND_FROM_EMAIL`                         | Recipient notes                   |
 | ----------------- | ------------------------------------------- | --------------------------------- |
