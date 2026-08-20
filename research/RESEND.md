@@ -76,7 +76,7 @@ Staff hit **Reply** → message goes to the visitor via `reply_to`.
 | `from: visitor@gmail.com` → `to: company@…` | Fails auth/domain checks; looks like spoofing |
 | `from: company@verified-domain` → `to: company inbox` + `reply_to: visitor` | Deliverable; Reply reaches the client |
 
-Newsletter/footer signups use the same shape: site as `from`, team as `to`, subscriber email as `reply_to` (or only in the body if you prefer).
+Newsletter/footer signups and article comment forms use the same shape: site as `from`, team as `to`, visitor/subscriber email as `reply_to` (or only in the body if you prefer). Article comments additionally include the article title, type (R&D Blog / AI Topic), category, author, date, excerpt, and URL in the branded HTML template (`renderArticleCommentEmail`).
 
 ---
 

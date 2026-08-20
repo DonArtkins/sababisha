@@ -10,8 +10,8 @@ Every user-facing modal in this project uses a **local Lottie animation** from `
 
 | Modal / surface | Component / location | Lottie asset | Used on |
 | --- | --- | --- | --- |
-| Form success | `components/FormStatusModal.tsx` | `/lottie/form-success.json` | Contact page, Footer newsletter |
-| Form error | `components/FormStatusModal.tsx` | `/lottie/form-error.json` | Contact page, Footer newsletter |
+| Form success | `components/FormStatusModal.tsx` | `/lottie/form-success.json` | Contact page, Footer newsletter, Article comment forms (R&D Blogs + AI Topics) |
+| Form error | `components/FormStatusModal.tsx` | `/lottie/form-error.json` | Contact page, Footer newsletter, Article comment forms (R&D Blogs + AI Topics) |
 | Live site unavailable | `components/LiveSiteUnavailableModal.tsx` | `/lottie/site-unavailable.json` | Home Products, Home Work / projects |
 | Careers job details | `app/[lang]/explore/careers/page.tsx` | `/lottie/careers-info.json` | Careers explore page |
 | 404 illustration | `app/not-found.tsx` | Remote Lottie URL (exception) | Global not-found |

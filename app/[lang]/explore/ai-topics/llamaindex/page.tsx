@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ArrowLeft, User, Calendar, Tag, MessageSquare, Send } from "lucide-react";
+import { ArrowLeft, User, Calendar, Tag } from "lucide-react";
 import Link from "next/link";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { CyberText } from "@/components/CyberText";
+import { ArticleCommentForm } from "@/components/ArticleCommentForm";
 import { getAITopicBySlug } from "@/lib/db";
 
 export default function ArticlePage() {
@@ -76,6 +77,8 @@ export default function ArticlePage() {
           <OptimizedImage
             src={topic.image}
             alt={topic.title}
+            priority
+            loading="eager"
             wrapperClassName="w-full h-full"
             imageClassName="w-full h-full object-contain object-center"
           />
@@ -108,50 +111,7 @@ export default function ArticlePage() {
 <p><strong>Challenges:</strong> Resource-intensive, latency in large datasets, scaling complexity.</p>
         </div>
 
-        {/* Comments Section */}
-        <div className="mt-16 pt-12 border-t border-gray-200">
-          <div className="flex items-center gap-3 mb-8">
-            <MessageSquare className="w-6 h-6 text-[#FF5A36]" />
-            <h3 className="font-display text-3xl text-[#111111]">Leave a comment</h3>
-          </div>
-
-          <form className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-sans font-bold text-[#111111] ml-2">Name</label>
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-sans font-bold text-[#111111] ml-2">Email</label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-sans font-bold text-[#111111] ml-2">Message</label>
-              <textarea
-                rows={5}
-                placeholder="Type your message here..."
-                className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all resize-none interactive cursor-none"
-              />
-            </div>
-
-            <div className="pt-2">
-              <button type="button" className="group inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide uppercase hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none">
-                <CyberText text="Submit Comment" speed={20} />
-                <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </div>
-          </form>
-        </div>
+        <ArticleCommentForm source="ai-topic" article={topic} />
       </article>
     </main>
   );

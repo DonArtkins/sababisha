@@ -42,7 +42,7 @@ export function AITopics() {
                   src={topic.image} 
                   alt={topic.title} 
                   priority={i < 3}
-                  loading={i < 3 ? "eager" : "lazy"}
+                  loading="eager"
                   wrapperClassName="w-full h-full"
                   imageClassName="object-contain object-center"
                 />

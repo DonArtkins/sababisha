@@ -105,7 +105,7 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 - Use Next.js `<Link>` for internal navigation (never `<a>` tags)
 - Use Next.js `<Image>` or the `<OptimizedImage>` wrapper for images (never `<img>` tags)
 - Use `@/` path alias for imports (e.g., `@/components/Button`)
-- Use existing shared components such as `AnimatedLink`, `Pagination`, `Button`, `FormStatusModal`, and `LiveSiteUnavailableModal` before creating new UI patterns
+- Use existing shared components such as `AnimatedLink`, `Pagination`, `Button`, `FormStatusModal`, `ArticleCommentForm`, and `LiveSiteUnavailableModal` before creating new UI patterns
 - Keep light and dark mode classes in sync for new forms, dropdowns, cards, and modals
 - Place new Lottie JSON under `public/lottie/` and document it in [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md)
 
@@ -121,11 +121,13 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 - Add or modify services in `lib/db.ts`; every service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`
 - Service cards should link to `/en/contact?service={slug}` through `AnimatedLink`
 - Keep the services page limited to six cards per page so pagination remains predictable as the service list grows
-- Contact and newsletter submissions must go through App Router route handlers under `app/api/`
+- Contact, newsletter, and article comment submissions must go through App Router route handlers under `app/api/`
 - Validate form fields on both the client and server
 - Keep honeypot fields in place for bot resistance
 - Send email through the server-only Resend helper in `lib/email.ts`; never expose `RESEND_API_KEY` to client code
 - Use `FormStatusModal` for success and error states instead of browser alerts (Lottie assets: `form-success.json`, `form-error.json`)
+- Reuse `ArticleCommentForm` on R&D Blog and AI Topic detail pages; do not paste duplicate inline comment forms
+- Article comment emails must include article title, type, category, author, date, excerpt, and URL via `renderArticleCommentEmail`
 - Treat Resend non-success responses as form failures in the UI
 - Do not ship production with `onboarding@resend.dev` as the permanent sender
 - When email conventions change, update `README.md`, `AGENTS.md`, `.env.example`, and `research/RESEND.md`
@@ -136,7 +138,7 @@ All user-facing modals must use a **local Lottie** from `public/lottie/` for the
 
 | Modal | Reuse | Asset |
 | ----- | ----- | ----- |
-| Form success / error | `FormStatusModal` | `/lottie/form-success.json`, `/lottie/form-error.json` |
+| Form success / error | `FormStatusModal` | `/lottie/form-success.json`, `/lottie/form-error.json` (contact, newsletter, article comments) |
 | Live site unavailable | `LiveSiteUnavailableModal` | `/lottie/site-unavailable.json` |
 | Careers job details | careers page modal | `/lottie/careers-info.json` |
 
