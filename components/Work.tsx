@@ -17,16 +17,16 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 const FILTERS = ["All", "Loan Management", "Legal Management", "Financial Analytics", "Government Projects"];
 
 const ALL_PROJECTS = [
-  { id: 3, title: "Maziwa", category: "Loan Management", subtitle: "Loan Management System", desc: "An overall system for managing different types of loans with better operational insights.", image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
-  { id: 2, title: "SheriaPro", category: "Legal Management", subtitle: "Legal Management System", desc: "The comprehensive legal tool for progressive law firms.", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
-  { id: 5, title: "Finsight", category: "Financial Analytics", subtitle: "Financial Analytics Tool", desc: "A financial management tool for M-Pesa statement analysis and smarter financial decision-making.", image: "/images/img1.jpg", link: "https://finsights.mcb.co.ke" },
-  { id: 4, title: "KIAMIS", category: "Government Projects", subtitle: "Agri-Technology", desc: "A government system built to support farmers and agricultural processes countrywide.", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
-  { id: 1, title: "POS System", category: "Financial Analytics", subtitle: "Point of Sale System", desc: "From managing inventory to quick transactions, our POS system is built to streamline your business operations and optimize your workflow.", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
-  { id: 6, title: "Prudmat", category: "Loan Management", subtitle: "Banking Financial System", desc: "Banking solutions for SACCOs, microfinance institutions, and financial service providers.", image: "/images/img1.jpg", link: "https://prudmat.org" },
-  { id: 7, title: "DataG", category: "Financial Analytics", subtitle: "General Trading System", desc: "Ensures information stored in the database remains accurate, accessible, and up to date.", image: "/images/img5.jpg", link: "https://datag.co.ke" },
-  { id: 8, title: "Members Portal", category: "Government Projects", subtitle: "Insight for Radiologists", desc: "Precision and insight for radiologists worldwide.", image: "/images/img1.jpg", link: "https://membersportal.kar.co.ke" },
-  { id: 9, title: "BIMA", category: "Financial Analytics", subtitle: "Insurance Agency Management System", desc: "A digital insurance management solution designed to simplify policy handling and service operations.", image: "/images/img6.jpg", link: "https://bima.sababisha.com" },
-  { id: 10, title: "TIBA", category: "Financial Analytics", subtitle: "Hospital Management System", desc: "A hospital management system built to improve healthcare workflows, records, and service delivery.", image: "/images/img1.jpg", link: "https://tiba.sababisha.com" },
+  { id: 3, title: "Maziwa", category: "Loan Management", subtitle: "Loan Management System", desc: "A digital loan management platform for microfinance teams that need stronger client tracking, repayment visibility, credit workflows, portfolio reporting, and operational control across multiple loan products.", image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
+  { id: 2, title: "SheriaPro", category: "Legal Management", subtitle: "Legal Management System", desc: "A legal practice management system built for progressive law firms, combining case management, client records, billing, document workflows, deadlines, and performance reporting in one dependable platform.", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
+  { id: 5, title: "Finsight", category: "Financial Analytics", subtitle: "Financial Analytics Tool", desc: "A financial intelligence tool that helps organizations analyze M-Pesa statements, understand cash flow patterns, reduce manual review, and make faster, evidence-based financial decisions.", image: "/images/img1.jpg", link: "https://finsights.mcb.co.ke" },
+  { id: 4, title: "KIAMIS", category: "Government Projects", subtitle: "Agri-Technology", desc: "A large-scale agriculture technology system designed to support farmer registration, program visibility, data collection, and coordinated service delivery for agricultural stakeholders.", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
+  { id: 1, title: "POS System", category: "Financial Analytics", subtitle: "Point of Sale System", desc: "A point of sale solution for stock control, quick transactions, sales monitoring, receipts, inventory visibility, and day-to-day retail operations that need speed and accountability.", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
+  { id: 6, title: "Prudmat", category: "Loan Management", subtitle: "Banking Financial System", desc: "A banking and financial operations platform for SACCOs, microfinance institutions, and financial service providers managing members, savings, loans, approvals, accounting, and compliance reporting.", image: "/images/img1.jpg", link: "https://prudmat.org" },
+  { id: 7, title: "DataG", category: "Financial Analytics", subtitle: "General Trading System", desc: "A general trading system that keeps operational data accurate, accessible, and current, helping teams manage records, transactions, stock movement, and reporting from a single source of truth.", image: "/images/img5.jpg", link: "https://datag.co.ke" },
+  { id: 8, title: "Members Portal", category: "Government Projects", subtitle: "Insight for Radiologists", desc: "A member self-service and professional portal that improves access to information, communication, records, and digital services for radiology stakeholders and administrative teams.", image: "/images/img1.jpg", link: "https://membersportal.kar.co.ke" },
+  { id: 9, title: "BIMA", category: "Financial Analytics", subtitle: "Insurance Agency Management System", desc: "An insurance agency management platform that simplifies policy handling, renewals, client records, underwriting support, reporting, and service operations for growing insurance teams.", image: "/images/img6.jpg", link: "https://bima.sababisha.com" },
+  { id: 10, title: "TIBA", category: "Financial Analytics", subtitle: "Hospital Management System", desc: "A hospital management system built to improve patient registration, appointments, pharmacy, laboratory, billing, records, reporting, and healthcare service delivery across departments.", image: "/images/img1.jpg", link: "https://tiba.sababisha.com" },
 ];
 
 const ITEMS_PER_PAGE = 6;
@@ -118,8 +118,10 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
               </>
             )}
           </h2>
-          <p className="text-gray-600 font-sans text-lg">
-            {variant === "home" ? "A selection of our latest work" : "Explore our comprehensive portfolio"}
+          <p className="max-w-3xl text-gray-600 font-sans text-base leading-relaxed sm:text-lg">
+            {variant === "home"
+              ? "A focused look at the fintech, healthcare, legal, agriculture, analytics, and enterprise systems we have built to solve real operational problems for organizations across Kenya and beyond through workflow automation, integrations, reporting, and user-centered software."
+              : "Explore our portfolio of production-ready platforms, from loan management and payment workflows to hospital systems, legal operations, member portals, financial analytics, point-of-sale tools, and government technology projects built for reliable day-to-day use."}
           </p>
         </Reveal>
 

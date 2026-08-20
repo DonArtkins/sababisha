@@ -142,7 +142,7 @@ export function Hero() {
 
         {/* Description */}
         <p className="font-sans text-lg md:text-xl text-gray-600 font-medium max-w-[420px] mb-10 leading-relaxed border-b border-gray-200 pb-8">
-          Digital Solutions for Your <WritingText words={["BUSINESS", "AGENCY", "STARTUP", "SAAS"]} /> <br/> — Up To 50x Faster Integration.
+          Build secure fintech platforms, enterprise software, AI-ready workflows, and integrations for your <WritingText words={["BUSINESS", "AGENCY", "STARTUP", "SAAS"]} /> - designed for faster launches, cleaner data, and measurable growth.
         </p>
 
         {/* Small Review Block */}

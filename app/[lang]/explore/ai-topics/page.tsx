@@ -5,71 +5,15 @@ import { ArrowRight } from "lucide-react";
 import { CyberText } from "@/components/CyberText";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Pagination } from "@/components/Pagination";
+import { AI_TOPICS } from "@/lib/db";
 
-const TOPICS = [
-  {
-    title: "AI Infrastructure & Ollama",
-    excerpt: "Run LLMs on Your Own Infrastructure",
-    author: "David Maru",
-    date: "12/2/2026",
-    category: "AI Infrastructure",
-    image: "/images/img6.jpg",
-    slug: "/en/explore/ai-topics/ollama"
-  },
-  {
-    title: "Natural Language Processing (NLP) with PyTorch",
-    excerpt: "Building AI-Powered Text Intelligence Systems",
-    author: "John Lokok",
-    date: "5/03/2026",
-    category: "AI Training Series",
-    image: "/images/img6.jpg",
-    slug: "/en/explore/ai-topics/nlp-pytorch"
-  },
-  {
-    title: "LlamaIndex: Data Framework for LLM Applications",
-    excerpt: "Connecting enterprise data to LLMs for intelligent AI systems",
-    author: "Enock Borabu",
-    date: "2026",
-    category: "AI Data Engineering & Retrieval",
-    image: "/images/img1.jpg",
-    slug: "/en/explore/ai-topics/llamaindex"
-  },
-  {
-    title: "QLoRA: Advanced Model Fine-Tuning",
-    excerpt: "Efficiently training large language models with minimal hardware resources",
-    author: "Civious Rumaita",
-    date: "2026",
-    category: "AI Model Optimization",
-    image: "/images/img6.jpg",
-    slug: "/en/explore/ai-topics/qlora"
-  },
-  {
-    title: "Make.com: No-Code Automation & AI Agents",
-    excerpt: "Automate workflows and build intelligent systems without writing code",
-    author: "Sheila Samita",
-    date: "16/02/2026",
-    category: "Automation & AI Systems",
-    image: "/images/img1.jpg",
-    slug: "/en/explore/ai-topics/make-automation"
-  },
-  {
-    title: "Fine-Tuning with LoRA / PEFT",
-    excerpt: "Parameter-Efficient Fine-Tuning for Large Language Models",
-    author: "Herman Alany",
-    date: "2026",
-    category: "AI Training Session",
-    image: "/images/img6.jpg",
-    slug: "/en/explore/ai-topics/lora-peft"
-  }
-];
-
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 6;
 
 export function AITopics() {
   const [currentPage, setCurrentPage] = useState(1);
   
-  const totalPages = Math.ceil(TOPICS.length / ITEMS_PER_PAGE);
-  const currentTopics = TOPICS.slice(
+  const totalPages = Math.ceil(AI_TOPICS.length / ITEMS_PER_PAGE);
+  const currentTopics = AI_TOPICS.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -85,18 +29,22 @@ export function AITopics() {
               </svg>
             </span> Topics
           </h1>
-          <p className="text-gray-600 font-sans text-base sm:text-lg">Our AI Topics Include</p>
+          <p className="max-w-3xl text-gray-600 font-sans text-base leading-relaxed sm:text-lg">
+            Building secure, scalable, and practical AI solutions for real enterprise challenges. Explore private LLM infrastructure, NLP with PyTorch, retrieval-augmented generation, QLoRA, LoRA fine-tuning, no-code automation, and AI agents designed for business workflows.
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {currentTopics.map((topic, i) => (
             <Link href={topic.slug} key={i} className="group cursor-none interactive">
-              <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden aspect-[4/3] mb-4 sm:mb-6 bg-gray-100 relative">
+              <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden aspect-[4/3] mb-4 sm:mb-6 bg-gray-50 relative p-4 sm:p-6">
                 <OptimizedImage 
                   src={topic.image} 
                   alt={topic.title} 
-                  wrapperClassName="absolute inset-0 w-full h-full"
-                  imageClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority={i < 3}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  wrapperClassName="w-full h-full"
+                  imageClassName="object-contain object-center"
                 />
               </div>
               <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2 sm:mb-3">

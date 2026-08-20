@@ -5,10 +5,13 @@ import { ArrowLeft, User, Calendar, Tag, MessageSquare, Send } from "lucide-reac
 import Link from "next/link";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { CyberText } from "@/components/CyberText";
+import { getAITopicBySlug } from "@/lib/db";
 
 export default function ArticlePage() {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const topic = getAITopicBySlug("/en/explore/ai-topics/llamaindex");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,6 +29,10 @@ export default function ArticlePage() {
     return () => ctx.revert();
   }, []);
 
+  if (!topic) {
+    return <div>Topic not found</div>;
+  }
+
   return (
     <main className="bg-[#EFEFEF] min-h-screen pt-32 pb-24 text-[#111111]">
       <article className="max-w-4xl mx-auto px-6 md:px-12">
@@ -34,7 +41,7 @@ export default function ArticlePage() {
           <Link href="/en/explore/ai-topics" className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-gray-500 hover:text-[#FF5A36] transition-colors interactive cursor-none mb-8 group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> <CyberText text="Back to AI Topics" speed={30} />
           </Link>
-          
+
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#111111] leading-[1.1] tracking-tight mb-6">
             LlamaIndex: Data Framework <br />
             <span className="italic text-[#FF5A36] relative inline-block mt-2">
@@ -44,30 +51,33 @@ export default function ArticlePage() {
               </svg>
             </span>
           </h1>
+          <p className="text-xl md:text-2xl text-gray-600 font-sans mb-8">
+            {topic.content?.subtitle || topic.excerpt}
+          </p>
 
           <div className="flex flex-wrap items-center gap-6 text-sm font-sans text-gray-500 border-t border-b border-gray-200 py-4">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4 text-[#FF5A36]" />
-              <span className="font-semibold text-[#111111]">Enock Borabu</span>
+              <span className="font-semibold text-[#111111]">{topic.author}</span>
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-[#FF5A36]" />
-              <span>2026</span>
+              <span>{topic.date}</span>
             </div>
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-[#FF5A36]" />
-              <span className="uppercase tracking-wider text-xs font-bold">AI Data Engineering & Retrieval</span>
+              <span className="uppercase tracking-wider text-xs font-bold">{topic.category}</span>
             </div>
           </div>
         </header>
 
         {/* Featured Image */}
-        <div className="rounded-[2rem] overflow-hidden aspect-video mb-16 bg-gray-200 relative">
-          <OptimizedImage 
-            src="/images/img1.jpg" 
-            alt="LlamaIndex: Data Framework" 
-            wrapperClassName="absolute inset-0 w-full h-full"
-            imageClassName="w-full h-full object-cover"
+        <div className="rounded-[2rem] overflow-hidden aspect-video mb-16 bg-gray-200 relative p-6 sm:p-8">
+          <OptimizedImage
+            src={topic.image}
+            alt={topic.title}
+            wrapperClassName="w-full h-full"
+            imageClassName="w-full h-full object-contain object-center"
           />
         </div>
 
@@ -104,36 +114,36 @@ export default function ArticlePage() {
             <MessageSquare className="w-6 h-6 text-[#FF5A36]" />
             <h3 className="font-display text-3xl text-[#111111]">Leave a comment</h3>
           </div>
-          
+
           <form className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-sans font-bold text-[#111111] ml-2">Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="Your name"
-                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none" 
+                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-sans font-bold text-[#111111] ml-2">Email</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   placeholder="your@email.com"
-                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none" 
+                  className="w-full h-14 bg-gray-50 border border-gray-200 rounded-2xl px-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all interactive cursor-none"
                 />
               </div>
             </div>
-            
+
             <div className="flex flex-col gap-2">
               <label className="text-sm font-sans font-bold text-[#111111] ml-2">Message</label>
-              <textarea 
-                rows={5} 
+              <textarea
+                rows={5}
                 placeholder="Type your message here..."
-                className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all resize-none interactive cursor-none" 
+                className="w-full bg-gray-50 border border-gray-200 rounded-2xl p-5 text-[#111111] placeholder:text-gray-400 focus:border-[#FF5A36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(255,90,54,0.1)] outline-none transition-all resize-none interactive cursor-none"
               />
             </div>
-            
+
             <div className="pt-2">
               <button type="button" className="group inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide uppercase hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none">
                 <CyberText text="Submit Comment" speed={20} />

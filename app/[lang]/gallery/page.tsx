@@ -6,27 +6,10 @@ import { Flip } from "gsap/Flip";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { CyberText } from "@/components/CyberText";
 import { Pagination } from "@/components/Pagination";
+import { GALLERY_DATA, GALLERY_FILTERS } from "@/lib/db";
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
-const GALLERY_DATA = [
-  // Sababisha
-  { id: 1, title: "Annual Strategy Meet", image: "/images/img1.jpg", category: "Sababisha Team" },
-  { id: 2, title: "Office Expansion", image: "/images/img5.jpg", category: "Sababisha Team" },
-  { id: 3, title: "Client Workshop", image: "/images/img6.jpg", category: "Sababisha Team" },
-  // Development
-  { id: 4, title: "Hackathon 2026", image: "/images/img5.jpg", category: "Development Team" },
-  { id: 5, title: "Sprint Planning", image: "/images/img6.jpg", category: "Development Team" },
-  { id: 6, title: "Launch Day", image: "/images/img1.jpg", category: "Development Team" },
-  // Moments
-  { id: 7, title: "Team Retreat", image: "/images/img6.jpg", category: "Teams Moments" },
-  { id: 8, title: "Friday Social", image: "/images/img1.jpg", category: "Teams Moments" },
-  { id: 9, title: "Award Ceremony", image: "/images/img5.jpg", category: "Teams Moments" },
-  { id: 10, title: "Community Outreach", image: "/images/img6.jpg", category: "Teams Moments" },
-  { id: 11, title: "Offsite Brainstorm", image: "/images/img1.jpg", category: "Teams Moments" },
-];
-
-const FILTERS = ["All", "Sababisha Team", "Development Team", "Teams Moments"];
 const ITEMS_PER_PAGE = 6;
 
 const GalleryCard = ({ item, className }: { item: any, className?: string }) => (
@@ -45,7 +28,12 @@ const GalleryCard = ({ item, className }: { item: any, className?: string }) => 
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
       {item.category}
     </span>
-    <h3 className="font-display text-3xl text-[#111111] leading-tight">{item.title}</h3>
+    <h3 className="font-display text-3xl text-[#111111] leading-tight mb-3">{item.title}</h3>
+    {item.desc && (
+      <p className="text-gray-500 font-sans text-sm leading-relaxed line-clamp-3">
+        {item.desc}
+      </p>
+    )}
   </div>
 );
 
@@ -62,7 +50,12 @@ const GalleryCardMobile = ({ item, className }: { item: any, className?: string 
     <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 block">
       {item.category}
     </span>
-    <h3 className="font-display text-2xl text-[#111111] leading-tight">{item.title}</h3>
+    <h3 className="font-display text-2xl text-[#111111] leading-tight mb-3">{item.title}</h3>
+    {item.desc && (
+      <p className="text-gray-500 font-sans text-sm leading-relaxed">
+        {item.desc}
+      </p>
+    )}
   </div>
 );
 
@@ -133,12 +126,12 @@ export function Gallery() {
             Our <span className="text-accent italic">Gallery</span>
           </h1>
           <p className="font-sans text-xl text-gray-600 max-w-2xl mx-auto">
-            Glimpses into our culture, collaboration, and celebrations.
+            Explore the people, workshops, product planning sessions, launches, and team moments behind Sababisha Solutions. Our gallery highlights the collaboration, engineering culture, client engagement, and delivery discipline that support every digital transformation project.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
-          {FILTERS.map((filter) => (
+          {GALLERY_FILTERS.map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterChange(filter)}

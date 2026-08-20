@@ -25,9 +25,9 @@ const TABS = [
     ),
     description: (
       <div className="space-y-4">
-        <p>We are a premier innovative technology firm based in Nairobi, Kenya. We specialize in fintech solutions, expert consultancy, and custom Enterprise level software development.</p>
-        <p>Our team is dedicated to transforming innovative ideas into powerful digital solutions tailored to your business needs.</p>
-        <p>Partner with us to drive growth and achieve your digital transformation goals.</p>
+        <p>Sababisha Solutions is a Nairobi-based technology company building secure fintech platforms, enterprise systems, analytics tools, automation workflows, and custom software for organizations that want to modernize how they operate.</p>
+        <p>We work closely with clients to understand their users, processes, data, integrations, compliance needs, and growth goals before designing software that is practical, maintainable, and ready for real-world adoption.</p>
+        <p>Whether you need a lending system, payment integration, hospital platform, member portal, ERP workflow, or custom business application, we help turn complex operational challenges into dependable digital solutions.</p>
       </div>
     ),
     image: "/images/img5.jpg",
@@ -47,9 +47,9 @@ const TABS = [
     ),
     description: (
       <div className="space-y-4">
-        <p>Innovation is the cornerstone of our approach. We strive to revolutionize the way businesses operate by harnessing cutting-edge technologies and creative solutions. Our goal is to empower businesses to thrive in a dynamic and competitive landscape.</p>
-        <p>We are dedicated to being your trusted partner, delivering top-notch services and expertise tailored to meet the unique needs of each client.</p>
-        <p>Our commitment to excellence and passion for technology fuels our efforts to help you navigate the ever-evolving digital landscape with confidence. We believe in the power of innovation to drive progress and transform industries. By staying ahead of the curve and embracing change, we enable businesses to seize new opportunities and achieve sustainable growth.</p>
+        <p>Our mission is to help businesses, institutions, and technology-driven teams use software to reduce friction, improve service delivery, and make decisions from accurate, accessible data.</p>
+        <p>We combine product strategy, engineering discipline, user-centered design, and long-term support so every platform we deliver can serve staff, customers, partners, and managers with clarity.</p>
+        <p>By focusing on security, scalability, performance, and usability from the beginning, we help organizations move confidently from manual processes and disconnected tools to integrated digital operations.</p>
       </div>
     ),
     image: "/images/img1.jpg",
@@ -69,8 +69,9 @@ const TABS = [
     ),
     description: (
       <div className="space-y-4">
-        <p>To innovation, reliability, and client success. We strive to create a future where businesses of all sizes can harness the power of technology to achieve their goals and realize their full potential.</p>
-        <p>By continuously pushing the boundaries of what's possible, we aim to set new standards in the IT industry and be the go-to ally for companies seeking to thrive in the digital age.</p>
+        <p>Our vision is to be a trusted digital transformation partner for African businesses and institutions that need reliable technology, practical innovation, and measurable operational impact.</p>
+        <p>We see a future where financial services, healthcare, education, legal operations, logistics, and public programs can run on secure systems that are easier to manage, easier to scale, and easier to improve.</p>
+        <p>Every project moves us toward that future: technology that works in context, supports real users, and gives decision-makers the confidence to grow.</p>
       </div>
     ),
     image: "/images/img3.jpg",

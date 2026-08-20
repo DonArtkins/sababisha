@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Sababisha Solutions is a modern company website built with **Next.js 16.3.1**, **Tailwind CSS 4.3**, **GSAP**, **Lenis**, and **Motion (Framer Motion)**. It features smooth scroll animations, page transitions, a custom cursor, and a polished UI.
+Sababisha Solutions is a modern company website built with **Next.js 16.3.1**, **Tailwind CSS 4.3**, **GSAP**, **Lenis**, and **Motion (Framer Motion)**. It features smooth scroll animations, page transitions, a custom cursor, a data-backed services catalog, service-aware contact inquiries, Resend-backed form delivery, shared Lottie status modals, and a polished UI.
 
 ## Tech Stack
 
@@ -25,6 +25,9 @@ sababisha/
 │   ├── not-found.tsx           # Global 404 page
 │   ├── sitemap.ts              # Dynamic sitemap generator
 │   ├── robots.ts               # Robots.txt generator
+│   ├── api/                    # Server route handlers
+│   │   ├── contact/route.ts    # Service inquiry email endpoint
+│   │   └── newsletter/route.ts # Footer newsletter email endpoint
 │   └── [lang]/                 # Dynamic locale segment (e.g. /en, /sw)
 │       ├── page.tsx            # Home page
 │       ├── blog/page.tsx
@@ -42,7 +45,7 @@ sababisha/
 │           └── rd-blogs/page.tsx
 ├── components/                 # Reusable UI components (all "use client")
 ├── layouts/                    # Layout wrappers (ClientLayout)
-├── lib/                        # Utility functions (utils.ts)
+├── lib/                        # Data, type, email, form, and utility helpers
 ├── assets/                     # Static assets
 ├── public/                     # Public files served at root
 ├── next.config.mjs             # Next.js configuration
@@ -67,7 +70,12 @@ This project uses **Binance-style locale-prefixed routing**:
 5. **Icons**: `lucide-react` no longer ships brand icons (Facebook, Twitter, etc.). These are defined as inline SVGs in `components/Footer.tsx`. Use `lucide-react` only for generic UI icons.
 6. **Animations**: GSAP and Lenis are initialized in `layouts/ClientLayout.tsx`. ScrollTrigger is used throughout components. Always register GSAP plugins before use.
 7. **Styling**: Tailwind CSS 4.3 is used via PostCSS (`@tailwindcss/postcss`). Theme tokens are in `app/globals.css` under `@theme`. No `tailwind.config.js` file — configuration is CSS-first.
-8. **Adding New Pages**: Create a new directory under `app/[lang]/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it.
+8. **Services Data**: Service cards are driven by `SERVICES` in `lib/db.ts` and the `Service` type in `lib/types.ts`. Each service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`.
+9. **Services Page**: The services page uses a six-card page limit, dynamic counters from service data, and `AnimatedLink` CTAs to `/en/contact?service={slug}`. Keep cards compact and avoid large fixed heights that strand the CTA far below the content.
+10. **Forms**: Contact and newsletter forms validate on the client and server, include honeypot fields, submit to `app/api/contact` and `app/api/newsletter`, and show `FormStatusModal` success/error states with local Lottie files from `public/lottie/`.
+11. **Email Delivery**: Email is sent server-side through `lib/email.ts` using Resend's HTTP API. Keep `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `SABABISHA_CONTACT_EMAIL` in environment variables only.
+12. **SEO and Crawl Files**: Update route metadata, `app/sitemap.ts`, `app/robots.ts`, and root markdown docs whenever public routes, service flows, or crawl behavior changes.
+13. **Adding New Pages**: Create a new directory under `app/[lang]/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it.
 
 ## Do NOT
 

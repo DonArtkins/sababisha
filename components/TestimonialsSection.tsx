@@ -174,7 +174,9 @@ export function TestimonialsSection() {
               </svg>
             </span> Testimonials
           </h2>
-          <p className="text-muted font-sans text-lg">What Our Clients Say</p>
+          <p className="max-w-3xl text-muted font-sans text-base leading-relaxed sm:text-lg">
+            Discover what clients say after partnering with Sababisha Solutions to improve operational efficiency, strengthen digital workflows, reduce manual processes, and launch dependable systems across finance, healthcare, insurance, analytics, and enterprise service delivery.
+          </p>
         </Reveal>
 
         {/* Slideshow Track */}

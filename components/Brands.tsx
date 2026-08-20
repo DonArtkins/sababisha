@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "./Reveal";
@@ -27,9 +28,12 @@ function BrandCard({ brand }: { brand: typeof BRANDS[0] }) {
   return (
     <div className="flex flex-col items-center justify-center w-[160px] md:w-[200px] h-[120px] md:h-[140px] bg-card border border-border rounded-2xl shadow-sm mx-3 flex-shrink-0 transition-transform hover:scale-105 interactive cursor-none group">
       {!imgError ? (
-        <img 
-          src={`https://logo.clearbit.com/${brand.domain}`} 
-          alt={brand.name} 
+        <Image
+          src={`https://logo.clearbit.com/${brand.domain}`}
+          alt={brand.name}
+          width={64}
+          height={64}
+          unoptimized
           className="w-12 h-12 md:w-16 md:h-16 object-contain mb-3 grayscale group-hover:grayscale-0 transition-all duration-300"
           onError={() => setImgError(true)}
         />
@@ -78,7 +82,9 @@ export function Brands() {
               </svg>
             </span> Brands
           </h2>
-          <p className="text-muted font-sans text-lg">Our Trusted Brands Include</p>
+          <p className="max-w-3xl text-muted font-sans text-base leading-relaxed sm:text-lg">
+            Trusted by public institutions, finance teams, micro-credit providers, trading businesses, and growth-focused organizations that rely on Sababisha Solutions for dependable software delivery, digital transformation, integrations, and ongoing technology support.
+          </p>
         </Reveal>
       </div>
 
@@ -86,7 +92,7 @@ export function Brands() {
         {/* Left/Right fading masks for smooth infinite look */}
         <div className="absolute top-0 bottom-0 left-0 w-12 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-12 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
+
         <div className="flex animate-[scroll_40s_linear_infinite] hover:[animation-play-state:paused]">
           {/* Duplicate list for seamless scrolling */}
           {[...BRANDS, ...BRANDS].map((brand, i) => (
@@ -94,7 +100,7 @@ export function Brands() {
           ))}
         </div>
       </div>
-      
+
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes scroll {
           0% { transform: translateX(0); }

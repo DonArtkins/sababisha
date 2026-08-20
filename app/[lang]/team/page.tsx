@@ -3,28 +3,12 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { TEAM } from "@/lib/db";
+import type { TeamMember } from "@/lib/types";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TEAM = {
-  management: [
-    { id: 1, name: "David Opiyo", role: "Chief Executive Officer", image: "/images/img5.jpg" },
-    { id: 2, name: "Sarah M.", role: "Chief Operating Officer", image: "/images/img6.jpg" },
-  ],
-  leads: [
-    { id: 3, name: "John K.", role: "Lead Engineer", image: "/images/img1.jpg" },
-    { id: 4, name: "Mercy N.", role: "Product Manager", image: "/images/img5.jpg" },
-    { id: 5, name: "Peter W.", role: "Design Lead", image: "/images/img6.jpg" },
-  ],
-  supervisors: [
-    { id: 6, name: "Grace O.", role: "QA Supervisor", image: "/images/img1.jpg" },
-    { id: 7, name: "Daniel K.", role: "Backend Supervisor", image: "/images/img5.jpg" },
-    { id: 8, name: "Lucy M.", role: "Frontend Supervisor", image: "/images/img6.jpg" },
-    { id: 9, name: "Kevin M.", role: "DevOps Supervisor", image: "/images/img1.jpg" },
-  ]
-};
-
-const TeamMemberCard = ({ member }: { member: any }) => (
+const TeamMemberCard = ({ member }: { member: TeamMember }) => (
   <div className="group interactive cursor-none">
     <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
@@ -39,7 +23,7 @@ const TeamMemberCard = ({ member }: { member: any }) => (
   </div>
 );
 
-const TeamMemberCardMobile = ({ member }: { member: any }) => (
+const TeamMemberCardMobile = ({ member }: { member: TeamMember }) => (
   <div className="group interactive cursor-none">
     <div className="rounded-3xl overflow-hidden aspect-[4/3] mb-5 bg-gray-100 relative">
       <OptimizedImage
@@ -86,16 +70,21 @@ export function Team() {
             Meet Our <span className="text-accent italic">Leadership</span>
           </h1>
           <p className="font-sans text-xl text-gray-600 max-w-2xl mx-auto">
-            The visionary minds driving Sababisha Solutions forward.
+            Meet the leadership, product, engineering, QA, DevOps, support, and operations professionals behind Sababisha Solutions. Our team combines fintech experience, software engineering discipline, implementation support, and client-focused thinking to deliver practical digital solutions.
           </p>
         </div>
 
         {/* Management */}
         <div className="team-section mb-24">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
-            <span className="w-8 h-px bg-gray-300"></span>
-            Executive Management
-          </h2>
+          <div className="mb-10">
+            <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-3 flex items-center gap-4">
+              <span className="w-8 h-px bg-gray-300"></span>
+              Executive Management
+            </h2>
+            <p className="font-sans text-base text-gray-600 leading-relaxed max-w-3xl">
+              Our executive management team sets the strategic direction for fintech innovation, enterprise software delivery, partnerships, operational quality, and long-term client success.
+            </p>
+          </div>
           {/* Mobile layout */}
           <div className="md:hidden grid grid-cols-1 gap-10 w-full">
             {TEAM.management.map(member => (
@@ -112,10 +101,15 @@ export function Team() {
 
         {/* Leads */}
         <div className="team-section mb-24">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
-            <span className="w-8 h-px bg-gray-300"></span>
-            Team Leads
-          </h2>
+          <div className="mb-10">
+            <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-3 flex items-center gap-4">
+              <span className="w-8 h-px bg-gray-300"></span>
+              Team Leads
+            </h2>
+            <p className="font-sans text-base text-gray-600 leading-relaxed max-w-3xl">
+              Our team leads translate business requirements into product plans, design decisions, engineering priorities, user workflows, and quality standards that keep every project moving clearly.
+            </p>
+          </div>
           {/* Mobile layout */}
           <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
             {TEAM.leads.map(member => (
@@ -132,10 +126,15 @@ export function Team() {
 
         {/* Supervisors */}
         <div className="team-section">
-          <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-10 flex items-center gap-4">
-            <span className="w-8 h-px bg-gray-300"></span>
-            Supervisors
-          </h2>
+          <div className="mb-10">
+            <h2 className="font-sans text-sm font-semibold tracking-widest uppercase text-gray-500 mb-3 flex items-center gap-4">
+              <span className="w-8 h-px bg-gray-300"></span>
+              Supervisors
+            </h2>
+            <p className="font-sans text-base text-gray-600 leading-relaxed max-w-3xl">
+              Supervisors support daily execution across backend, frontend, QA, DevOps, implementation, and support, ensuring systems are tested, documented, deployed, and improved responsibly.
+            </p>
+          </div>
           {/* Mobile layout */}
           <div className="md:hidden grid grid-cols-2 gap-x-4 gap-y-8 w-full">
             {TEAM.supervisors.map(member => (

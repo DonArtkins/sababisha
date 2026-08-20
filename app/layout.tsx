@@ -4,30 +4,56 @@ import { ClientLayout } from "@/layouts/ClientLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const BASE_URL = process.env.SITE_URL || "https://sababisha.com";
+const SITE_NAME = "Sababisha Solutions Limited";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: "Sababisha Solutions Limited | Fintech, Consultancy & Custom Tech Solutions",
-    template: "%s | Sababisha Solutions Limited",
+    default: "Sababisha Solutions Limited | Fintech Software, Enterprise Systems & Digital Transformation",
+    template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Sababisha Solutions Limited provides cutting-edge Fintech, Consultancy, and Custom Tech Solutions to drive digital transformation and innovation in Kenya and across Africa.",
+    "Sababisha Solutions Limited builds secure fintech platforms, enterprise systems, custom software, AI automation, analytics dashboards, integrations, service-aware inquiry workflows, and digital transformation solutions for organizations in Kenya and across Africa.",
   keywords: [
     "Sababisha",
     "Sababisha Solutions Limited",
     "Fintech",
+    "fintech software Kenya",
+    "loan management system",
+    "SACCO software",
+    "insurance agency management system",
+    "hospital management system",
+    "enterprise software development",
+    "custom software development Kenya",
     "Consultancy",
     "Custom Tech Solutions",
     "Kenya tech company",
+    "Nairobi software company",
     "technology",
     "software",
     "digital services",
     "web development",
     "AI",
+    "AI automation",
+    "enterprise integrations",
+    "analytics dashboards",
+    "service inquiry Kenya",
+    "software support Kenya",
+    "business systems Kenya",
+    "technology consultancy Nairobi",
+    "digital transformation Africa",
   ],
   authors: [{ name: "Sababisha Solutions Limited" }],
-  creator: "Sababisha Solutions Limited",
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Technology",
+  alternates: {
+    canonical: "/en",
+    languages: {
+      en: "/en",
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -47,17 +73,26 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: BASE_URL,
-    siteName: "Sababisha Solutions Limited",
-    title: "Sababisha Solutions Limited | Fintech, Consultancy & Custom Tech Solutions",
+    url: `${BASE_URL}/en`,
+    siteName: SITE_NAME,
+    title: "Sababisha Solutions Limited | Fintech Software, Enterprise Systems & Digital Transformation",
     description:
-      "Cutting-edge Fintech, Consultancy, and Custom Tech Solutions to drive digital transformation and innovation.",
+      "Secure fintech platforms, enterprise systems, custom software, AI automation, analytics, integrations, service inquiry workflows, and digital transformation solutions for Kenya and Africa.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Sababisha Solutions Limited logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sababisha Solutions Limited | Fintech, Consultancy & Custom Tech Solutions",
+    title: "Sababisha Solutions Limited | Fintech Software, Enterprise Systems & Digital Transformation",
     description:
-      "Cutting-edge Fintech, Consultancy, and Custom Tech Solutions to drive digital transformation and innovation.",
+      "Secure fintech platforms, enterprise systems, custom software, AI automation, analytics, integrations, service inquiry workflows, and digital transformation solutions for Kenya and Africa.",
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
