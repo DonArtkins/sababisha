@@ -6,14 +6,15 @@ Sababisha Solutions is a modern company website built with **Next.js 16.3.1**, *
 
 ## Tech Stack
 
-| Layer        | Technology                                    |
-| ------------ | --------------------------------------------- |
-| Framework    | Next.js 16.3.1 (App Router, Turbopack)        |
-| Styling      | Tailwind CSS 4.3 (`@tailwindcss/postcss`)     |
-| Animations   | GSAP 3, Lenis (smooth scroll), Motion 13      |
-| UI Primitives| Radix UI (Accordion, Dropdown, Tabs, Slot)    |
-| Icons        | Lucide React                                  |
-| Language     | TypeScript 7                                  |
+| Layer         | Technology                                 |
+| ------------- | ------------------------------------------ |
+| Framework     | Next.js 16.3.1 (App Router, Turbopack)     |
+| Styling       | Tailwind CSS 4.3 (`@tailwindcss/postcss`)  |
+| Animations    | GSAP 3, Lenis (smooth scroll), Motion 13   |
+| UI Primitives | Radix UI (Accordion, Dropdown, Tabs, Slot) |
+| Icons         | Lucide React                               |
+| Email         | Resend HTTP API (`lib/email.ts`)           |
+| Language      | TypeScript 7                               |
 
 ## Directory Structure
 
@@ -21,7 +22,7 @@ Sababisha Solutions is a modern company website built with **Next.js 16.3.1**, *
 sababisha/
 ├── app/                        # Next.js App Router
 │   ├── globals.css             # Global CSS (Tailwind + custom)
-│   ├── layout.tsx              # Root layout (Server Component)
+│   ├── layout.tsx              # Root layout (Server Component) + global SEO metadata
 │   ├── not-found.tsx           # Global 404 page
 │   ├── sitemap.ts              # Dynamic sitemap generator
 │   ├── robots.ts               # Robots.txt generator
@@ -32,12 +33,15 @@ sababisha/
 │       ├── page.tsx            # Home page
 │       ├── blog/page.tsx
 │       ├── contact/page.tsx
+│       ├── contact/layout.tsx  # Contact route SEO metadata
 │       ├── faq/page.tsx
 │       ├── gallery/page.tsx
 │       ├── products/page.tsx
 │       ├── services/page.tsx
 │       ├── team/page.tsx
 │       ├── testimonials/page.tsx
+│       ├── privacy-policy/page.tsx
+│       ├── sitemap-page/page.tsx
 │       └── explore/
 │           ├── ai-topics/page.tsx
 │           ├── careers/page.tsx
@@ -46,17 +50,21 @@ sababisha/
 ├── components/                 # Reusable UI components (all "use client")
 ├── layouts/                    # Layout wrappers (ClientLayout)
 ├── lib/                        # Data, type, email, form, and utility helpers
+├── research/                   # Internal research notes (not a public route)
+│   └── RESEND.md               # Resend setup, domain verify, .vercel.app workarounds
 ├── assets/                     # Static assets
 ├── public/                     # Public files served at root
 ├── next.config.mjs             # Next.js configuration
 ├── postcss.config.mjs          # PostCSS config for Tailwind 4
 ├── tsconfig.json               # TypeScript config
+├── .env.example                # Env var template (no secrets)
 └── package.json
 ```
 
 ## Routing Convention
 
 This project uses **Binance-style locale-prefixed routing**:
+
 - All user-facing routes live under `app/[lang]/`
 - URLs follow the pattern: `https://domain.com/en/services`, `https://domain.com/en/explore/projects`
 - The root `/` permanently redirects to `/en` via `next.config.mjs`
@@ -73,9 +81,20 @@ This project uses **Binance-style locale-prefixed routing**:
 8. **Services Data**: Service cards are driven by `SERVICES` in `lib/db.ts` and the `Service` type in `lib/types.ts`. Each service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`.
 9. **Services Page**: The services page uses a six-card page limit, dynamic counters from service data, and `AnimatedLink` CTAs to `/en/contact?service={slug}`. Keep cards compact and avoid large fixed heights that strand the CTA far below the content.
 10. **Forms**: Contact and newsletter forms validate on the client and server, include honeypot fields, submit to `app/api/contact` and `app/api/newsletter`, and show `FormStatusModal` success/error states with local Lottie files from `public/lottie/`.
-11. **Email Delivery**: Email is sent server-side through `lib/email.ts` using Resend's HTTP API. Keep `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `SABABISHA_CONTACT_EMAIL` in environment variables only.
-12. **SEO and Crawl Files**: Update route metadata, `app/sitemap.ts`, `app/robots.ts`, and root markdown docs whenever public routes, service flows, or crawl behavior changes.
-13. **Adding New Pages**: Create a new directory under `app/[lang]/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it.
+11. **Email Delivery (Resend)**: Email is sent server-side through `lib/email.ts` using Resend's HTTP API. Keep secrets in environment variables only — never client-side.
+    - Resend keys used by this app: `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, plus the app inbox `CONTACT_TO_EMAIL` (the `to` recipient).
+    - **Development:** always set `RESEND_FROM_EMAIL` to `Sababisha Website <onboarding@resend.dev>` and set `CONTACT_TO_EMAIL` to the Resend account email. The `resend.dev` sender can only deliver to that account inbox.
+    - **Production:** verify a domain you own in Resend → Domains, then set `RESEND_FROM_EMAIL` to an address on that verified domain (for example `Sababisha Website <support@sababisha.com>`).
+    - Resend verifies the **`from` domain**, not the website hostname. An app on `*.vercel.app` cannot use `@….vercel.app` as `from`; send from a verified custom domain instead (or keep using `onboarding@resend.dev` for throwaway demos only).
+    - Gate UI success on Resend accepting the send; confirm **Delivered** in the Resend dashboard when cutting over.
+    - Full walkthrough: [`research/RESEND.md`](./research/RESEND.md).
+12. **SEO and Crawl Files**: Update route metadata, `app/sitemap.ts`, `app/robots.ts`, and root markdown docs (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`) whenever public routes, service/contact flows, email delivery behavior, or crawl rules change.
+    - Global SEO lives in `app/layout.tsx` (`metadataBase`, canonical, Open Graph, Twitter, robots).
+    - Route SEO examples: `app/[lang]/services/page.tsx`, `app/[lang]/contact/layout.tsx`.
+    - `app/sitemap.ts` auto-discovers `page.tsx` under `app/[lang]/` and applies route priorities.
+    - `app/robots.ts` allows public pages and disallows `/api/`, `/_next/`, `/bugs/`, and `/research/`.
+13. **Adding New Pages**: Create a new directory under `app/[lang]/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it. Add an explicit `ROUTE_CONFIG` entry when the page needs a non-default priority, and add page-level metadata for SEO.
+14. **Research Notes**: Keep long-form setup guides under `research/`. These are repo docs only — not public App Router routes. Do not put secrets in research notes.
 
 ## Do NOT
 
@@ -84,3 +103,6 @@ This project uses **Binance-style locale-prefixed routing**:
 - Create components without `"use client"` if they use hooks or browser APIs
 - Add `tailwind.config.js` — Tailwind 4 uses CSS-based configuration
 - Reference `src/` paths — the project root is the source root
+- Expose `RESEND_API_KEY` (or any Resend secret) to client components or public docs
+- Ship production traffic with `onboarding@resend.dev` as the permanent `from` address
+- Attempt to verify `*.vercel.app` as a Resend sending domain

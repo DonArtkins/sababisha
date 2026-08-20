@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Sababisha Solutions Limited builds secure fintech platforms, enterprise systems, custom software, AI automation, analytics dashboards, integrations, service-aware inquiry workflows, and digital transformation solutions for organizations in Kenya and across Africa.",
+    "Sababisha Solutions Limited builds secure fintech platforms, enterprise systems, custom software, AI automation, analytics dashboards, integrations, service-aware inquiry workflows, and digital transformation solutions for organizations in Kenya and across Africa. Reach us through the contact form for project and support inquiries.",
   keywords: [
     "Sababisha",
     "Sababisha Solutions Limited",
@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     "enterprise integrations",
     "analytics dashboards",
     "service inquiry Kenya",
+    "contact Sababisha Solutions",
     "software support Kenya",
     "business systems Kenya",
     "technology consultancy Nairobi",

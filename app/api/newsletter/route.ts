@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { EMAIL_PATTERN, escapeHtml, normalizeText } from "@/lib/form-utils";
+import { EMAIL_PATTERN, normalizeText } from "@/lib/form-utils";
 import { getMailSettings, sendEmailWithResend } from "@/lib/email";
+import {
+  getBrandEmailAttachments,
+  renderNewsletterSignupEmail,
+} from "@/lib/email-templates";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -60,13 +64,7 @@ export async function POST(request: NextRequest) {
     `Source: Website footer`,
   ].join("\n");
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; color: #111111; line-height: 1.6;">
-      <p style="margin: 0 0 16px; color: #ff5a36; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px;">Newsletter signup</p>
-      <h1 style="margin: 0 0 12px; font-size: 26px;">New subscriber</h1>
-      <p style="margin: 0;">${escapeHtml(email)} subscribed from the website footer.</p>
-    </div>
-  `;
+  const html = renderNewsletterSignupEmail({ email });
 
   const result = await sendEmailWithResend({
     from,
@@ -75,6 +73,7 @@ export async function POST(request: NextRequest) {
     subject: "New Sababisha newsletter subscriber",
     html,
     text: plainText,
+    attachments: getBrandEmailAttachments(),
     tags: [{ name: "source", value: "newsletter_footer" }],
   });
 

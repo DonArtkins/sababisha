@@ -11,6 +11,12 @@ type RouteConfig = {
   priority: number;
 };
 
+/**
+ * Explicit priorities for known public routes.
+ * Contact/services stay elevated because they drive inquiry conversion.
+ * New pages under app/[lang]/ are still auto-discovered; add an entry here
+ * when the default priority is wrong.
+ */
 const ROUTE_CONFIG: Record<string, RouteConfig> = {
   "": { changeFrequency: "daily", priority: 1.0 },
   services: { changeFrequency: "weekly", priority: 0.95 },
@@ -20,6 +26,13 @@ const ROUTE_CONFIG: Record<string, RouteConfig> = {
   "explore/rd-blogs": { changeFrequency: "weekly", priority: 0.75 },
   "explore/ai-topics": { changeFrequency: "weekly", priority: 0.75 },
   "explore/careers": { changeFrequency: "weekly", priority: 0.7 },
+  blog: { changeFrequency: "weekly", priority: 0.75 },
+  faq: { changeFrequency: "monthly", priority: 0.7 },
+  team: { changeFrequency: "monthly", priority: 0.7 },
+  gallery: { changeFrequency: "monthly", priority: 0.65 },
+  testimonials: { changeFrequency: "monthly", priority: 0.65 },
+  "privacy-policy": { changeFrequency: "yearly", priority: 0.4 },
+  "sitemap-page": { changeFrequency: "monthly", priority: 0.45 },
 };
 
 /**

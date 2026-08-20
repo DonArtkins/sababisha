@@ -9,6 +9,12 @@ interface ResendEmailPayload {
     name: string;
     value: string;
   }>;
+  attachments?: Array<{
+    content: string;
+    filename: string;
+    content_type?: string;
+    content_id?: string;
+  }>;
 }
 
 interface SendEmailResult {
@@ -26,17 +32,20 @@ export function getMailSettings() {
   return {
     apiKey: process.env.RESEND_API_KEY?.trim() || "",
     from: process.env.RESEND_FROM_EMAIL?.trim() || DEFAULT_FROM_EMAIL,
-    to: process.env.SABABISHA_CONTACT_EMAIL?.trim() || DEFAULT_TO_EMAIL,
+    to: process.env.CONTACT_TO_EMAIL?.trim() || DEFAULT_TO_EMAIL,
   };
 }
 
-export async function sendEmailWithResend(payload: ResendEmailPayload): Promise<SendEmailResult> {
+export async function sendEmailWithResend(
+  payload: ResendEmailPayload,
+): Promise<SendEmailResult> {
   const { apiKey } = getMailSettings();
 
   if (!apiKey) {
     return {
       ok: false,
-      message: "Email delivery is not configured. Add RESEND_API_KEY in Vercel environment variables.",
+      message:
+        "Email delivery is not configured. Add RESEND_API_KEY in Vercel environment variables.",
     };
   }
 
@@ -59,7 +68,7 @@ export async function sendEmailWithResend(payload: ResendEmailPayload): Promise<
           ? data.message
           : typeof data?.error?.message === "string"
             ? data.error.message
-          : "Resend could not deliver the email.";
+            : "Resend could not deliver the email.";
 
       return {
         ok: false,
