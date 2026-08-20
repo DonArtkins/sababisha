@@ -261,9 +261,9 @@ export function Header() {
                   <Link 
                     key={link.path} 
                     href={link.path} 
-                    className="font-sans text-lg text-[#111111] dark:text-foreground hover:text-[#FF5A36] font-semibold flex items-center gap-2 transition-colors"
+                    className="font-sans text-lg text-[#111111] dark:text-foreground hover:text-[#FF5A36] font-semibold flex items-center gap-2 transition-colors interactive cursor-none"
                   >
-                    {link.name}
+                    <CyberText text={link.name} speed={30} />
                     <span className="text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#FF5A36]/10 text-[#FF5A36] font-bold">{link.tag}</span>
                   </Link>
                 ))}

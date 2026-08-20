@@ -1,4 +1,5 @@
 import { Button } from "./Button";
+import { CyberText } from "./CyberText";
 
 export function Pagination({
   currentPage,
@@ -22,18 +23,18 @@ export function Pagination({
         Previous
       </Button>
       
-      <div className="flex space-x-1">
+      <div className="flex space-x-1 gap-1 sm:gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`w-8 h-8 rounded-full flex items-center justify-center font-sans text-sm transition-colors interactive cursor-none ${
+            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-sans text-sm transition-all interactive cursor-none hover:scale-110 ${
               currentPage === page
-                ? "bg-foreground text-background font-semibold"
+                ? "bg-[#FF5A36] text-white font-semibold shadow-lg shadow-[#FF5A36]/30 scale-110"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-white/5 dark:text-muted dark:hover:bg-white/10"
             }`}
           >
-            {page}
+            <CyberText text={String(page)} speed={20} />
           </button>
         ))}
       </div>

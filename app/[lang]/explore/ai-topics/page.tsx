@@ -17,47 +17,47 @@ const TOPICS = [
     slug: "/en/explore/ai-topics/ollama"
   },
   {
-    title: "Natural Language Processing",
-    excerpt: "Turning Text into Business Intelligence",
-    author: "John Lokoko",
-    date: "5/3/2026",
-    category: "NLP & Machine Learning",
+    title: "Natural Language Processing (NLP) with PyTorch",
+    excerpt: "Building AI-Powered Text Intelligence Systems",
+    author: "John Lokok",
+    date: "5/03/2026",
+    category: "AI Training Series",
     image: "/images/img6.jpg",
     slug: "/en/explore/ai-topics/nlp-pytorch"
   },
   {
-    title: "LlamaIndex",
-    excerpt: "Connecting LLMs with Enterprise Data",
+    title: "LlamaIndex: Data Framework for LLM Applications",
+    excerpt: "Connecting enterprise data to LLMs for intelligent AI systems",
     author: "Enock Borabu",
     date: "2026",
-    category: "Data Frameworks",
+    category: "AI Data Engineering & Retrieval",
     image: "/images/img1.jpg",
     slug: "/en/explore/ai-topics/llamaindex"
   },
   {
-    title: "QLoRA",
-    excerpt: "Efficient Fine-Tuning for Large Language Models",
+    title: "QLoRA: Advanced Model Fine-Tuning",
+    excerpt: "Efficiently training large language models with minimal hardware resources",
     author: "Civious Rumaita",
     date: "2026",
-    category: "Model Optimization",
+    category: "AI Model Optimization",
     image: "/images/img6.jpg",
     slug: "/en/explore/ai-topics/qlora"
   },
   {
-    title: "Make.com Automation",
-    excerpt: "No-Code Automation with AI Agents",
+    title: "Make.com: No-Code Automation & AI Agents",
+    excerpt: "Automate workflows and build intelligent systems without writing code",
     author: "Sheila Samita",
-    date: "2026",
-    category: "Automation & AI Agents",
+    date: "16/02/2026",
+    category: "Automation & AI Systems",
     image: "/images/img1.jpg",
     slug: "/en/explore/ai-topics/make-automation"
   },
   {
-    title: "LoRA PEFT",
-    excerpt: "Fine-Tuning with LoRA / PEFT — Efficient LLM Optimization",
+    title: "Fine-Tuning with LoRA / PEFT",
+    excerpt: "Parameter-Efficient Fine-Tuning for Large Language Models",
     author: "Herman Alany",
     date: "2026",
-    category: "AI Training",
+    category: "AI Training Session",
     image: "/images/img6.jpg",
     slug: "/en/explore/ai-topics/lora-peft"
   }
@@ -75,23 +75,23 @@ export function AITopics() {
   );
 
   return (
-    <main className="bg-transparent pt-32 min-h-screen text-[#111111]">
-      <div className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-16 flex flex-col items-center">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#111111] leading-[1.1] tracking-tight mb-4">
+    <main className="bg-transparent pt-24 sm:pt-32 min-h-screen text-[#111111]">
+      <div className="py-12 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16 flex flex-col items-center px-2">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#111111] leading-[1.1] tracking-tight mb-3 sm:mb-4">
             Our <span className="text-accent relative inline-block">
-              AI<svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+              AI<svg className="absolute w-full h-2 sm:h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
               </svg>
             </span> Topics
           </h1>
-          <p className="text-gray-600 font-sans text-lg">Our AI Topics Include</p>
+          <p className="text-gray-600 font-sans text-base sm:text-lg">Our AI Topics Include</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {currentTopics.map((topic, i) => (
             <Link href={topic.slug} key={i} className="group cursor-none interactive">
-              <div className="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 bg-gray-100 relative">
+              <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden aspect-[4/3] mb-4 sm:mb-6 bg-gray-100 relative">
                 <OptimizedImage 
                   src={topic.image} 
                   alt={topic.title} 
@@ -99,17 +99,17 @@ export function AITopics() {
                   imageClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="flex items-center gap-4 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-2 sm:mb-3">
                 <span className="text-accent">{topic.category}</span>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span>{topic.date}</span>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span>{topic.author}</span>
               </div>
-              <h3 className="font-display text-2xl text-[#111111] leading-tight mb-3 group-hover:text-accent transition-colors">
+              <h3 className="font-display text-xl sm:text-2xl text-[#111111] leading-tight mb-2 sm:mb-3 group-hover:text-accent transition-colors">
                 {topic.title}
               </h3>
-              <p className="text-gray-500 font-sans text-sm mb-6 line-clamp-2">
+              <p className="text-gray-500 font-sans text-sm mb-4 sm:mb-6 line-clamp-2">
                 {topic.excerpt}
               </p>
               <div className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold group-hover:gap-3 transition-all">

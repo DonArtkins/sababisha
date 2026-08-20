@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ArrowLeft, User, Calendar, Tag, MessageSquare, Send } from "lucide-react";
 import Link from "next/link";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { CyberText } from "@/components/CyberText";
 
 export default function OllamaArticle() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -30,8 +31,8 @@ export default function OllamaArticle() {
       <article className="max-w-4xl mx-auto px-6 md:px-12">
         {/* Header */}
         <header ref={headerRef} className="mb-12">
-          <Link href="/en/explore/ai-topics" className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-gray-500 hover:text-[#FF5A36] transition-colors interactive cursor-none mb-8">
-            <ArrowLeft className="w-4 h-4" /> Back to AI Topics
+          <Link href="/en/explore/ai-topics" className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-gray-500 hover:text-[#FF5A36] transition-colors interactive cursor-none mb-8 group">
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> <CyberText text="Back to AI Topics" speed={30} />
           </Link>
           
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#111111] leading-[1.1] tracking-tight mb-6">
@@ -214,9 +215,9 @@ export default function OllamaArticle() {
             </div>
             
             <div className="pt-2">
-              <button type="button" className="inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide uppercase hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none">
-                Submit Comment
-                <Send className="w-4 h-4" />
+              <button type="button" className="group inline-flex items-center justify-center gap-2 bg-[#FF5A36] text-white px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide uppercase hover:bg-[#E84E2D] hover:shadow-lg hover:shadow-[#FF5A36]/20 transition-all interactive cursor-none">
+                <CyberText text="Submit Comment" speed={20} />
+                <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </div>
           </form>

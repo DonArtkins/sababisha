@@ -56,7 +56,7 @@ export default function ArticlePage() {
             </div>
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-[#FF5A36]" />
-              <span className="uppercase tracking-wider text-xs font-bold">API</span>
+              <span className="uppercase tracking-wider text-xs font-bold">API testing</span>
             </div>
           </div>
         </header>
