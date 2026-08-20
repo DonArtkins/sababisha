@@ -27,6 +27,9 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
       touchMultiplier: 2,
     });
 
+    // Expose Lenis instance globally so modals can stop/start smooth scroll
+    (window as any).__lenis = lenis;
+
     lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {

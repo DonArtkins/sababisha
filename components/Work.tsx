@@ -17,16 +17,16 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 const FILTERS = ["All", "Loan Management", "Legal Management", "Financial Analytics", "Government Projects"];
 
 const ALL_PROJECTS = [
-  { id: 3, title: "MAZIWA", category: "Loan Management", image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
-  { id: 2, title: "SHERIA PRO", category: "Legal Management", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
-  { id: 5, title: "FINSIGHT", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://finsights.mcb.co.ke" },
-  { id: 4, title: "KIAMIS", category: "Government Projects", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
-  { id: 1, title: "NJUMU POS", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
-  { id: 6, title: "PRUDMAT", category: "Loan Management", image: "/images/img1.jpg", link: "https://prudmat.org" },
-  { id: 7, title: "DATA G", category: "Financial Analytics", image: "/images/img5.jpg", link: "https://datag.co.ke" },
-  { id: 8, title: "MEMBERS PORTAL", category: "Government Projects", image: "/images/img1.jpg", link: "https://membersportal.kar.co.ke" },
-  { id: 9, title: "BIMA", category: "Financial Analytics", image: "/images/img6.jpg", link: "https://bima.sababisha.com" },
-  { id: 10, title: "TIBA", category: "Financial Analytics", image: "/images/img1.jpg", link: "https://tiba.sababisha.com" },
+  { id: 3, title: "Maziwa", category: "Loan Management", subtitle: "Loan Management System", desc: "An overall system for managing different types of loans with better operational insights.", image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
+  { id: 2, title: "SheriaPro", category: "Legal Management", subtitle: "Legal Management System", desc: "The comprehensive legal tool for progressive law firms.", image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
+  { id: 5, title: "Finsight", category: "Financial Analytics", subtitle: "Financial Analytics Tool", desc: "A financial management tool for M-Pesa statement analysis and smarter financial decision-making.", image: "/images/img1.jpg", link: "https://finsights.mcb.co.ke" },
+  { id: 4, title: "KIAMIS", category: "Government Projects", subtitle: "Agri-Technology", desc: "A government system built to support farmers and agricultural processes countrywide.", image: "/images/img6.jpg", link: "https://kiamislive.kalro.org" },
+  { id: 1, title: "POS System", category: "Financial Analytics", subtitle: "Point of Sale System", desc: "From managing inventory to quick transactions, our POS system is built to streamline your business operations and optimize your workflow.", image: "/images/img1.jpg", link: "https://njumu.pos.sababisha.com" },
+  { id: 6, title: "Prudmat", category: "Loan Management", subtitle: "Banking Financial System", desc: "Banking solutions for SACCOs, microfinance institutions, and financial service providers.", image: "/images/img1.jpg", link: "https://prudmat.org" },
+  { id: 7, title: "DataG", category: "Financial Analytics", subtitle: "General Trading System", desc: "Ensures information stored in the database remains accurate, accessible, and up to date.", image: "/images/img5.jpg", link: "https://datag.co.ke" },
+  { id: 8, title: "Members Portal", category: "Government Projects", subtitle: "Insight for Radiologists", desc: "Precision and insight for radiologists worldwide.", image: "/images/img1.jpg", link: "https://membersportal.kar.co.ke" },
+  { id: 9, title: "BIMA", category: "Financial Analytics", subtitle: "Insurance Agency Management System", desc: "A digital insurance management solution designed to simplify policy handling and service operations.", image: "/images/img6.jpg", link: "https://bima.sababisha.com" },
+  { id: 10, title: "TIBA", category: "Financial Analytics", subtitle: "Hospital Management System", desc: "A hospital management system built to improve healthcare workflows, records, and service delivery.", image: "/images/img1.jpg", link: "https://tiba.sababisha.com" },
 ];
 
 const ITEMS_PER_PAGE = 6;
@@ -179,12 +179,13 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                   </div>
                   {/* Meta row */}
                   <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-3">
-                    <span className="text-accent">{project.category}</span>
+                    <span className="text-accent">{project.subtitle}</span>
                     <span>•</span>
                     <span>{new URL(project.link).hostname}</span>
                   </div>
                   {/* Title */}
-                  <h3 className="font-display text-2xl text-[#111111] leading-tight mb-5">{project.title}</h3>
+                  <h3 className="font-display text-2xl text-[#111111] leading-tight mb-2">{project.title}</h3>
+                  <p className="text-gray-500 font-sans text-sm mb-5 line-clamp-2">{project.desc}</p>
                   {/* CTA */}
                   <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
                     Visit Website <ArrowRight className="w-4 h-4" />
@@ -213,12 +214,13 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                 </div>
                 {/* Meta row */}
                 <div className="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-gray-500 mb-3">
-                  <span className="text-accent">{project.category}</span>
+                  <span className="text-accent">{project.subtitle}</span>
                   <span>•</span>
                   <span>{new URL(project.link).hostname}</span>
                 </div>
                 {/* Title */}
-                <h3 className="font-display text-2xl text-[#111111] leading-tight mb-5">{project.title}</h3>
+                <h3 className="font-display text-2xl text-[#111111] leading-tight mb-2">{project.title}</h3>
+                <p className="text-gray-500 font-sans text-sm mb-5 line-clamp-2">{project.desc}</p>
                 {/* CTA */}
                 <span className="flex items-center gap-2 text-sm text-[#111111] font-sans font-semibold">
                   Visit Website <ArrowRight className="w-4 h-4" />
@@ -268,7 +270,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-[#111111]/80" />
                         <div className="absolute inset-0 flex flex-col justify-end p-8">
                           <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2 drop-shadow-md">
-                            {project.category}
+                            {project.subtitle}
                           </span>
                           <h3 className="text-white font-display text-3xl font-bold drop-shadow-md">
                             {project.title}
@@ -278,8 +280,8 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
 
                       {/* Back Side */}
                       <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl bg-card [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-border">
-                        <h3 className="text-foreground font-display text-2xl font-bold mb-4">{project.title}</h3>
-                        <p className="text-muted font-sans text-sm mb-6">{project.link}</p>
+                        <h3 className="text-foreground font-display text-2xl font-bold mb-3">{project.title}</h3>
+                        <p className="text-muted font-sans text-sm mb-6 line-clamp-3">{project.desc}</p>
                         <Button variant="secondary" size="sm">Visit Website</Button>
                       </div>
                     </div>
@@ -308,7 +310,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/80 to-transparent flex flex-col justify-end p-6">
                       <span className="text-accent text-xs font-sans uppercase tracking-widest font-semibold mb-2">
-                        {project.category}
+                        {project.subtitle}
                       </span>
                       <h3 className="text-white font-display text-2xl">
                         {project.title}
@@ -318,8 +320,8 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
 
                   {/* Back Side */}
                   <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-card [transform:rotateY(180deg)] flex flex-col items-center justify-center p-8 text-center border border-border">
-                    <h3 className="text-foreground font-display text-2xl font-bold mb-4">{project.title}</h3>
-                    <p className="text-muted font-sans text-sm mb-6">{project.link}</p>
+                    <h3 className="text-foreground font-display text-2xl font-bold mb-3">{project.title}</h3>
+                    <p className="text-muted font-sans text-sm mb-6 line-clamp-3">{project.desc}</p>
                     <Button variant="secondary" size="sm">Visit Website</Button>
                   </div>
                 </div>
