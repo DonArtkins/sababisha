@@ -52,6 +52,8 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
 - **Components** go in `components/` — one component per file
 - **Layouts** go in `layouts/`
 - **Utilities** go in `lib/`
+- **Shared data** such as products, services, gallery items, AI topics, R&D blogs, and teams lives in `lib/db.ts`
+- **API route handlers** go in `app/api/` and must keep secrets server-side
 
 ### Code Style
 
@@ -61,6 +63,8 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
 - Use Next.js `<Link>` for internal navigation (never `<a>` tags)
 - Use Next.js `<Image>` or the `<OptimizedImage>` wrapper for images (never `<img>` tags)
 - Use `@/` path alias for imports (e.g., `@/components/Button`)
+- Use existing shared components such as `AnimatedLink`, `Pagination`, `Button`, and `FormStatusModal` before creating new UI patterns
+- Keep light and dark mode classes in sync for new forms, dropdowns, cards, and modals
 
 ### Naming Conventions
 
@@ -68,6 +72,17 @@ By contributing, you agree to be respectful, inclusive, and constructive. Harass
 - **Pages**: `page.tsx` inside a route directory (`app/[lang]/services/page.tsx`)
 - **Utilities**: camelCase (`utils.ts`)
 - **CSS classes**: Tailwind utility classes only
+
+### Services, Forms, and Email
+
+- Add or modify services in `lib/db.ts`; every service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`
+- Service cards should link to `/en/contact?service={slug}` through `AnimatedLink`
+- Keep the services page limited to six cards per page so pagination remains predictable as the service list grows
+- Contact and newsletter submissions must go through App Router route handlers under `app/api/`
+- Validate form fields on both the client and server
+- Keep honeypot fields in place for bot resistance
+- Send email through the server-only Resend helper in `lib/email.ts`; never expose `RESEND_API_KEY` to client code
+- Use `FormStatusModal` for success and error states instead of browser alerts
 
 ### Commit Messages
 
@@ -98,6 +113,9 @@ refactor: extract animation logic into custom hook
 - [ ] New pages are placed in `app/[lang]/` directory
 - [ ] No raw HTML `<a>`, `<img>` tags — use Next.js components
 - [ ] Changes are responsive (tested on mobile + desktop)
+- [ ] Form changes include inline validation, loading states, success/error modal states, and server validation
+- [ ] SEO changes update relevant metadata, sitemap priorities, robots rules, and documentation
+- [ ] Documentation is updated in `README.md`, `CONTRIBUTING.md`, and `AGENTS.md` when conventions or workflows change
 - [ ] Commit messages are clear and descriptive
 
 ## Reporting Issues

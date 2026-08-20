@@ -10,29 +10,9 @@ import Link from 'next/link';
 import { ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 import { AnimatedLink } from "./AnimatedLink";
+import { PRODUCTS } from "@/lib/db";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const PRODUCTS = [
-  { id: 1, title: "Maziwa", category: "Loan Management System", desc: "Gateway to Accessible Microfinance Services.", features: ["Loan Management", "Client Tracking", "Financial Reporting"], image: "/images/img5.jpg", link: "https://maziwa.sababisha.com" },
-  { id: 2, title: "Sheria Pro", category: "Law Firm Management System", desc: "The Ultimate Solution for Efficient Law Firm Management.", features: ["Case and Client Management", "Billing and Invoicing", "Graphical Analysis"], image: "/images/img6.jpg", link: "https://sheriapro.mcb.co.ke" },
-  { id: 3, title: "BIMA", category: "Insurance Agency Management System", desc: "Efficient Insurance Agency Operations. Seamless Client Management, Policy Tracking, and Growth.", features: ["Policy Management", "Client Management", "Reporting Tools"], image: "/images/img1.jpg", link: "https://bima.sababisha.com" },
-  { id: 4, title: "Microsoft Business Central", category: "ERP", desc: "An ERP that Empowers Your Business Evolution.", features: ["Financial Management", "Supply Chain Management", "Project Management"], image: "/images/img2.jpg", link: "https://sababisha.com" },
-  { id: 5, title: "Members Self Service Portal (MSS)", category: "Portal", desc: "Empower Your Members. For Seamless Member Management.", features: ["Member Registration", "Self-Service Tools", "Communication Hub"], image: "/images/img3.jpg", link: "https://sababisha.com" },
-  { id: 6, title: "TIBA", category: "Hospital Management System", desc: "Streamlined Hospital Operations. Manage Patients, Appointments, and Staff Efficiently.", features: ["Patient Management", "Appointment Scheduling", "Staff Management"], image: "/images/img4.jpg", link: "https://tiba.sababisha.com" },
-  { id: 7, title: "Call Centre System", category: "Support", desc: "Enhance Customer Support Operations. Track Calls, Agents, and Performance Metrics.", features: ["Call Tracking", "Agent Management", "Performance Reporting"], image: "/images/img5.jpg", link: "https://sababisha.com" },
-  { id: 8, title: "School ERP", category: "Education", desc: "Effortless School Management. Complete Educational Institution Solution.", features: ["Student Information System", "Timetable Management", "Parent Communication"], image: "/images/img6.jpg", link: "https://sababisha.com" },
-  { id: 9, title: "Loyalty Portal", category: "Customer Engagement", desc: "Elevate Customer Engagement. Gateway to Rewarding Relationships.", features: ["Points System", "Customer Analytics", "Promotions Management"], image: "/images/img1.jpg", link: "https://sababisha.com" },
-  { id: 10, title: "Check off System", category: "Finance", desc: "Efficiency Redefined. Ensures timely payment and reduces the risk of missed payments.", features: ["Payroll Integration", "Payment Scheduling", "Compliance Tracking"], image: "/images/img2.jpg", link: "https://sababisha.com" },
-  { id: 11, title: "HR System", category: "Human Resources", desc: "HR Made Simple. Comprehensive Solution for Efficient Human Resource Management.", features: ["Employee Management", "Payroll Processing", "Recruitment Tools"], image: "/images/img3.jpg", link: "https://sababisha.com" },
-  { id: 12, title: "Fleet Management", category: "Logistics", desc: "Optimize Your Fleet. Complete Solution for Efficient Vehicle Tracking and Maintenance.", features: ["Real-Time Tracking", "Maintenance Scheduling", "Fuel Management"], image: "/images/img4.jpg", link: "https://sababisha.com" },
-  { id: 13, title: "M-Kodi", category: "Property Management System", desc: "All-in-One Solution for Streamlined Property Management.", features: ["Tenant Management", "Maintenance Requests", "Financial Reporting"], image: "/images/img5.jpg", link: "https://sababisha.com" },
-  { id: 14, title: "Chama Management System (E-Ledger)", category: "Finance", desc: "Digital Solution for Effortless Chama Administration and Financial Tracking.", features: ["Contribution Tracking", "Loan Management", "Financial Reporting"], image: "/images/img6.jpg", link: "https://sababisha.com" },
-  { id: 15, title: "Accounting Software", category: "Accounting", desc: "Efficient Petty Cash Management. Streamline Your Accounting with our Comprehensive Solution.", features: ["Expense Tracking", "Financial Reporting", "Budget Management"], image: "/images/img1.jpg", link: "https://sababisha.com" },
-  { id: 16, title: "Credit Scoring Tool (Pesa Score)", category: "Finance", desc: "Trustworthy Credit Scoring Tool for Informed Lending.", features: ["Risk Assessment", "Automated Scoring", "Reporting Tools"], image: "/images/img2.jpg", link: "https://sababisha.com" },
-  { id: 17, title: "Architectural Firm Management Solution", category: "Management", desc: "Comprehensive Firm Management Solution for Seamless Operations and Project Success.", features: ["Project Management", "Resource Allocation", "Client Management"], image: "/images/img3.jpg", link: "https://sababisha.com" },
-  { id: 18, title: "MCB Payment Hub", category: "Enterprise Service Bus", desc: "Enterprise Service Bus for Seamless Integration of Payment Channels, from MPesa to Banks, Visas/MasterCard, and Beyond.", features: ["Payment Gateway Integration", "Transaction Monitoring", "Security Features"], image: "/images/img4.jpg", link: "https://sababisha.com" },
-];
 
 export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
   const containerRef = useRef<HTMLElement>(null);
@@ -88,8 +68,10 @@ export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
               </>
             )}
           </h2>
-          <p className="text-muted font-sans text-lg">
-            {variant === "home" ? "Our Core Products Include" : "Explore our full suite of products"}
+          <p className="max-w-3xl text-muted font-sans text-base leading-relaxed sm:text-lg">
+            {variant === "home"
+              ? "Explore Sababisha Solutions products built for Kenyan and African organizations that need reliable loan management, insurance operations, healthcare systems, ERP workflows, payment integrations, member portals, customer engagement, and data-driven financial tools."
+              : "Browse our full suite of fintech, enterprise, healthcare, education, property, HR, logistics, accounting, and customer engagement platforms. Each product is designed to simplify operations, strengthen reporting, improve compliance, reduce manual work, and help teams scale with confidence."}
           </p>
         </Reveal>
 

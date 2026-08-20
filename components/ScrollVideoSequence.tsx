@@ -87,7 +87,7 @@ export function ScrollVideoSequence() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-8xl font-bold mb-6 tracking-tight">Architect & Build</h2>
-          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">Crafting precision-engineered architectures. We transform complexity into clean, scalable software systems.</p>
+          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">We design secure software architecture, data models, user workflows, and scalable engineering foundations that turn complex business requirements into dependable digital products.</p>
         </div>
 
         <div ref={text2Ref} className="absolute text-center opacity-0 text-[#111111] flex flex-col items-center">
@@ -98,7 +98,7 @@ export function ScrollVideoSequence() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-8xl font-bold mb-6 tracking-tight">Seamless Integration</h2>
-          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">Connecting APIs, enterprise tools, and logic layers in real-time. Unifying your entire tech stack effortlessly.</p>
+          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">We connect APIs, payment channels, ERPs, CRMs, reporting tools, and business logic so information moves accurately across the systems your teams already use.</p>
         </div>
 
         <div ref={text3Ref} className="absolute text-center opacity-0 text-[#111111] flex flex-col items-center">
@@ -109,7 +109,7 @@ export function ScrollVideoSequence() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-8xl font-bold mb-6 tracking-tight">Deploy to Scale</h2>
-          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">Launching robust, ultra-fast experiences directly to your end-users across the globe.</p>
+          <p className="font-sans text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">We launch tested, monitored, and support-ready platforms that can serve customers, staff, partners, and decision-makers with speed, stability, and confidence.</p>
         </div>
 
       </div>

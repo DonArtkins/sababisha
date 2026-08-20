@@ -20,27 +20,27 @@ const FAQS: FaqItem[] = [
     value: "faq-1",
     question: "What does Sababisha Solutions do?",
     answer:
-      "Sababisha Solutions is a fintech company that builds simple, scalable digital systems and provides technology solutions to help businesses streamline operations, improve efficiency, and grow."
+      "Sababisha Solutions is a Nairobi-based technology and fintech company that designs, builds, and supports secure digital systems for businesses, institutions, and growing enterprises. Our work covers custom software development, financial technology platforms, enterprise integrations, data dashboards, automation, and practical digital transformation for teams that want better visibility, faster operations, and stronger customer experiences."
   },
   {
     value: "faq-2",
     question: "What types of businesses do you work with?",
     answer:
-      "We work with startups, SMEs, and established enterprises across various industries looking to digitize their processes, improve financial systems, or build custom software solutions."
+      "We work with startups, SMEs, SACCOs, microfinance institutions, healthcare providers, insurance agencies, law firms, schools, government programs, and established enterprises. Our ideal clients are organizations that want to replace manual work, connect scattered systems, improve reporting, launch customer-facing portals, or build reliable software around their exact operating model."
   },
   {
     value: "faq-3",
     question: "What solutions do you offer?",
     answer: (
       <div>
-        <p>We provide a range of tailored digital and fintech solutions, including:</p>
+        <p>We provide end-to-end digital and fintech solutions that help organizations move from fragmented manual processes to secure, measurable, and scalable platforms, including:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Innovative fintech solutions</li>
-          <li>Expert consultancy</li>
-          <li>Advanced analytics</li>
-          <li>Ongoing support and maintenance</li>
-          <li>Custom software development</li>
-          <li>Enterprise systems development</li>
+          <li>Fintech solutions for lending, payments, member self-service, check-off workflows, and financial reporting</li>
+          <li>Technology consultancy for digital transformation, system architecture, and product planning</li>
+          <li>Advanced analytics dashboards for performance tracking, forecasting, and executive reporting</li>
+          <li>Ongoing support, maintenance, monitoring, and optimization after launch</li>
+          <li>Custom software development for internal teams, customers, partners, and field operations</li>
+          <li>Enterprise systems development with secure APIs, integrations, role-based access, and scalable infrastructure</li>
         </ul>
       </div>
     )
@@ -49,46 +49,46 @@ const FAQS: FaqItem[] = [
     value: "faq-4",
     question: "Can you build a system tailored to my business needs?",
     answer:
-      "Yes. We specialize in developing customized solutions designed specifically around your business requirements to ensure scalability, efficiency, and ease of use."
+      "Yes. We specialize in customized software that reflects how your business actually works. We document your processes, identify the bottlenecks, design the right workflows, and build a platform that supports your users, reporting needs, approvals, integrations, security requirements, and long-term growth."
   },
   {
     value: "faq-5",
     question: "How long does it take to develop a system?",
     answer:
-      "Project timelines vary depending on complexity and scope. Simple solutions may take a few weeks, while more advanced systems can take several months. We provide clear timelines after an initial consultation."
+      "Timelines depend on the scope, integrations, data migration needs, approval workflows, and number of user roles. A focused portal or dashboard may take a few weeks, while a full enterprise system can take several months. After discovery, we provide a clear delivery roadmap with milestones, review points, testing phases, and launch preparation."
   },
   {
     value: "faq-6",
     question: "Do you offer support after the system is delivered?",
     answer:
-      "Yes. We provide continuous support, system maintenance, updates, and performance monitoring to ensure your solution remains reliable and up to date."
+      "Yes. We provide post-launch support, maintenance, performance monitoring, updates, user guidance, and improvement planning. Our goal is to keep your platform secure, stable, fast, and aligned with new business requirements as your operations evolve."
   },
   {
     value: "faq-7",
     question: "How do I get started with Sababisha Solutions?",
     answer:
-      "You can get started by contacting us through our website or reaching out directly via phone at +254 751101532. Our team will schedule a consultation to understand your needs and recommend the best solution."
+      "You can get started by contacting us through the website or calling +254 751101532. We will schedule a consultation to understand your business goals, current systems, pain points, budget, and expected timeline, then recommend the best path whether that is a ready product, a custom build, an integration project, or strategic technology advisory."
   },
   {
     value: "faq-8",
     question: "Do you help businesses that are not tech-savvy?",
     answer:
-      "Absolutely. We design intuitive, user-friendly systems and guide you through every step, ensuring a smooth transition into digital operations."
+      "Absolutely. Many successful digital transformation projects begin with teams that are not technical. We design clean, intuitive systems, provide onboarding support, document key workflows, and guide users through adoption so your staff can move confidently from paper, spreadsheets, or disconnected tools into structured digital operations."
   },
   {
     value: "faq-9",
     question: "Can you integrate with existing systems?",
     answer: (
       <div>
-        <p>Yes. We can integrate our solutions with a wide range of existing platforms and services, including:</p>
+        <p>Yes. Integration is one of our core strengths. We connect new platforms with the systems your organization already depends on so data can move securely, accurately, and without duplicate manual entry. Common integrations include:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>Mobile money platforms such as M-Pesa</li>
-          <li>Banking systems</li>
+          <li>Mobile money platforms such as M-Pesa and other digital payment channels</li>
+          <li>Banking systems, loan management tools, and payment reconciliation workflows</li>
           <li>Credit Reference Bureaus (CRBs)</li>
           <li>Payment gateways</li>
-          <li>CRM and ERP systems</li>
+          <li>CRM, ERP, accounting, HR, and reporting systems</li>
         </ul>
-        <p className="mt-2">This ensures seamless data flow and efficient business operations.</p>
+        <p className="mt-2">This improves data flow, reduces operational delays, and gives decision-makers a clearer view of the business.</p>
       </div>
     )
   },
@@ -96,7 +96,7 @@ const FAQS: FaqItem[] = [
     value: "faq-10",
     question: "Do you offer fintech-specific solutions?",
     answer:
-      "Yes. As a fintech-focused company, we develop solutions such as payment systems, digital wallets, financial dashboards, lending platforms, and transaction management systems."
+      "Yes. As a fintech-focused company, we develop lending platforms, check-off systems, payment hubs, digital wallets, insurance management tools, SACCO and microfinance systems, transaction dashboards, credit scoring workflows, and financial reporting platforms designed for security, auditability, and operational scale."
   },
   {
     value: "faq-11",
@@ -104,7 +104,7 @@ const FAQS: FaqItem[] = [
     answer: (
       <div>
         <p>
-          We take data security very seriously. Sababisha Solutions is a certified Data Controller, and we adhere to strict data protection standards, including encryption and secure system architecture. Learn more about how we handle your data in our{" "}
+          We take data security very seriously. Sababisha Solutions is a certified Data Controller, and we apply strict data protection practices including secure system architecture, access control, encryption, audit-aware workflows, and responsible handling of personal and business information. Learn more about how we handle your data in our{" "}
           <Link href="/en/privacy-policy" className="text-accent underline">
             Privacy Policy &amp; Data Protection
           </Link>
@@ -152,7 +152,9 @@ export function FaqSection() {
               </svg>
             </span> Questions
           </h2>
-          <p className="text-gray-600 font-sans text-lg">Our Frequent Questions Include</p>
+          <p className="max-w-3xl text-gray-600 font-sans text-base leading-relaxed sm:text-lg">
+            Everything you need to know about Sababisha Solutions, from fintech products and custom software development to integrations, data security, project timelines, support, maintenance, and how we help businesses thrive in the digital age with practical technology.
+          </p>
         </Reveal>
 
         <Accordion.Root type="single" collapsible className="w-full flex flex-col gap-4">

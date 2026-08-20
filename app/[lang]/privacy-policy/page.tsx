@@ -66,9 +66,11 @@ export default function PrivacyPolicy() {
           </h1>
 
           <p className="text-gray-600 font-sans text-lg md:text-xl leading-relaxed max-w-2xl">
-            Your privacy matters to us. This policy outlines how Sababisha
-            Solutions collects, uses, and protects your personal data in
-            compliance with Kenyan law.
+            Your privacy matters to us. This policy explains how Sababisha
+            Solutions collects, uses, stores, protects, and manages personal
+            data when you use our website, contact our team, request support,
+            or engage us for fintech, enterprise software, AI automation,
+            integration, and digital transformation services.
           </p>
 
           <p className="mt-6 text-sm font-sans text-gray-400">
@@ -129,7 +131,9 @@ export default function PrivacyPolicy() {
                 </h3>
               </div>
               <p className="text-gray-600 font-sans text-sm leading-relaxed">
-                Includes first name, last name, and username.
+                Includes names, organization details, role information, and
+                account identifiers required to respond to inquiries, provide
+                services, manage access, and support business relationships.
               </p>
             </div>
             <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
@@ -140,7 +144,9 @@ export default function PrivacyPolicy() {
                 </h3>
               </div>
               <p className="text-gray-600 font-sans text-sm leading-relaxed">
-                Includes email address and telephone numbers.
+                Includes email addresses, telephone numbers, and communication
+                preferences used for consultation scheduling, project updates,
+                support conversations, onboarding, and service notifications.
               </p>
             </div>
             <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
@@ -151,8 +157,10 @@ export default function PrivacyPolicy() {
                 </h3>
               </div>
               <p className="text-gray-600 font-sans text-sm leading-relaxed">
-                Includes internet protocol (IP) address, browser type and
-                version, and time zone setting.
+                Includes internet protocol addresses, browser details, device
+                information, usage patterns, and time zone settings that help us
+                improve website performance, security, diagnostics, and user
+                experience.
               </p>
             </div>
           </div>
@@ -207,8 +215,10 @@ export default function PrivacyPolicy() {
           </div>
           <div className="pl-0 md:pl-16">
             <p className="text-gray-600 font-sans text-base md:text-lg leading-relaxed mb-6">
-              If you have any questions about this Privacy Policy, please contact
-              our Data Protection Officer at:
+              If you have questions about this Privacy Policy, want to exercise
+              your data rights, or need clarification on how Sababisha Solutions
+              handles information during project discovery, support, or service
+              delivery, please contact our Data Protection Officer at:
             </p>
             <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 inline-flex flex-col gap-2">
               <p className="font-sans text-sm text-gray-500 uppercase tracking-wider font-bold">

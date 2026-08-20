@@ -1,6 +1,6 @@
 # Sababisha Solutions
 
-A modern, high-performance company website for **Sababisha Solutions Limited** — a premier innovative technology firm specializing in fintech solutions, expert consultancy, and custom enterprise-level software development. Built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, and a polished, interactive UI.
+A modern, high-performance company website for **Sababisha Solutions Limited** — a Nairobi-based technology firm specializing in fintech platforms, expert consultancy, enterprise systems, analytics, custom software, and long-term support. Built with **Next.js 16**, **Tailwind CSS 4**, and **GSAP** — featuring smooth scroll animations, cinematic page transitions, service-aware contact flows, Lottie status modals, and a polished, interactive UI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.1-black?logo=nextdotjs)](https://nextjs.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
@@ -16,8 +16,12 @@ A modern, high-performance company website for **Sababisha Solutions Limited** �
 - **Custom Cursor** — Interactive cursor that reacts to hoverable elements
 - **Preloader** — Branded loading screen on initial visit
 - **Responsive Design** — Fully responsive from mobile to ultra-wide
-- **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/sw/products`)
-- **SEO Optimized** — Dynamic sitemap, robots.txt, and structured metadata
+- **Services Catalog** — Data-backed service cards with six-card pagination limits, dynamic counters, and animated inquiry links
+- **Service-Aware Contact Form** — `/en/contact?service=...` preselects and prefills the exact service inquiry
+- **Email Delivery** — Contact and newsletter submissions are sent through server-only Resend API routes
+- **Status Modals** — Shared success/error Lottie modal for contact and newsletter responses
+- **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/en/products`)
+- **SEO Optimized** — Dynamic sitemap, robots.txt, canonical metadata, Open Graph, and Twitter card metadata
 - **Accessibility** — Skip-to-content link, focus-visible outlines, semantic HTML
 
 ## 🏢 About Sababisha Solutions
@@ -69,6 +73,9 @@ sababisha/
 │   ├── not-found.tsx       # 404 page
 │   ├── sitemap.ts          # Auto-generated sitemap
 │   ├── robots.ts           # Robots.txt config
+│   ├── api/                # Server route handlers
+│   │   ├── contact/        # Service inquiry email endpoint
+│   │   └── newsletter/     # Newsletter subscription endpoint
 │   └── [lang]/             # Dynamic locale segment
 │       ├── page.tsx         # Home
 │       ├── services/
@@ -86,8 +93,8 @@ sababisha/
 │           └── careers/
 ├── components/             # Reusable UI components
 ├── layouts/                # Layout wrappers
-├── lib/                    # Utility functions
-├── public/                 # Static assets
+├── lib/                    # Data, email, form, type, and utility helpers
+├── public/                 # Static assets, icons, and Lottie animations
 └── app/globals.css         # Global styles + Tailwind theme
 ```
 
@@ -108,11 +115,23 @@ cd sababisha
 # Install dependencies
 npm install
 
+# Create local environment variables
+cp .env.example .env.local
+
 # Start development server
 npm run dev
 ```
 
 The app will be available at [http://localhost:3000](http://localhost:3000).
+
+### Environment Variables
+
+| Variable | Purpose |
+| --- | --- |
+| `SITE_URL` | Canonical site origin used by metadata, sitemap, and robots.txt |
+| `RESEND_API_KEY` | Server-only API key for contact and newsletter email delivery |
+| `RESEND_FROM_EMAIL` | Verified sender identity, for example `Sababisha Website <website@sababisha.com>` |
+| `SABABISHA_CONTACT_EMAIL` | Inbox that receives service inquiries and newsletter signups |
 
 ### Scripts
 
@@ -145,6 +164,45 @@ Routes follow a **locale-prefixed** pattern inspired by Binance:
 | `/en/explore/careers`   | Careers      |
 
 The root `/` redirects permanently to `/en`.
+
+## Services and Inquiry Flow
+
+Services are defined in `lib/db.ts` and typed in `lib/types.ts`. Each service includes a stable `slug`, `category`, `iconKey`, description, and capability points.
+
+The services page:
+
+- Displays service stats from the same `SERVICES` data source
+- Shows up to six service cards per page
+- Uses animated `Discuss Service` links
+- Routes users to `/en/contact?service={service-slug}`
+
+The contact page:
+
+- Reads the `service` query parameter
+- Preselects the matching service
+- Prefills the message with service details
+- Validates name, email, phone, service, and message fields on the client and server
+- Uses a honeypot `website` field to silently ignore bot submissions
+- Shows shared Lottie success/error modals
+
+## Forms and Email Delivery
+
+Form submissions are handled by App Router API routes:
+
+| Route | Purpose |
+| --- | --- |
+| `/api/contact` | Sends service inquiries to the Sababisha inbox |
+| `/api/newsletter` | Sends footer newsletter signup notifications |
+
+Both routes normalize input, escape HTML, validate fields, and call Resend through `lib/email.ts`. API keys are never exposed to the browser.
+
+## SEO and Crawl Files
+
+- `app/layout.tsx` defines global metadata, canonical URL, keywords, Open Graph, and Twitter card settings.
+- `app/[lang]/services/page.tsx` defines services-specific metadata.
+- `app/[lang]/contact/layout.tsx` defines contact-specific metadata while keeping the page interactive.
+- `app/sitemap.ts` automatically discovers public `page.tsx` files and assigns higher priority to home, services, contact, products, and project pages.
+- `app/robots.ts` allows public content and disallows `/api/`, `/_next/`, and `/bugs/`.
 
 ## 🤝 Contributing
 

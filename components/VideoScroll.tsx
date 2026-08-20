@@ -85,7 +85,7 @@ export function VideoScroll() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight">Writing Code</h2>
-          <p className="font-sans text-xl text-gray-300 max-w-lg">Building the foundation of your digital products with precision and scalable architectures.</p>
+          <p className="font-sans text-xl text-gray-300 max-w-lg">Building secure web, mobile, fintech, analytics, and enterprise software foundations with clean architecture, maintainable code, and scalable delivery practices.</p>
         </div>
 
         <div ref={text2Ref} className="absolute text-center opacity-0 text-white flex flex-col items-center">
@@ -96,7 +96,7 @@ export function VideoScroll() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight">System Integration</h2>
-          <p className="font-sans text-xl text-gray-300 max-w-lg">Connecting APIs, Point of Sale, and Enterprise Resource Planning systems seamlessly.</p>
+          <p className="font-sans text-xl text-gray-300 max-w-lg">Connecting APIs, point-of-sale systems, ERPs, payment gateways, CRMs, dashboards, and internal workflows so teams can operate from reliable shared data.</p>
         </div>
 
         <div ref={text3Ref} className="absolute text-center opacity-0 text-white flex flex-col items-center">
@@ -107,7 +107,7 @@ export function VideoScroll() {
             </svg>
           </div>
           <h2 className="font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight">Live Deployment</h2>
-          <p className="font-sans text-xl text-gray-300 max-w-lg">Launching robust, ultra-fast experiences directly to your end-users across the globe.</p>
+          <p className="font-sans text-xl text-gray-300 max-w-lg">Deploying tested platforms with monitoring, support readiness, performance tuning, and rollout guidance for confident adoption by real users.</p>
         </div>
 
       </div>

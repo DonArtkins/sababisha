@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import type { FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, Phone, Play, ChevronRight, Globe, Shield, Map } from "lucide-react";
+import { Mail, Phone, Play, ChevronRight, Globe, Shield, Map, Loader2 } from "lucide-react";
 const Facebook = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>;
 const Twitter = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>;
 const Instagram = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>;
@@ -13,12 +14,23 @@ const Tiktok = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/svg
 const Whatsapp = (props: any) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>;
 
 import { AnimatedLink } from "./AnimatedLink";
+import { FormStatusModal } from "./FormStatusModal";
 import { OptimizedImage } from "./OptimizedImage";
+import { EMAIL_PATTERN } from "@/lib/form-utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Footer() {
   const containerRef = useRef<HTMLElement>(null);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterWebsite, setNewsletterWebsite] = useState("");
+  const [newsletterError, setNewsletterError] = useState("");
+  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false);
+  const [newsletterModal, setNewsletterModal] = useState<{
+    status: "success" | "error";
+    title: string;
+    message: string;
+  } | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -40,6 +52,69 @@ export function Footer() {
     }, containerRef);
     return () => ctx.revert();
   }, []);
+
+  const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const email = newsletterEmail.trim().toLowerCase();
+
+    if (!EMAIL_PATTERN.test(email)) {
+      setNewsletterError("Enter a valid email address.");
+      setNewsletterModal({
+        status: "error",
+        title: "Check the email",
+        message: "Enter a valid email address before subscribing.",
+      });
+      return;
+    }
+
+    setNewsletterError("");
+    setIsNewsletterSubmitting(true);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          website: newsletterWebsite,
+        }),
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.ok) {
+        if (result?.errors?.email) {
+          setNewsletterError(result.errors.email);
+        }
+        setNewsletterModal({
+          status: "error",
+          title: "Subscription not sent",
+          message:
+            typeof result?.message === "string"
+              ? result.message
+              : "We could not complete the subscription. Please try again.",
+        });
+        return;
+      }
+
+      setNewsletterEmail("");
+      setNewsletterWebsite("");
+      setNewsletterModal({
+        status: "success",
+        title: "Subscription sent",
+        message: "Your email has been sent to Sababisha Solutions for newsletter updates.",
+      });
+    } catch {
+      setNewsletterModal({
+        status: "error",
+        title: "Connection failed",
+        message: "We could not reach the email service. Please try again.",
+      });
+    } finally {
+      setIsNewsletterSubmitting(false);
+    }
+  };
 
   return (
     <footer ref={containerRef} className="bg-[#EFEFEF] text-[#111111] pt-16 pb-8 px-6 md:px-12">
@@ -64,7 +139,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-600 font-sans text-sm leading-relaxed mt-2">
-              Empowering businesses with innovative software solutions and expert support.
+              Building fintech platforms, custom software, enterprise systems, AI automation, analytics dashboards, and integrations for organizations that need dependable digital transformation.
             </p>
             <div className="flex items-center gap-3 mt-4 flex-wrap">
               <Link href="https://www.linkedin.com/in/sababisha-solutions-8349043b7" target="_blank" className="group w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center interactive cursor-none hover:bg-[#FF5A36] hover:border-[#FF5A36] hover:-translate-y-1 hover:shadow-md transition-all duration-300">
@@ -129,17 +204,55 @@ export function Footer() {
           {/* Column 5: Newsletter */}
           <div className="footer-col lg:col-span-1">
             <h4 className="font-sans font-bold text-xl mb-6 text-[#111111]">Newsletter</h4>
-            <p className="font-sans text-sm text-gray-600 mb-4">Subscribe to receive future updates</p>
-            <div className="relative">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="w-full bg-white border border-gray-300 rounded-full px-5 py-3 text-sm text-[#111111] placeholder:text-gray-400 outline-none focus:border-[#FF5A36] transition-colors interactive cursor-none shadow-sm"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-[#111111] interactive cursor-none hover:text-[#FF5A36] transition-colors">
-                <Play className="w-4 h-4 fill-current" />
-              </button>
-            </div>
+            <p className="font-sans text-sm text-gray-600 mb-4">Subscribe for product updates, AI insights, fintech ideas, engineering notes, and digital transformation resources from Sababisha Solutions.</p>
+            <form onSubmit={handleNewsletterSubmit} noValidate className="space-y-2">
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Website
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={newsletterWebsite}
+                    onChange={(event) => setNewsletterWebsite(event.target.value)}
+                  />
+                </label>
+              </div>
+              <div className="relative">
+                <input
+                  id="footer-newsletter-email"
+                  type="email"
+                  value={newsletterEmail}
+                  onChange={(event) => {
+                    setNewsletterEmail(event.target.value);
+                    if (newsletterError) setNewsletterError("");
+                  }}
+                  placeholder="Email address"
+                  autoComplete="email"
+                  maxLength={120}
+                  aria-invalid={Boolean(newsletterError)}
+                  aria-describedby={newsletterError ? "newsletter-error" : undefined}
+                  className={`w-full rounded-full border bg-white px-5 py-3 pr-12 text-sm text-[#111111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF5A36] interactive cursor-none shadow-sm dark:bg-card dark:text-foreground dark:placeholder:text-muted ${newsletterError ? "border-[#FF5A36]" : "border-gray-300 dark:border-border"}`}
+                />
+                <button
+                  type="submit"
+                  disabled={isNewsletterSubmitting}
+                  aria-label="Subscribe to newsletter"
+                  className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[#111111] transition-colors hover:bg-[#FF5A36]/10 hover:text-[#FF5A36] disabled:opacity-50 interactive cursor-none dark:text-foreground"
+                >
+                  {isNewsletterSubmitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Play className="w-4 h-4 fill-current" />
+                  )}
+                </button>
+              </div>
+              {newsletterError ? (
+                <p id="newsletter-error" className="px-2 font-sans text-xs font-semibold text-[#FF5A36]">
+                  {newsletterError}
+                </p>
+              ) : null}
+            </form>
           </div>
         </div>
 
@@ -163,6 +276,15 @@ export function Footer() {
           <path d="M18 15L12 9L6 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
+
+      <FormStatusModal
+        open={Boolean(newsletterModal)}
+        status={newsletterModal?.status || "success"}
+        title={newsletterModal?.title || ""}
+        message={newsletterModal?.message || ""}
+        actionLabel={newsletterModal?.status === "success" ? "Done" : "Review"}
+        onClose={() => setNewsletterModal(null)}
+      />
     </footer>
   );
 }

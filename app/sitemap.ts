@@ -5,9 +5,26 @@ import path from "path";
 const BASE_URL = process.env.SITE_URL || "https://sababisha.com";
 const SUPPORTED_LANGS = ["en"];
 
+type SitemapEntry = MetadataRoute.Sitemap[number];
+type RouteConfig = {
+  changeFrequency: NonNullable<SitemapEntry["changeFrequency"]>;
+  priority: number;
+};
+
+const ROUTE_CONFIG: Record<string, RouteConfig> = {
+  "": { changeFrequency: "daily", priority: 1.0 },
+  services: { changeFrequency: "weekly", priority: 0.95 },
+  contact: { changeFrequency: "weekly", priority: 0.9 },
+  products: { changeFrequency: "weekly", priority: 0.9 },
+  "explore/projects": { changeFrequency: "weekly", priority: 0.8 },
+  "explore/rd-blogs": { changeFrequency: "weekly", priority: 0.75 },
+  "explore/ai-topics": { changeFrequency: "weekly", priority: 0.75 },
+  "explore/careers": { changeFrequency: "weekly", priority: 0.7 },
+};
+
 /**
- * Recursively discovers all page.tsx files under app/[lang]/
- * and returns their route paths relative to [lang].
+ * Recursively discovers all page files under app/[lang]/ and returns route
+ * paths relative to [lang]. New public pages are included automatically.
  */
 function discoverRoutes(dir: string, basePath = ""): string[] {
   const routes: string[] = [];
@@ -31,24 +48,40 @@ function discoverRoutes(dir: string, basePath = ""): string[] {
     }
   }
 
-  return routes;
+  return routes.sort((a, b) => a.localeCompare(b));
+}
+
+function getRouteConfig(route: string): RouteConfig {
+  if (ROUTE_CONFIG[route]) return ROUTE_CONFIG[route];
+
+  if (route.includes("privacy-policy") || route.includes("sitemap-page")) {
+    return { changeFrequency: "monthly", priority: 0.45 };
+  }
+
+  if (route.includes("explore")) {
+    return { changeFrequency: "weekly", priority: 0.7 };
+  }
+
+  return { changeFrequency: "weekly", priority: 0.8 };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const langDir = path.join(process.cwd(), "app", "[lang]");
   const routes = discoverRoutes(langDir);
+  const lastModified = new Date();
 
   const entries: MetadataRoute.Sitemap = [];
 
   for (const lang of SUPPORTED_LANGS) {
     for (const route of routes) {
       const urlPath = route ? `/${lang}/${route}` : `/${lang}`;
+      const config = getRouteConfig(route);
 
       entries.push({
         url: `${BASE_URL}${urlPath}`,
-        lastModified: new Date(),
-        changeFrequency: route === "" ? "daily" : "weekly",
-        priority: route === "" ? 1.0 : route.includes("explore") ? 0.7 : 0.8,
+        lastModified,
+        changeFrequency: config.changeFrequency,
+        priority: config.priority,
       });
     }
   }

@@ -24,35 +24,35 @@ const SITEMAP_GROUPS: SitemapGroup[] = [
   {
     title: "Main Pages",
     links: [
-      { label: "Home", href: "/en", icon: <Home className="w-5 h-5" />, description: "Welcome to Sababisha Solutions" },
-      { label: "Services", href: "/en/services", icon: <Briefcase className="w-5 h-5" />, description: "Our software & fintech services" },
-      { label: "Products", href: "/en/products", icon: <Box className="w-5 h-5" />, description: "Our product offerings" },
-      { label: "Team", href: "/en/team", icon: <Users className="w-5 h-5" />, description: "Meet the people behind Sababisha" },
-      { label: "Contact", href: "/en/contact", icon: <MessageSquare className="w-5 h-5" />, description: "Get in touch with us" },
+      { label: "Home", href: "/en", icon: <Home className="w-5 h-5" />, description: "Start here for Sababisha Solutions' fintech platforms, enterprise software, AI automation, analytics, integrations, and digital transformation services." },
+      { label: "Services", href: "/en/services", icon: <Briefcase className="w-5 h-5" />, description: "Explore consultancy, custom software development, fintech engineering, enterprise systems, analytics, support, and long-term maintenance services." },
+      { label: "Products", href: "/en/products", icon: <Box className="w-5 h-5" />, description: "Browse ready and customizable platforms for lending, insurance, healthcare, ERP, HR, schools, property, payments, loyalty, and accounting." },
+      { label: "Team", href: "/en/team", icon: <Users className="w-5 h-5" />, description: "Meet the leadership, engineering, product, QA, DevOps, implementation, and support people behind our client delivery work." },
+      { label: "Contact", href: "/en/contact", icon: <MessageSquare className="w-5 h-5" />, description: "Talk to Sababisha Solutions about project discovery, product demos, integrations, support needs, and technology consultancy." },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/en/blog", icon: <Newspaper className="w-5 h-5" />, description: "Articles and company updates" },
-      { label: "Gallery", href: "/en/gallery", icon: <Image className="w-5 h-5" />, description: "Our project gallery" },
-      { label: "Testimonials", href: "/en/testimonials", icon: <Star className="w-5 h-5" />, description: "What our clients say" },
-      { label: "FAQ", href: "/en/faq", icon: <HelpCircle className="w-5 h-5" />, description: "Frequently asked questions" },
+      { label: "Blog", href: "/en/blog", icon: <Newspaper className="w-5 h-5" />, description: "Read insights on AI, CRM synchronization, software engineering, fintech innovation, and digital transformation strategy." },
+      { label: "Gallery", href: "/en/gallery", icon: <Image className="w-5 h-5" />, description: "View team moments, workshops, planning sessions, product launches, culture highlights, and collaboration behind our software delivery." },
+      { label: "Testimonials", href: "/en/testimonials", icon: <Star className="w-5 h-5" />, description: "See client feedback on our systems, service quality, implementation support, operational impact, and long-term technology partnership." },
+      { label: "FAQ", href: "/en/faq", icon: <HelpCircle className="w-5 h-5" />, description: "Find answers about custom software, fintech platforms, integrations, security, timelines, support, and digital transformation." },
     ],
   },
   {
     title: "Explore",
     links: [
-      { label: "Projects", href: "/en/explore/projects", icon: <FolderOpen className="w-5 h-5" />, description: "Our project portfolio" },
-      { label: "R&D Blogs", href: "/en/explore/rd-blogs", icon: <Lightbulb className="w-5 h-5" />, description: "Research & development insights" },
-      { label: "AI Topics", href: "/en/explore/ai-topics", icon: <Cpu className="w-5 h-5" />, description: "Artificial intelligence articles" },
-      { label: "Careers", href: "/en/explore/careers", icon: <UserCheck className="w-5 h-5" />, description: "Join our team" },
+      { label: "Projects", href: "/en/explore/projects", icon: <FolderOpen className="w-5 h-5" />, description: "Explore production platforms for loan management, legal operations, analytics, healthcare, government programs, and business workflows." },
+      { label: "R&D Blogs", href: "/en/explore/rd-blogs", icon: <Lightbulb className="w-5 h-5" />, description: "Learn from our research notes on monitoring, caching, API testing, frontend architecture, mobile development, and reliable systems." },
+      { label: "AI Topics", href: "/en/explore/ai-topics", icon: <Cpu className="w-5 h-5" />, description: "Study practical AI topics including local LLMs, NLP, RAG, QLoRA, LoRA, PEFT, automation, and AI agents." },
+      { label: "Careers", href: "/en/explore/careers", icon: <UserCheck className="w-5 h-5" />, description: "Discover attachment, graduate trainee, and technology career opportunities for people who want hands-on software experience." },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy & Data Protection", href: "/en/privacy-policy", icon: <Shield className="w-5 h-5" />, description: "How we handle your data" },
+      { label: "Privacy Policy & Data Protection", href: "/en/privacy-policy", icon: <Shield className="w-5 h-5" />, description: "Understand how Sababisha Solutions collects, uses, protects, and manages personal data in line with Kenyan data protection expectations." },
     ],
   },
 ];
@@ -114,8 +114,7 @@ export default function SitemapPage() {
           </h1>
 
           <p className="text-gray-600 font-sans text-lg md:text-xl leading-relaxed max-w-2xl">
-            A complete directory of all pages on the Sababisha Solutions website.
-            Find what you&apos;re looking for quickly.
+            A complete directory of Sababisha Solutions pages, including our fintech products, custom software services, enterprise projects, AI topics, research blogs, careers, testimonials, FAQs, and data protection information.
           </p>
         </Reveal>
       </section>
@@ -153,7 +152,7 @@ export default function SitemapPage() {
                       </span>
                       <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#FF5A36] group-hover:translate-x-0.5 transition-all" />
                     </div>
-                    <p className="text-gray-500 font-sans text-xs mt-0.5 truncate">
+                    <p className="text-gray-500 font-sans text-xs mt-1 leading-relaxed line-clamp-2">
                       {link.description}
                     </p>
                   </div>
