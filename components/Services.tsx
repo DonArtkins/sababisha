@@ -152,7 +152,7 @@ export function Services() {
               </ul>
               
               <AnimatedLink
-                href={`/en/contact?service=${encodeURIComponent(service.slug)}`}
+                href={`/contact?service=${encodeURIComponent(service.slug)}`}
                 className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm text-accent font-sans font-bold group-hover:text-[#FF5A36] transition-colors"
                 icon={<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
               >

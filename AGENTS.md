@@ -31,24 +31,23 @@ sababisha/
 │   │   ├── contact/route.ts    # Service inquiry email endpoint
 │   │   ├── newsletter/route.ts # Footer newsletter email endpoint
 │   │   └── comment/route.ts    # Article comment email endpoint (R&D + AI)
-│   └── [lang]/                 # Dynamic locale segment (e.g. /en, /sw)
-│       ├── page.tsx            # Home page
-│       ├── blog/page.tsx
-│       ├── contact/page.tsx
-│       ├── contact/layout.tsx  # Contact route SEO metadata
-│       ├── faq/page.tsx
-│       ├── gallery/page.tsx
-│       ├── products/page.tsx
-│       ├── services/page.tsx
-│       ├── team/page.tsx
-│       ├── testimonials/page.tsx
-│       ├── privacy-policy/page.tsx
-│       ├── sitemap-page/page.tsx
-│       └── explore/
-│           ├── ai-topics/page.tsx
-│           ├── careers/page.tsx
-│           ├── projects/page.tsx
-│           └── rd-blogs/page.tsx
+│   ├── page.tsx                # Home page
+│   ├── blog/page.tsx
+│   ├── contact/page.tsx
+│   ├── contact/layout.tsx      # Contact route SEO metadata
+│   ├── faq/page.tsx
+│   ├── gallery/page.tsx
+│   ├── products/page.tsx
+│   ├── services/page.tsx
+│   ├── team/page.tsx
+│   ├── testimonials/page.tsx
+│   ├── privacy-policy/page.tsx
+│   ├── sitemap-page/page.tsx
+│   └── explore/
+│       ├── ai-topics/page.tsx
+│       ├── careers/page.tsx
+│       ├── projects/page.tsx
+│       └── rd-blogs/page.tsx
 ├── components/                 # Reusable UI components (all "use client")
 ├── layouts/                    # Layout wrappers (ClientLayout)
 ├── lib/                        # Data, type, email, form, and utility helpers
@@ -67,11 +66,11 @@ sababisha/
 
 ## Routing Convention
 
-This project uses **Binance-style locale-prefixed routing**:
+This project uses **standard Next.js 16 App Router routing**:
 
-- All user-facing routes live under `app/[lang]/`
-- URLs follow the pattern: `https://domain.com/en/services`, `https://domain.com/en/explore/projects`
-- The root `/` permanently redirects to `/en` via `next.config.mjs`
+- All user-facing routes live directly under `app/`
+- URLs follow the pattern: `https://domain.com/services`, `https://domain.com/explore/projects`
+- The root `/` serves the home page directly
 
 ## Key Conventions
 
@@ -101,11 +100,11 @@ This project uses **Binance-style locale-prefixed routing**:
    - Article comments use `renderArticleCommentEmail` and include the article title, type (R&D Blog / AI Topic), category, author, date, excerpt, and URL. Reuse `ArticleCommentForm` on detail pages — do not duplicate inline comment forms.
 13. **SEO and Crawl Files**: Update route metadata, `app/sitemap.ts`, `app/robots.ts`, and root markdown docs (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`) whenever public routes, service/contact flows, email delivery behavior, modal/Lottie UX conventions, or crawl rules change. Also update [`research/LOTTIE-MODALS.md`](./research/LOTTIE-MODALS.md) when modal inventory changes.
     - Global SEO lives in `app/layout.tsx` (`metadataBase`, canonical, Open Graph, Twitter, robots).
-    - Route SEO examples: `app/[lang]/services/page.tsx`, `app/[lang]/contact/layout.tsx`.
-    - `app/sitemap.ts` auto-discovers `page.tsx` under `app/[lang]/` and applies route priorities. Lottie assets under `public/lottie/` are static files — not sitemap routes.
+    - Route SEO examples: `app/services/page.tsx`, `app/contact/layout.tsx`.
+    - `app/sitemap.ts` auto-discovers `page.tsx` under `app/` and applies route priorities. Lottie assets under `public/lottie/` are static files — not sitemap routes.
     - `app/robots.ts` allows public pages and disallows `/api/`, `/_next/`, `/bugs/`, and `/research/`.
-    - HTML sitemap: `app/[lang]/sitemap-page/page.tsx` — keep link groups in sync when public routes change.
-14. **Adding New Pages**: Create a new directory under `app/[lang]/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it. Add an explicit `ROUTE_CONFIG` entry when the page needs a non-default priority, and add page-level metadata for SEO.
+    - HTML sitemap: `app/sitemap-page/page.tsx` — keep link groups in sync when public routes change.
+14. **Adding New Pages**: Create a new directory under `app/` with a `page.tsx` file. The dynamic sitemap at `app/sitemap.ts` will automatically discover it. Add an explicit `ROUTE_CONFIG` entry when the page needs a non-default priority, and add page-level metadata for SEO.
 15. **Research Notes**: Keep long-form setup guides under `research/` (including `RESEND.md` and `LOTTIE-MODALS.md`). These are repo docs only — not public App Router routes. Do not put secrets in research notes.
 
 ## Do NOT

@@ -2,8 +2,7 @@ import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 
-const BASE_URL = process.env.SITE_URL || "https://sababisha.com";
-const SUPPORTED_LANGS = ["en"];
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 type RouteConfig = {
@@ -14,13 +13,13 @@ type RouteConfig = {
 /**
  * Explicit priorities for known public routes.
  * Contact/services stay elevated because they drive inquiry conversion.
- * New pages under app/[lang]/ are still auto-discovered; add an entry here
+ * New pages under app/ are still auto-discovered; add an entry here
  * when the default priority is wrong.
  *
  * Not included: static assets such as public/lottie/*.json (modals use these
  * for UX; they are not App Router pages). When public routes or modal/Lottie
  * conventions change, sync README.md, CONTRIBUTING.md, AGENTS.md, and
- * research/LOTTIE-MODALS.md. Also update app/[lang]/sitemap-page/page.tsx.
+ * research/LOTTIE-MODALS.md. Also update app/sitemap-page/page.tsx.
  */
 const ROUTE_CONFIG: Record<string, RouteConfig> = {
   "": { changeFrequency: "daily", priority: 1.0 },
@@ -41,8 +40,8 @@ const ROUTE_CONFIG: Record<string, RouteConfig> = {
 };
 
 /**
- * Recursively discovers all page files under app/[lang]/ and returns route
- * paths relative to [lang]. New public pages are included automatically.
+ * Recursively discovers all page files under app/ and returns route
+ * paths. New public pages are included automatically.
  */
 function discoverRoutes(dir: string, basePath = ""): string[] {
   const routes: string[] = [];
@@ -53,7 +52,7 @@ function discoverRoutes(dir: string, basePath = ""): string[] {
 
   for (const entry of entries) {
     if (entry.isDirectory()) {
-      // Skip directories that are dynamic segments (other than [lang] which we handle at top level)
+      // Skip directories that are dynamic segments
       if (entry.name.startsWith("[") && entry.name.endsWith("]")) continue;
       // Skip private folders (prefixed with _)
       if (entry.name.startsWith("_")) continue;
@@ -84,24 +83,22 @@ function getRouteConfig(route: string): RouteConfig {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const langDir = path.join(process.cwd(), "app", "[lang]");
-  const routes = discoverRoutes(langDir);
+  const appDir = path.join(process.cwd(), "app");
+  const routes = discoverRoutes(appDir);
   const lastModified = new Date();
 
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const lang of SUPPORTED_LANGS) {
-    for (const route of routes) {
-      const urlPath = route ? `/${lang}/${route}` : `/${lang}`;
-      const config = getRouteConfig(route);
+  for (const route of routes) {
+    const urlPath = route ? `/${route}` : "/";
+    const config = getRouteConfig(route);
 
-      entries.push({
-        url: `${BASE_URL}${urlPath}`,
-        lastModified,
-        changeFrequency: config.changeFrequency,
-        priority: config.priority,
-      });
-    }
+    entries.push({
+      url: `${BASE_URL}${urlPath}`,
+      lastModified,
+      changeFrequency: config.changeFrequency,
+      priority: config.priority,
+    });
   }
 
   return entries;

@@ -1,26 +1,51 @@
+import type { Metadata } from "next";
 import { OptimizedImage } from "@/components/OptimizedImage";
+
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Read Sababisha Solutions insights on fintech innovation, AI automation, software engineering, CRM synchronization, digital transformation, enterprise integrations, product strategy, and practical technology lessons for growing organizations.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | Sababisha Solutions Limited",
+    description:
+      "Read our insights on fintech innovation, AI automation, software engineering, CRM synchronization, digital transformation, enterprise integrations, product strategy, and practical technology lessons.",
+    url: `${BASE_URL}/blog`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Sababisha Solutions Limited",
+    description:
+      "Read our insights on fintech innovation, AI automation, software engineering, CRM synchronization, digital transformation, enterprise integrations, product strategy, and practical technology lessons.",
+  },
+};
 
 export function Blog() {
   const posts = [
-    { 
-      title: "How AI Voice Agents Are Tripling Sales Pipelines", 
-      date: "Oct 24, 2024", 
+    {
+      title: "How AI Voice Agents Are Tripling Sales Pipelines",
+      date: "Oct 24, 2024",
       category: "AI & Sales",
-      img: "/images/img6.jpg",
+      img: "/images/projects/tiba-bg.png",
       excerpt: "Explore how AI voice agents can qualify leads, follow up faster, reduce missed opportunities, and help sales teams build more consistent customer conversations."
     },
-    { 
-      title: "The Ultimate Guide to CRM Synchronization", 
-      date: "Sep 12, 2024", 
+    {
+      title: "The Ultimate Guide to CRM Synchronization",
+      date: "Sep 12, 2024",
       category: "Engineering",
-      img: "/images/img5.jpg",
+      img: "/images/projects/prudmat-bg.png",
       excerpt: "Learn how CRM synchronization connects customer records, sales activity, support history, reporting dashboards, and automation workflows across growing business teams."
     },
-    { 
-      title: "Sababisha Selected for Best AI Innovation", 
-      date: "Aug 05, 2024", 
+    {
+      title: "Sababisha Selected for Best AI Innovation",
+      date: "Aug 05, 2024",
       category: "Company News",
-      img: "/images/img6.jpg",
+      img: "/images/projects/maziwa-bg.png",
       excerpt: "A company update on Sababisha Solutions' practical AI work, product innovation, and commitment to building secure technology for real enterprise challenges."
     }
   ];

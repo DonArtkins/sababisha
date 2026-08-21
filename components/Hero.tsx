@@ -137,9 +137,9 @@ export function Hero() {
         {/* Top Badge */}
         <div className="flex items-center gap-4 mb-8 interactive cursor-none">
           <div className="flex -space-x-3 shrink-0">
-            <OptimizedImage src="/images/img4.jpg" alt="Client 1" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-30" imageClassName="w-full h-full object-cover rounded-full" />
-            <OptimizedImage src="/images/img2.jpg" alt="Client 2" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-20" imageClassName="w-full h-full object-cover rounded-full" />
-            <OptimizedImage src="/images/img4.jpg" alt="Client 3" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-10" imageClassName="w-full h-full object-cover rounded-full" />
+            <OptimizedImage src="/images/team/john-k.jpg" alt="Client 1" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-30" imageClassName="w-full h-full object-cover rounded-full" loading="eager" />
+            <OptimizedImage src="/images/team/peter-w.jpg" alt="Client 2" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-20" imageClassName="w-full h-full object-cover rounded-full" loading="eager" />
+            <OptimizedImage src="/images/team/daniel-k.jpg" alt="Client 3" wrapperClassName="w-10 h-10 rounded-full border-2 border-white shadow-sm z-10" imageClassName="w-full h-full object-cover rounded-full" loading="eager" />
           </div>
           <div>
             <p className="font-sans font-bold text-sm text-[#111111]">100+ Enterprise Clients</p>
@@ -159,7 +159,7 @@ export function Hero() {
 
         {/* Small Review Block */}
         <div className="flex items-center gap-4 mb-10">
-          <OptimizedImage src="/images/img2.jpg" alt="User" wrapperClassName="w-12 h-12 rounded-full shrink-0 shadow-sm border-2 border-white" imageClassName="w-full h-full object-cover rounded-full" />
+          <OptimizedImage src="/images/team/kevin-m.jpg" alt="User" wrapperClassName="w-12 h-12 rounded-full shrink-0 shadow-sm border-2 border-white" imageClassName="w-full h-full object-cover rounded-full" loading="eager" />
           <div>
             <div className="flex items-center gap-2">
               <p className="font-sans text-sm font-medium text-[#111111]">Loved the performance</p>
@@ -175,10 +175,10 @@ export function Hero() {
 
         {/* Buttons */}
         <div className="flex items-center gap-8">
-          <Button variant="primary" size="md" href="/en/services">
+          <Button variant="primary" size="md" href="/services">
             Start Project — It's Free
           </Button>
-          <AnimatedLink href="/en/products" className="font-sans text-sm font-semibold text-[#111111] hover:text-[#FF5A36]" icon={<ArrowRight className="w-4 h-4" />}>
+          <AnimatedLink href="/products" className="font-sans text-sm font-semibold text-[#111111] hover:text-[#FF5A36]" icon={<ArrowRight className="w-4 h-4" />}>
             Our Products
           </AnimatedLink>
         </div>
@@ -201,6 +201,7 @@ export function Hero() {
                 wrapperClassName="w-full h-full"
                 imageClassName="w-full h-full object-contain object-center mix-blend-luminosity opacity-80"
                 priority={i === 0}
+                loading={i === 0 ? "eager" : "lazy"}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#FF5A36]/60 to-transparent mix-blend-multiply"></div>
               <div className="absolute top-8 left-8 z-20">
@@ -256,7 +257,7 @@ export function Hero() {
         {/* Bottom Right Glass Card */}
         <div className="absolute bottom-16 right-4 md:right-10 bg-white/30 backdrop-blur-xl border border-white/50 p-5 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.1)] w-[280px] flex items-center gap-4 z-20 floating-card" style={{ animationDelay: '0.5s' }}>
           <div className="w-24 h-24 bg-white rounded-2xl p-2 shrink-0 overflow-hidden shadow-sm">
-            <OptimizedImage src="/images/projects/maziwa-bg.png" alt="Maziwa Platform" wrapperClassName="w-full h-full rounded-xl" imageClassName="w-full h-full object-cover rounded-xl" />
+            <OptimizedImage src="/images/projects/maziwa-bg.png" alt="Maziwa Platform" wrapperClassName="w-full h-full rounded-xl" imageClassName="w-full h-full object-cover rounded-xl" loading="eager" />
           </div>
           <div className="flex-1">
             <p className="font-sans text-sm font-medium text-[#111111] leading-tight mb-2">Maziwa Platform</p>

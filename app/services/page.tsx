@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Services as ServicesComponent } from "@/components/Services";
 
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
+
 export const metadata: Metadata = {
   title: "Services",
   description:
@@ -15,13 +17,13 @@ export const metadata: Metadata = {
     "software support and maintenance",
   ],
   alternates: {
-    canonical: "/en/services",
+    canonical: "/services",
   },
   openGraph: {
     title: "Services | Sababisha Solutions Limited",
     description:
       "Six focused service areas for fintech, enterprise systems, analytics, software engineering, consultancy, and long-term support.",
-    url: "/en/services",
+    url: `${BASE_URL}/services`,
     type: "website",
   },
   twitter: {

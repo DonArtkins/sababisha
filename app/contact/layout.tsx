@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
+
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -16,13 +18,13 @@ export const metadata: Metadata = {
     "Sababisha contact email",
   ],
   alternates: {
-    canonical: "/en/contact",
+    canonical: "/contact",
   },
   openGraph: {
     title: "Contact | Sababisha Solutions Limited",
     description:
       "Send a service-specific inquiry to Sababisha Solutions and share your project goals, timeline, and support needs. We respond by email.",
-    url: "/en/contact",
+    url: `${BASE_URL}/contact`,
     type: "website",
   },
   twitter: {

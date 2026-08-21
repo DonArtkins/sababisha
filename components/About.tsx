@@ -30,7 +30,7 @@ const TABS = [
         <p>Whether you need a lending system, payment integration, hospital platform, member portal, ERP workflow, or custom business application, we help turn complex operational challenges into dependable digital solutions.</p>
       </div>
     ),
-    image: "/images/img5.jpg",
+    image: "/images/gallery/sababisha-team.png",
   },
   {
     id: "Our Mission",
@@ -52,7 +52,7 @@ const TABS = [
         <p>By focusing on security, scalability, performance, and usability from the beginning, we help organizations move confidently from manual processes and disconnected tools to integrated digital operations.</p>
       </div>
     ),
-    image: "/images/img1.jpg",
+    image: "/images/gallery/development-team.png",
   },
   {
     id: "Our Vision",
@@ -74,7 +74,7 @@ const TABS = [
         <p>Every project moves us toward that future: technology that works in context, supports real users, and gives decision-makers the confidence to grow.</p>
       </div>
     ),
-    image: "/images/img3.jpg",
+    image: "/images/gallery/team-moments.png",
   },
 ];
 

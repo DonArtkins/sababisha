@@ -24,35 +24,35 @@ const SITEMAP_GROUPS: SitemapGroup[] = [
   {
     title: "Main Pages",
     links: [
-      { label: "Home", href: "/en", icon: <Home className="w-5 h-5" />, description: "Start here for Sababisha Solutions' fintech platforms, enterprise software, AI automation, analytics, integrations, and digital transformation services." },
-      { label: "Services", href: "/en/services", icon: <Briefcase className="w-5 h-5" />, description: "Explore consultancy, custom software development, fintech engineering, enterprise systems, analytics, support, and long-term maintenance services." },
-      { label: "Products", href: "/en/products", icon: <Box className="w-5 h-5" />, description: "Browse ready and customizable platforms for lending, insurance, healthcare, ERP, HR, schools, property, payments, loyalty, and accounting. When a live site is not public yet, you will see a clear availability notice." },
-      { label: "Team", href: "/en/team", icon: <Users className="w-5 h-5" />, description: "Meet the leadership, engineering, product, QA, DevOps, implementation, and support people behind our client delivery work." },
-      { label: "Contact", href: "/en/contact", icon: <MessageSquare className="w-5 h-5" />, description: "Talk to Sababisha Solutions about project discovery, product demos, integrations, support needs, and technology consultancy. Service-aware inquiries confirm with clear success or error feedback." },
+      { label: "Home", href: "/", icon: <Home className="w-5 h-5" />, description: "Start here for Sababisha Solutions' fintech platforms, enterprise software, AI automation, analytics, integrations, and digital transformation services." },
+      { label: "Services", href: "/services", icon: <Briefcase className="w-5 h-5" />, description: "Explore consultancy, custom software development, fintech engineering, enterprise systems, analytics, support, and long-term maintenance services." },
+      { label: "Products", href: "/products", icon: <Box className="w-5 h-5" />, description: "Browse ready and customizable platforms for lending, insurance, healthcare, ERP, HR, schools, property, payments, loyalty, and accounting. When a live site is not public yet, you will see a clear availability notice." },
+      { label: "Team", href: "/team", icon: <Users className="w-5 h-5" />, description: "Meet the leadership, engineering, product, QA, DevOps, implementation, and support people behind our client delivery work." },
+      { label: "Contact", href: "/contact", icon: <MessageSquare className="w-5 h-5" />, description: "Talk to Sababisha Solutions about project discovery, product demos, integrations, support needs, and technology consultancy. Service-aware inquiries confirm with clear success or error feedback." },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/en/blog", icon: <Newspaper className="w-5 h-5" />, description: "Read insights on AI, CRM synchronization, software engineering, fintech innovation, and digital transformation strategy." },
-      { label: "Gallery", href: "/en/gallery", icon: <Image className="w-5 h-5" />, description: "View team moments, workshops, planning sessions, product launches, culture highlights, and collaboration behind our software delivery." },
-      { label: "Testimonials", href: "/en/testimonials", icon: <Star className="w-5 h-5" />, description: "See client feedback on our systems, service quality, implementation support, operational impact, and long-term technology partnership." },
-      { label: "FAQ", href: "/en/faq", icon: <HelpCircle className="w-5 h-5" />, description: "Find answers about custom software, fintech platforms, integrations, security, timelines, support, and digital transformation." },
+      { label: "Blog", href: "/blog", icon: <Newspaper className="w-5 h-5" />, description: "Read insights on AI, CRM synchronization, software engineering, fintech innovation, and digital transformation strategy." },
+      { label: "Gallery", href: "/gallery", icon: <Image className="w-5 h-5" />, description: "View team moments, workshops, planning sessions, product launches, culture highlights, and collaboration behind our software delivery." },
+      { label: "Testimonials", href: "/testimonials", icon: <Star className="w-5 h-5" />, description: "See client feedback on our systems, service quality, implementation support, operational impact, and long-term technology partnership." },
+      { label: "FAQ", href: "/faq", icon: <HelpCircle className="w-5 h-5" />, description: "Find answers about custom software, fintech platforms, integrations, security, timelines, support, and digital transformation." },
     ],
   },
   {
     title: "Explore",
     links: [
-      { label: "Projects", href: "/en/explore/projects", icon: <FolderOpen className="w-5 h-5" />, description: "Explore production platforms for loan management, legal operations, analytics, healthcare, government programs, and business workflows. Live-site links explain availability when a public demo is not ready yet." },
-      { label: "R&D Blogs", href: "/en/explore/rd-blogs", icon: <Lightbulb className="w-5 h-5" />, description: "Learn from our research notes on monitoring, caching, API testing, frontend architecture, mobile development, and reliable systems." },
-      { label: "AI Topics", href: "/en/explore/ai-topics", icon: <Cpu className="w-5 h-5" />, description: "Study practical AI topics including local LLMs, NLP, RAG, QLoRA, LoRA, PEFT, automation, and AI agents." },
-      { label: "Careers", href: "/en/explore/careers", icon: <UserCheck className="w-5 h-5" />, description: "Discover attachment, graduate trainee, and technology career opportunities. Open any role for program details, requirements, and how to apply." },
+      { label: "Projects", href: "/explore/projects", icon: <FolderOpen className="w-5 h-5" />, description: "Explore production platforms for loan management, legal operations, analytics, healthcare, government programs, and business workflows. Live-site links explain availability when a public demo is not ready yet." },
+      { label: "R&D Blogs", href: "/explore/rd-blogs", icon: <Lightbulb className="w-5 h-5" />, description: "Learn from our research notes on monitoring, caching, API testing, frontend architecture, mobile development, and reliable systems." },
+      { label: "AI Topics", href: "/explore/ai-topics", icon: <Cpu className="w-5 h-5" />, description: "Study practical AI topics including local LLMs, NLP, RAG, QLoRA, LoRA, PEFT, automation, and AI agents." },
+      { label: "Careers", href: "/explore/careers", icon: <UserCheck className="w-5 h-5" />, description: "Discover attachment, graduate trainee, and technology career opportunities. Open any role for program details, requirements, and how to apply." },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy & Data Protection", href: "/en/privacy-policy", icon: <Shield className="w-5 h-5" />, description: "Understand how Sababisha Solutions collects, uses, protects, and manages personal data in line with Kenyan data protection expectations." },
+      { label: "Privacy Policy & Data Protection", href: "/privacy-policy", icon: <Shield className="w-5 h-5" />, description: "Understand how Sababisha Solutions collects, uses, protects, and manages personal data in line with Kenyan data protection expectations." },
     ],
   },
 ];
@@ -165,7 +165,7 @@ export default function SitemapPage() {
         {/* Back to Home */}
         <div className="sitemap-group flex justify-center mt-4">
           <Link
-            href="/en"
+            href="/"
             className="inline-flex items-center gap-2 text-gray-500 font-sans text-sm hover:text-[#FF5A36] transition-colors interactive cursor-none"
           >
             <ChevronRight className="w-4 h-4 rotate-180" />

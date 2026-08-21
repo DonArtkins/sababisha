@@ -166,10 +166,10 @@ export function Footer() {
           <div className="footer-col lg:col-span-1 lg:ml-8">
             <h4 className="font-sans font-bold text-xl mb-6 text-[#111111]">Company</h4>
             <ul className="flex flex-col gap-4 font-sans text-sm text-gray-600">
-              <li><AnimatedLink href="/en" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Home</AnimatedLink></li>
-              <li><AnimatedLink href="/en/services" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Services</AnimatedLink></li>
-              <li><AnimatedLink href="/en/products" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Products</AnimatedLink></li>
-              <li><AnimatedLink href="/en/explore/projects" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Projects</AnimatedLink></li>
+              <li><AnimatedLink href="/" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Home</AnimatedLink></li>
+              <li><AnimatedLink href="/services" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Services</AnimatedLink></li>
+              <li><AnimatedLink href="/products" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Products</AnimatedLink></li>
+              <li><AnimatedLink href="/explore/projects" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Projects</AnimatedLink></li>
             </ul>
           </div>
 
@@ -177,11 +177,11 @@ export function Footer() {
           <div className="footer-col lg:col-span-1">
             <h4 className="font-sans font-bold text-xl mb-6 text-[#111111]">Explore</h4>
             <ul className="flex flex-col gap-4 font-sans text-sm text-gray-600">
-              <li><AnimatedLink href="/en/explore/rd-blogs" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>R&D Blogs</AnimatedLink></li>
-              <li><AnimatedLink href="/en/explore/ai-topics" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>AI Topics</AnimatedLink></li>
-              <li><AnimatedLink href="/en/explore/careers" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Careers</AnimatedLink></li>
-              <li><AnimatedLink href="/en/faq" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>FAQ</AnimatedLink></li>
-              <li><AnimatedLink href="/en/contact" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Contact Us</AnimatedLink></li>
+              <li><AnimatedLink href="/explore/rd-blogs" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>R&D Blogs</AnimatedLink></li>
+              <li><AnimatedLink href="/explore/ai-topics" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>AI Topics</AnimatedLink></li>
+              <li><AnimatedLink href="/explore/careers" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Careers</AnimatedLink></li>
+              <li><AnimatedLink href="/faq" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>FAQ</AnimatedLink></li>
+              <li><AnimatedLink href="/contact" className="hover:text-[#FF5A36] transition-colors interactive cursor-none" leftIcon={<ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />}>Contact Us</AnimatedLink></li>
             </ul>
           </div>
 
@@ -259,8 +259,8 @@ export function Footer() {
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-gray-500">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 interactive cursor-none hover:text-[#111111]"><Globe className="w-3.5 h-3.5 text-gray-400 shrink-0" /> English</span>
-            <AnimatedLink href="/en/privacy-policy" className="hover:text-[#111111] transition-colors" leftIcon={<Shield className="w-3.5 h-3.5 text-gray-400 shrink-0" />}>Privacy Policy</AnimatedLink>
-            <AnimatedLink href="/en/sitemap-page" className="hover:text-[#111111] transition-colors" leftIcon={<Map className="w-3.5 h-3.5 text-gray-400 shrink-0" />}>Sitemap</AnimatedLink>
+            <AnimatedLink href="/privacy-policy" className="hover:text-[#111111] transition-colors" leftIcon={<Shield className="w-3.5 h-3.5 text-gray-400 shrink-0" />}>Privacy Policy</AnimatedLink>
+            <AnimatedLink href="/sitemap-page" className="hover:text-[#111111] transition-colors" leftIcon={<Map className="w-3.5 h-3.5 text-gray-400 shrink-0" />}>Sitemap</AnimatedLink>
           </div>
           <p>© 2026 Sababisha Solutions. All rights reserved</p>
         </div>
