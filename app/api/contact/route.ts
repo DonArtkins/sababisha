@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
   const phone = normalizeText(payload.phone, 32);
   const company = normalizeText(payload.company, 120);
   const serviceSlug = normalizeText(payload.serviceSlug, 80);
-  const message = normalizeLongText(payload.message, 1600);
+  const message = normalizeLongText(payload.message);
   const service = getContactServiceBySlug(serviceSlug);
   const errors: FieldErrors = {};
 

@@ -14,10 +14,10 @@ import { ThemeToggle } from "./ThemeToggle";
 gsap.registerPlugin(ScrollTrigger);
 
 const EXPLORE_LINKS = [
-  { name: 'Projects', path: '/en/explore/projects', tag: 'Work' },
-  { name: 'R&D Blogs', path: '/en/explore/rd-blogs', tag: 'Insights' },
-  { name: 'AI Topics', path: '/en/explore/ai-topics', tag: 'Future' },
-  { name: 'Careers', path: '/en/explore/careers', tag: 'Join Us' },
+  { name: 'Projects', path: '/explore/projects', tag: 'Work' },
+  { name: 'R&D Blogs', path: '/explore/rd-blogs', tag: 'Insights' },
+  { name: 'AI Topics', path: '/explore/ai-topics', tag: 'Future' },
+  { name: 'Careers', path: '/explore/careers', tag: 'Join Us' },
 ];
 
 function ExploreDropdown() {
@@ -175,7 +175,7 @@ export function Header() {
         Skip to content
       </Link>
       <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 p-4 md:px-12 md:py-4 flex justify-between items-center text-[#111111] bg-white/60 backdrop-blur-xl border-b border-gray-200/40 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all">
-        <Link href="/en" className="flex items-center gap-3 font-display font-bold tracking-tight cursor-none interactive">
+        <Link href="/" className="flex items-center gap-3 font-display font-bold tracking-tight cursor-none interactive">
           <div className="relative w-14 h-14 bg-loader-logo-bg rounded-full shadow-md flex items-center justify-center ring-2 ring-foreground/10 shrink-0">
             <Image 
               src="/logo.png" 
@@ -183,6 +183,7 @@ export function Header() {
               fill
               unoptimized
               priority
+              loading="eager"
               className="object-contain rounded-full p-1 relative z-10"
             />
           </div>
@@ -194,27 +195,27 @@ export function Header() {
         
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6 font-sans text-sm font-semibold">
-          <TopLevelLink href="/en/services">Services</TopLevelLink>
+          <TopLevelLink href="/services">Services</TopLevelLink>
           <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           
-          <TopLevelLink href="/en/products">Products</TopLevelLink>
+          <TopLevelLink href="/products">Products</TopLevelLink>
           <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
           <ExploreDropdown />
           
           <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
-          <TopLevelLink href="/en/team">Team</TopLevelLink>
+          <TopLevelLink href="/team">Team</TopLevelLink>
 
           <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
-          <TopLevelLink href="/en/gallery">Gallery</TopLevelLink>
+          <TopLevelLink href="/gallery">Gallery</TopLevelLink>
           
           <span className="w-1 h-1 bg-[#111111] dark:bg-foreground/40 rounded-full"></span>
-          <TopLevelLink href="/en/faq">FAQ</TopLevelLink>
+          <TopLevelLink href="/faq">FAQ</TopLevelLink>
         </nav>
         
         <div className="flex gap-6 items-center">
           <ThemeToggle />
           <div className="hidden md:block">
-            <Button variant="outline" size="sm" href="/en/contact">
+            <Button variant="outline" size="sm" href="/contact">
               Contact Us
             </Button>
           </div>
@@ -243,13 +244,13 @@ export function Header() {
         <div className="w-full max-h-[75vh] overflow-y-auto pr-2 flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-3 md:gap-5 font-display font-bold text-3xl md:text-6xl tracking-tighter">
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Home</AnimatedLink>
+              <AnimatedLink href="/" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Home</AnimatedLink>
             </div>
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en/services" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Services</AnimatedLink>
+              <AnimatedLink href="/services" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Services</AnimatedLink>
             </div>
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en/products" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Products</AnimatedLink>
+              <AnimatedLink href="/products" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Products</AnimatedLink>
             </div>
             
             {/* Explore Submenu */}
@@ -270,20 +271,20 @@ export function Header() {
             </div>
 
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en/team" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Team</AnimatedLink>
+              <AnimatedLink href="/team" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Team</AnimatedLink>
             </div>
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en/gallery" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Gallery</AnimatedLink>
+              <AnimatedLink href="/gallery" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">Gallery</AnimatedLink>
             </div>
             <div className="menu-link w-fit">
-              <AnimatedLink href="/en/faq" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">FAQ</AnimatedLink>
+              <AnimatedLink href="/faq" className="text-[#111111] dark:text-foreground hover:text-[#FF5A36]">FAQ</AnimatedLink>
             </div>
           </nav>
 
           {/* Theme Toggler and Contact Us Button inside Mobile Menu */}
           <div className="menu-link pt-6 border-t border-[#111111]/10 dark:border-white/10 flex items-center gap-6">
             <ThemeToggle />
-            <Button variant="outline" size="sm" href="/en/contact">
+            <Button variant="outline" size="sm" href="/contact">
               Contact Us
             </Button>
           </div>

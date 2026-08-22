@@ -10,3 +10,7 @@ coverage/
 .next/
 tsconfig.tsbuildinfo
 .devin
+bugs/
+i18n/
+locales/
+vercel.json

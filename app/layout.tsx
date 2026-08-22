@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClientLayout } from "@/layouts/ClientLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const BASE_URL = process.env.SITE_URL || "https://sababisha.com";
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
 const SITE_NAME = "Sababisha Solutions Limited";
 
 export const metadata: Metadata = {
@@ -50,10 +50,7 @@ export const metadata: Metadata = {
   publisher: SITE_NAME,
   category: "Technology",
   alternates: {
-    canonical: "/en",
-    languages: {
-      en: "/en",
-    },
+    canonical: "/",
   },
   icons: {
     icon: [
@@ -61,20 +58,11 @@ export const metadata: Metadata = {
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180' }
-    ],
-    other: [
-      {
-        rel: 'manifest',
-        url: '/site.webmanifest',
-      },
-    ],
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: `${BASE_URL}/en`,
+    url: `${BASE_URL}/`,
     siteName: SITE_NAME,
     title: "Sababisha Solutions Limited | Fintech Software, Enterprise Systems & Digital Transformation",
     description:

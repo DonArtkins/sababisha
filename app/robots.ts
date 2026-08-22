@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = process.env.SITE_URL || "https://sababisha.com";
+const BASE_URL = process.env.SITE_URL || "https://sababisha.vercel.app";
 
 /**
  * Crawl policy for public marketing pages.

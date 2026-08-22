@@ -332,7 +332,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "12/2/2026",
     category: "AI Infrastructure",
     image: "/images/ai-topics/ollama.jpg",
-    slug: "/en/explore/ai-topics/ollama",
+    slug: "/explore/ai-topics/ollama",
     content: {
       subtitle: "Deploying private, scalable, and cost-aware AI infrastructure for enterprise teams that need local model control, data protection, and practical LLM workflows.",
     },
@@ -344,7 +344,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "5/03/2026",
     category: "AI Training Series",
     image: "/images/ai-topics/nlp-pytorch.jpg",
-    slug: "/en/explore/ai-topics/nlp-pytorch",
+    slug: "/explore/ai-topics/nlp-pytorch",
     content: {
       subtitle: "Building AI-powered text intelligence systems for fintech, customer support, compliance, fraud detection, and automated document understanding.",
     },
@@ -356,7 +356,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "2026",
     category: "AI Data Engineering & Retrieval",
     image: "/images/ai-topics/llamaindex.jpg",
-    slug: "/en/explore/ai-topics/llamaindex",
+    slug: "/explore/ai-topics/llamaindex",
     content: {
       subtitle: "Connecting enterprise data to LLMs for retrieval-augmented generation, internal knowledge assistants, document search, and context-aware AI applications.",
     },
@@ -369,7 +369,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "2026",
     category: "AI Model Optimization",
     image: "/images/ai-topics/qlora.jpg",
-    slug: "/en/explore/ai-topics/qlora",
+    slug: "/explore/ai-topics/qlora",
   },
   {
     title: "Make.com: No-Code Automation & AI Agents",
@@ -379,7 +379,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "16/02/2026",
     category: "Automation & AI Systems",
     image: "/images/ai-topics/make-automation.jpg",
-    slug: "/en/explore/ai-topics/make-automation",
+    slug: "/explore/ai-topics/make-automation",
   },
   {
     title: "Fine-Tuning with LoRA / PEFT",
@@ -388,7 +388,7 @@ export const AI_TOPICS: AITopic[] = [
     date: "2026",
     category: "AI Training Session",
     image: "/images/ai-topics/lora-peft.svg",
-    slug: "/en/explore/ai-topics/lora-peft",
+    slug: "/explore/ai-topics/lora-peft",
   },
 ];
 
@@ -401,7 +401,7 @@ export const RD_BLOGS: RDBlog[] = [
     date: "4 Oct, 2024",
     category: "Monitoring",
     image: "/images/rd-blogs/prometheus-grafana.svg",
-    slug: "/en/explore/rd-blogs/prometheus-grafana",
+    slug: "/explore/rd-blogs/prometheus-grafana",
   },
   {
     title: "Caching Strategies",
@@ -410,7 +410,7 @@ export const RD_BLOGS: RDBlog[] = [
     date: "15 July, 2024",
     category: "UX Design",
     image: "/images/rd-blogs/caching-strategies.jpg",
-    slug: "/en/explore/rd-blogs/caching-strategies",
+    slug: "/explore/rd-blogs/caching-strategies",
   },
   {
     title: "Next.js (v14)",
@@ -419,7 +419,7 @@ export const RD_BLOGS: RDBlog[] = [
     date: "15 Feb, 2025",
     category: "UI/UX Design",
     image: "/images/rd-blogs/nextjs-v14.svg",
-    slug: "/en/explore/rd-blogs/nextjs-v14",
+    slug: "/explore/rd-blogs/nextjs-v14",
     content: {
       subtitle: "Modern frontend architecture, routing, rendering, caching, and user experience patterns for production Next.js applications.",
     },
@@ -431,7 +431,7 @@ export const RD_BLOGS: RDBlog[] = [
     date: "3 May, 2024",
     category: "API testing",
     image: "/images/rd-blogs/postman-rd.jpg",
-    slug: "/en/explore/rd-blogs/postman-rd",
+    slug: "/explore/rd-blogs/postman-rd",
   },
   {
     title: "Introduction to Flutter",
@@ -440,7 +440,7 @@ export const RD_BLOGS: RDBlog[] = [
     date: "3 May, 2024",
     category: "Flutter",
     image: "/images/rd-blogs/flutter-introduction.jpg",
-    slug: "/en/explore/rd-blogs/flutter-introduction",
+    slug: "/explore/rd-blogs/flutter-introduction",
   },
 ];
 
@@ -584,14 +584,21 @@ export const SERVICES: Service[] = [
   },
 ];
 
+function normalizeContentSlug(slug: string) {
+  if (slug === "/en") return "/";
+  return slug.startsWith("/en/") ? slug.slice(3) : slug;
+}
+
 // Helper function to get AI topic by slug
 export function getAITopicBySlug(slug: string): AITopic | undefined {
-  return AI_TOPICS.find((topic) => topic.slug === slug);
+  const normalized = normalizeContentSlug(slug);
+  return AI_TOPICS.find((topic) => topic.slug === slug || topic.slug === normalized);
 }
 
 // Helper function to get R&D blog by slug
 export function getRDBlogBySlug(slug: string): RDBlog | undefined {
-  return RD_BLOGS.find((blog) => blog.slug === slug);
+  const normalized = normalizeContentSlug(slug);
+  return RD_BLOGS.find((blog) => blog.slug === slug || blog.slug === normalized);
 }
 
 // Helper function to get product by ID

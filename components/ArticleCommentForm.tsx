@@ -190,7 +190,7 @@ export function ArticleCommentForm({ source, article }: ArticleCommentFormProps)
               type="text"
               name="name"
               autoComplete="name"
-              maxLength={80}
+              maxLength={9999}
               value={formData.name}
               onChange={(event) => updateField("name", event.target.value)}
               placeholder="Your name"
@@ -214,7 +214,7 @@ export function ArticleCommentForm({ source, article }: ArticleCommentFormProps)
               type="email"
               name="email"
               autoComplete="email"
-              maxLength={120}
+              maxLength={9999}
               value={formData.email}
               onChange={(event) => updateField("email", event.target.value)}
               placeholder="your@email.com"
@@ -254,7 +254,6 @@ export function ArticleCommentForm({ source, article }: ArticleCommentFormProps)
               id="article-comment-message"
               name="message"
               rows={7}
-              maxLength={1600}
               value={formData.message}
               onChange={(event) => updateField("message", event.target.value)}
               onScroll={updateMessageScrollProgress}
@@ -264,22 +263,14 @@ export function ArticleCommentForm({ source, article }: ArticleCommentFormProps)
               aria-describedby={errors.message ? "article-comment-message-error" : undefined}
               className={cn(
                 "contact-message-scroll w-full resize-none border-0 bg-transparent p-5 text-[#111111] placeholder:text-gray-400 outline-none interactive cursor-none",
-                "max-h-[12.5rem] overflow-y-auto",
-              )}
+                )}
             />
           </div>
-          <div className="flex items-center justify-between gap-3">
-            {errors.message ? (
-              <p id="article-comment-message-error" className="ml-2 text-xs font-semibold text-[#FF5A36]">
-                {errors.message}
-              </p>
-            ) : (
-              <span />
-            )}
-            <span className="ml-auto text-xs font-semibold text-gray-400 tabular-nums">
-              {formData.message.length}/1600
-            </span>
-          </div>
+          {errors.message ? (
+            <p id="article-comment-message-error" className="ml-2 text-xs font-semibold text-[#FF5A36]">
+              {errors.message}
+            </p>
+          ) : null}
         </div>
 
         <div className="hidden" aria-hidden="true">

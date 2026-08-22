@@ -45,7 +45,7 @@ export function FooterCTA() {
         </div>
         
         <div className="relative z-10 shrink-0">
-          <Button variant="secondary" size="lg" href="/en/contact">
+          <Button variant="secondary" size="lg" href="/contact">
             Get Started Now
           </Button>
         </div>

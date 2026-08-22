@@ -149,7 +149,7 @@ export function Products({ variant = "home" }: { variant?: "home" | "page" }) {
 
         {variant === "home" && (
           <div className="mt-16 text-center">
-            <Button variant="primary" href="/en/products">View All Products</Button>
+            <Button variant="primary" href="/products">View All Products</Button>
           </div>
         )}
       </div>

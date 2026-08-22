@@ -15,8 +15,8 @@ const TABS = [
     title: "About Us",
     heading: (
       <>
-        Transforming <span className="italic text-[#FF5A36] relative inline-block">
-          Ideas<svg className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+        Transforming <span className="text-accent relative inline-block">
+          Ideas<svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
             <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
           </svg>
         </span> <br />
@@ -30,15 +30,15 @@ const TABS = [
         <p>Whether you need a lending system, payment integration, hospital platform, member portal, ERP workflow, or custom business application, we help turn complex operational challenges into dependable digital solutions.</p>
       </div>
     ),
-    image: "/images/img5.jpg",
+    image: "/images/general/img5.jpg",
   },
   {
     id: "Our Mission",
     title: "Our Mission",
     heading: (
       <>
-        Empowering <span className="italic text-[#FF5A36] relative inline-block">
-          Businesses<svg className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+        Empowering <span className="text-accent relative inline-block">
+          Businesses<svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
             <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
           </svg>
         </span> <br />
@@ -52,15 +52,15 @@ const TABS = [
         <p>By focusing on security, scalability, performance, and usability from the beginning, we help organizations move confidently from manual processes and disconnected tools to integrated digital operations.</p>
       </div>
     ),
-    image: "/images/img1.jpg",
+    image: "/images/general/img1.jpg",
   },
   {
     id: "Our Vision",
     title: "Our Vision",
     heading: (
       <>
-        Driving <span className="italic text-[#FF5A36] relative inline-block">
-          Digital<svg className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+        Driving <span className="text-accent relative inline-block">
+          Digital<svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
             <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
           </svg>
         </span> <br />
@@ -74,7 +74,7 @@ const TABS = [
         <p>Every project moves us toward that future: technology that works in context, supports real users, and gives decision-makers the confidence to grow.</p>
       </div>
     ),
-    image: "/images/img3.jpg",
+    image: "/images/general/img3.jpg",
   },
 ];
 
@@ -204,7 +204,7 @@ export function About() {
           <div className="absolute bottom-10 left-10 right-10 flex flex-col md:flex-row gap-4 justify-between items-end">
             <h3 className="font-display text-4xl text-white about-float">We innovate <br/> you grow.</h3>
             <div className="about-float">
-              <Button variant="secondary" size="md" href="/en/team">
+              <Button variant="secondary" size="md" href="/team">
                 Meet the Team
               </Button>
             </div>

@@ -174,7 +174,7 @@ export function LiveSiteUnavailableModal({
           <Button variant="secondary" size="sm" onClick={closeModal}>
             Close
           </Button>
-          <Button variant="primary" size="sm" href="/en/contact">
+          <Button variant="primary" size="sm" href="/contact">
             Contact Sababisha
           </Button>
         </div>

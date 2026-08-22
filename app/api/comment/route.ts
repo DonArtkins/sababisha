@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
   const name = normalizeText(payload.name, 80);
   const email = normalizeText(payload.email, 120).toLowerCase();
-  const message = normalizeLongText(payload.message, 1600);
+  const message = normalizeLongText(payload.message);
   const articleSlug = normalizeText(payload.articleSlug, 200);
   const article = getCommentArticleBySlug(payload.source, articleSlug);
   const errors: FieldErrors = {};

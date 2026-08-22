@@ -15,6 +15,7 @@ export function Loading() {
           fill
           unoptimized
           priority
+          loading="eager"
           className="object-contain rounded-full p-loader-logo-padding-small relative z-10"
         />
       </div>
