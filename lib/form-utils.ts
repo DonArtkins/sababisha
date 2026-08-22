@@ -63,9 +63,10 @@ export function normalizeText(value: unknown, maxLength = 500) {
   return value.replace(/\s+/g, " ").trim().slice(0, maxLength);
 }
 
-export function normalizeLongText(value: unknown, maxLength = 1600) {
+export function normalizeLongText(value: unknown, maxLength?: number) {
   if (typeof value !== "string") return "";
-  return value.replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim().slice(0, maxLength);
+  const text = value.replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
+  return typeof maxLength === "number" ? text.slice(0, maxLength) : text;
 }
 
 export function escapeHtml(value: string) {
@@ -98,13 +99,15 @@ export function getCommentArticleBySlug(
 ): CommentArticle | undefined {
   if (typeof source !== "string" || typeof slug !== "string") return undefined;
 
+  const normalizedSlug = slug.startsWith("/en/") ? slug.slice(3) : slug;
+
   if (source === "rd-blog") {
-    const blog = RD_BLOGS.find((item) => item.slug === slug);
+    const blog = RD_BLOGS.find((item) => item.slug === slug || item.slug === normalizedSlug);
     return blog ? toCommentArticle("rd-blog", blog) : undefined;
   }
 
   if (source === "ai-topic") {
-    const topic = AI_TOPICS.find((item) => item.slug === slug);
+    const topic = AI_TOPICS.find((item) => item.slug === slug || item.slug === normalizedSlug);
     return topic ? toCommentArticle("ai-topic", topic) : undefined;
   }
 

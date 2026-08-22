@@ -89,7 +89,7 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 
 ### File Structure
 
-- **Pages** go in `app/[lang]/` as `page.tsx` files inside named directories
+- **Pages** go in `app/` as `page.tsx` files inside named directories
 - **Components** go in `components/` — one component per file
 - **Layouts** go in `layouts/`
 - **Utilities** go in `lib/`
@@ -112,14 +112,14 @@ CONTACT_TO_EMAIL=your-resend-account-email@example.com
 ### Naming Conventions
 
 - **Components**: PascalCase (`Header.tsx`, `FooterCTA.tsx`)
-- **Pages**: `page.tsx` inside a route directory (`app/[lang]/services/page.tsx`)
+- **Pages**: `page.tsx` inside a route directory (`app/services/page.tsx`)
 - **Utilities**: camelCase (`utils.ts`)
 - **CSS classes**: Tailwind utility classes only
 
 ### Services, Forms, and Email
 
 - Add or modify services in `lib/db.ts`; every service needs a stable `slug`, `category`, `iconKey`, `desc`, and `points`
-- Service cards should link to `/en/contact?service={slug}` through `AnimatedLink`
+- Service cards should link to `/contact?service={slug}` through `AnimatedLink`
 - Keep the services page limited to six cards per page so pagination remains predictable as the service list grows
 - Contact, newsletter, and article comment submissions must go through App Router route handlers under `app/api/`
 - Validate form fields on both the client and server
@@ -166,7 +166,7 @@ When you add or change public pages, service/contact flows, modal/Lottie UX, or 
 
 1. Add or update route metadata (`title`, `description`, `canonical`, Open Graph / Twitter) on the page or a colocated `layout.tsx`
 2. Confirm `app/sitemap.ts` discovers the new `page.tsx` (automatic) and add a `ROUTE_CONFIG` entry if priority should differ from the default
-3. Update `app/[lang]/sitemap-page/page.tsx` link groups when public routes change
+3. Update `app/sitemap-page/page.tsx` link groups when public routes change
 4. Update `app/robots.ts` if a path must be disallowed (API, private folders, internal docs)
 5. Keep `SITE_URL` accurate so sitemap, robots, and `metadataBase` stay aligned
 6. Sync docs in `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and the relevant `research/` note (`RESEND.md`, `LOTTIE-MODALS.md`)
@@ -190,7 +190,7 @@ Current crawl rules in `app/robots.ts`: allow `/`; disallow `/api/`, `/_next/`, 
 
 - [ ] Code compiles without errors (`npm run build`)
 - [ ] New components include `"use client"` if they use hooks
-- [ ] New pages are placed in `app/[lang]/` directory
+- [ ] New pages are placed in `app/` directory
 - [ ] No raw HTML `<a>`, `<img>` tags — use Next.js components
 - [ ] Changes are responsive (tested on mobile + desktop)
 - [ ] Form changes include inline validation, loading states, Lottie success/error modal states, and server validation

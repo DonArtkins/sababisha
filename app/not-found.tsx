@@ -29,7 +29,7 @@ export function NotFound() {
         <p className="font-sans text-gray-500 mb-8 max-w-md mx-auto">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
-        <AnimatedLink href="/en" className="font-sans text-sm font-semibold text-[#111111] hover:text-[#FF5A36] inline-flex items-center justify-center gap-2" icon={<ArrowRight className="w-4 h-4" />}>
+        <AnimatedLink href="/" className="font-sans text-sm font-semibold text-[#111111] hover:text-[#FF5A36] inline-flex items-center justify-center gap-2" icon={<ArrowRight className="w-4 h-4" />}>
           Back to Home
         </AnimatedLink>
       </div>

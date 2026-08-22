@@ -452,7 +452,7 @@ export function Work({ variant = "home" }: { variant?: "home" | "page" }) {
 
         {variant === "home" && (
           <div className="mt-16 text-center">
-            <Button variant="primary" href="/en/explore/projects">Explore All Projects</Button>
+            <Button variant="primary" href="/explore/projects">Explore All Projects</Button>
           </div>
         )}
       </div>

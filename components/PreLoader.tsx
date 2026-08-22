@@ -102,6 +102,7 @@ export function PreLoader() {
               fill
               unoptimized
               priority
+              loading="eager"
               className="object-contain rounded-full p-loader-logo-padding relative z-10"
             />
           </div>

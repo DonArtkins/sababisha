@@ -19,6 +19,7 @@ function BrandCard({ brand }: { brand: Brand }) {
           alt={`${brand.name} logo`}
           width={64}
           height={64}
+          loading="eager"
           className="w-12 h-12 md:w-16 md:h-16 object-contain mb-3 grayscale group-hover:grayscale-0 transition-all duration-300"
           onError={() => setImgError(true)}
         />

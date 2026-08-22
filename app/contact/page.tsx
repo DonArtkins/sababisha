@@ -271,8 +271,8 @@ export function Contact() {
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl text-[#111111] leading-[1.05] tracking-tight mb-6">
             Let's build <br />
-            something <span className="italic text-[#FF5A36] relative inline-block">
-              great.<svg className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+            something <span className="text-accent relative inline-block">
+              great.<svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
               </svg>
             </span>
@@ -356,7 +356,7 @@ export function Contact() {
                   onChange={(event) => updateField("name", event.target.value)}
                   placeholder="John Doe"
                   autoComplete="name"
-                  maxLength={80}
+                  maxLength={9999}
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? "name-error" : undefined}
                   className={inputClassName(Boolean(errors.name))}
@@ -372,7 +372,7 @@ export function Contact() {
                   onChange={(event) => updateField("email", event.target.value)}
                   placeholder="john@company.com"
                   autoComplete="email"
-                  maxLength={120}
+                  maxLength={9999}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? "email-error" : undefined}
                   className={inputClassName(Boolean(errors.email))}
@@ -391,7 +391,7 @@ export function Contact() {
                   onChange={(event) => updateField("phone", event.target.value)}
                   placeholder="+254 712 345 678"
                   autoComplete="tel"
-                  maxLength={32}
+                  maxLength={9999}
                   aria-invalid={Boolean(errors.phone)}
                   aria-describedby={errors.phone ? "phone-error" : undefined}
                   className={inputClassName(Boolean(errors.phone))}
@@ -407,7 +407,7 @@ export function Contact() {
                   onChange={(event) => updateField("company", event.target.value)}
                   placeholder="Your organization"
                   autoComplete="organization"
-                  maxLength={120}
+                  maxLength={9999}
                   className={inputClassName()}
                 />
               </div>
@@ -494,21 +494,16 @@ export function Contact() {
                   onChange={(event) => updateField("message", event.target.value)}
                   onScroll={updateMessageScrollProgress}
                   placeholder="Tell us about your project, goals, timeline, and budget range."
-                  maxLength={1600}
                   data-lenis-prevent
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "message-error" : undefined}
                   className={cn(
                     "contact-message-scroll w-full resize-none border-0 bg-transparent p-5 text-[#111111] placeholder:text-gray-400 outline-none interactive cursor-none dark:text-foreground dark:placeholder:text-muted",
-                    "max-h-[12.5rem] overflow-y-auto",
                   )}
                 />
               </div>
               <div className="flex items-center justify-between gap-3">
                 {errorText("message")}
-                <span className="ml-auto text-xs font-semibold text-gray-400 tabular-nums">
-                  {formData.message.length}/1600
-                </span>
               </div>
             </div>
 

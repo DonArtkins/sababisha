@@ -123,7 +123,12 @@ export function Gallery() {
       <section ref={containerRef} className="px-6 md:px-12 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="font-display text-5xl md:text-7xl text-[#111111] leading-tight mb-6">
-            Our <span className="text-accent italic">Gallery</span>
+            Our <span className="text-accent relative inline-block">
+              Gallery
+              <svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
+              </svg>
+            </span>
           </h1>
           <p className="font-sans text-xl text-gray-600 max-w-2xl mx-auto">
             Explore the people, workshops, product planning sessions, launches, and team moments behind Sababisha Solutions. Our gallery highlights the collaboration, engineering culture, client engagement, and delivery discipline that support every digital transformation project.

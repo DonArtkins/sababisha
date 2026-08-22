@@ -96,10 +96,10 @@ export default function SitemapPage() {
 
           <h1 className="font-display text-5xl md:text-7xl text-[#111111] leading-[1.05] tracking-tight mb-6">
             Site{" "}
-            <span className="italic text-[#FF5A36] relative inline-block">
+            <span className="text-accent relative inline-block">
               Map
               <svg
-                className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50"
+                className="absolute w-full h-3 -bottom-1 left-0 text-accent/50"
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
               >

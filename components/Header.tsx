@@ -183,6 +183,7 @@ export function Header() {
               fill
               unoptimized
               priority
+              loading="eager"
               className="object-contain rounded-full p-1 relative z-10"
             />
           </div>

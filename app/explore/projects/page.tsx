@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Explore Sababisha Solutions' project portfolio showcasing fintech platforms, enterprise systems, custom software development, and digital transformation solutions for organizations in Kenya and across Africa.",
   alternates: {
-    canonical: "/en/explore/projects",
+    canonical: "/explore/projects",
   },
   openGraph: {
     title: "Projects | Sababisha Solutions Limited",
     description:
       "Explore our project portfolio showcasing fintech platforms, enterprise systems, custom software development, and digital transformation solutions.",
-    url: `${BASE_URL}/en/explore/projects`,
+    url: `${BASE_URL}/explore/projects`,
     type: "website",
   },
   twitter: {

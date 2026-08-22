@@ -105,7 +105,7 @@ const FAQS: FaqItem[] = [
       <div>
         <p>
           We take data security very seriously. Sababisha Solutions is a certified Data Controller, and we apply strict data protection practices including secure system architecture, access control, encryption, audit-aware workflows, and responsible handling of personal and business information. Learn more about how we handle your data in our{" "}
-          <Link href="/en/privacy-policy" className="text-accent underline">
+          <Link href="/privacy-policy" className="text-accent underline">
             Privacy Policy &amp; Data Protection
           </Link>
           {" "}page.

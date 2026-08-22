@@ -287,7 +287,12 @@ export function Careers() {
             <span className="w-2 h-2 rounded-full bg-[#FF5A36]"></span>
             <span className="uppercase font-sans tracking-widest text-[10px] text-gray-600 font-bold">JOIN OUR TEAM</span>
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl mb-5 sm:mb-6">Build the <span className="text-accent italic">Future</span></h1>
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#111111] leading-[1.1] tracking-tight mb-5 sm:mb-6">Build the <span className="text-accent relative inline-block">
+            Future
+            <svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
+            </svg>
+          </span></h1>
           <p className="text-gray-600 font-sans text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
             Join Sababisha Solutions and help build fintech platforms, enterprise systems, AI automation tools, analytics dashboards, integrations, and digital products that solve real operational problems. We welcome curious, disciplined, and collaborative people who want practical experience, mentorship, and meaningful technology work.
           </p>

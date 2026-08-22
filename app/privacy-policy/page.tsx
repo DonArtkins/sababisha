@@ -47,10 +47,10 @@ export default function PrivacyPolicy() {
 
           <h1 className="font-display text-5xl md:text-7xl text-[#111111] leading-[1.05] tracking-tight mb-6">
             Privacy{" "}
-            <span className="italic text-[#FF5A36] relative inline-block">
+            <span className="text-accent relative inline-block">
               Policy
               <svg
-                className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50"
+                className="absolute w-full h-3 -bottom-1 left-0 text-accent/50"
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
               >
@@ -238,7 +238,7 @@ export default function PrivacyPolicy() {
         {/* Back to Home */}
         <div className="policy-section flex justify-center mt-4">
           <Link
-            href="/en"
+            href="/"
             className="inline-flex items-center gap-2 text-gray-500 font-sans text-sm hover:text-[#FF5A36] transition-colors interactive cursor-none"
           >
             <ChevronRight className="w-4 h-4 rotate-180" />

@@ -12,20 +12,26 @@ export default function ArticlePage() {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const topic = getAITopicBySlug("/en/explore/ai-topics/lora-peft");
+  const topic = getAITopicBySlug("/explore/ai-topics/lora-peft");
 
   useEffect(() => {
+    if (!headerRef.current || !contentRef.current) return;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
-      );
-      gsap.fromTo(
-        contentRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" }
-      );
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+        );
+      }
+      if (contentRef.current) {
+        gsap.fromTo(
+          contentRef.current,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" }
+        );
+      }
     });
     return () => ctx.revert();
   }, []);
@@ -39,15 +45,15 @@ export default function ArticlePage() {
       <article className="max-w-4xl mx-auto px-6 md:px-12">
         {/* Header */}
         <header ref={headerRef} className="mb-12">
-          <Link href="/en/explore/ai-topics" className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-gray-500 hover:text-[#FF5A36] transition-colors interactive cursor-none mb-8 group">
+          <Link href="/explore/ai-topics" className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-gray-500 hover:text-[#FF5A36] transition-colors interactive cursor-none mb-8 group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> <CyberText text="Back to AI Topics" speed={30} />
           </Link>
 
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#111111] leading-[1.1] tracking-tight mb-6">
             Fine-Tuning with LoRA / PEFT <br />
-            <span className="italic text-[#FF5A36] relative inline-block mt-2">
+            <span className="text-accent relative inline-block mt-2">
               Parameter-Efficient Fine-Tuning for LLMs
-              <svg className="absolute w-full h-3 -bottom-1 left-0 text-[#FF5A36]/50" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <svg className="absolute w-full h-3 -bottom-1 left-0 text-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
               </svg>
             </span>

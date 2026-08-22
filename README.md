@@ -17,10 +17,10 @@ A modern, high-performance company website for **Sababisha Solutions Limited** �
 - **Preloader** — Branded loading screen on initial visit
 - **Responsive Design** — Fully responsive from mobile to ultra-wide
 - **Services Catalog** — Data-backed service cards with six-card pagination limits, dynamic counters, and animated inquiry links
-- **Service-Aware Contact Form** — `/en/contact?service=...` preselects and prefills the exact service inquiry
+- **Service-Aware Contact Form** — `/contact?service=...` preselects and prefills the exact service inquiry
 - **Email Delivery** — Contact, newsletter, and article comment submissions are sent through server-only Resend API routes
 - **Status Modals** — All user-facing modals use local Lottie animations (`FormStatusModal`, `LiveSiteUnavailableModal`, careers job details)
-- **Dynamic Routing** — Locale-prefixed routes (`/en/services`, `/en/products`)
+- **Dynamic Routing** — Standard locale-free routes (`/services`, `/products`, etc.)
 - **SEO Optimized** — Dynamic sitemap, robots.txt, HTML sitemap page, canonical metadata, Open Graph, and Twitter card metadata
 - **Accessibility** — Skip-to-content link, focus-visible outlines, semantic HTML
 
@@ -79,23 +79,22 @@ sababisha/
 │   │   ├── contact/        # Service inquiry email endpoint
 │   │   ├── newsletter/     # Newsletter subscription endpoint
 │   │   └── comment/        # Article comment email endpoint
-│   └── [lang]/             # Dynamic locale segment
-│       ├── page.tsx         # Home
-│       ├── services/
-│       ├── products/
-│       ├── contact/
-│       ├── blog/
-│       ├── faq/
-│       ├── team/
-│       ├── gallery/
-│       ├── testimonials/
-│       ├── privacy-policy/
-│       ├── sitemap-page/
-│       └── explore/
-│           ├── projects/
-│           ├── rd-blogs/
-│           ├── ai-topics/
-│           └── careers/
+│   ├── page.tsx            # Home
+│   ├── services/
+│   ├── products/
+│   ├── contact/
+│   ├── blog/
+│   ├── faq/
+│   ├── team/
+│   ├── gallery/
+│   ├── testimonials/
+│   ├── privacy-policy/
+│   ├── sitemap-page/
+│   └── explore/
+│       ├── projects/
+│       ├── rd-blogs/
+│       ├── ai-topics/
+│       └── careers/
 ├── components/             # Reusable UI components
 ├── layouts/                # Layout wrappers
 ├── lib/                    # Data, email, form, type, and utility helpers
@@ -174,27 +173,25 @@ Resend verifies the **`from` domain**, not the website URL. Apps hosted only on 
 
 ## Routing
 
-Routes follow a **locale-prefixed** pattern inspired by Binance:
+Routes follow standard Next.js App Router conventions (no locale prefix):
 
 | URL Pattern             | Page           |
 | ----------------------- | -------------- |
-| `/en`                   | Home           |
-| `/en/services`          | Services       |
-| `/en/products`          | Products       |
-| `/en/contact`           | Contact        |
-| `/en/blog`              | Blog           |
-| `/en/faq`               | FAQ            |
-| `/en/team`              | Team           |
-| `/en/gallery`           | Gallery        |
-| `/en/testimonials`      | Testimonials   |
-| `/en/privacy-policy`    | Privacy Policy |
-| `/en/sitemap-page`      | HTML Sitemap   |
-| `/en/explore/projects`  | Projects       |
-| `/en/explore/rd-blogs`  | R&D Blogs      |
-| `/en/explore/ai-topics` | AI Topics      |
-| `/en/explore/careers`   | Careers        |
-
-The root `/` redirects permanently to `/en`.
+| `/`                     | Home           |
+| `/services`             | Services       |
+| `/products`             | Products       |
+| `/contact`              | Contact        |
+| `/blog`                 | Blog           |
+| `/faq`                  | FAQ            |
+| `/team`                 | Team           |
+| `/gallery`              | Gallery        |
+| `/testimonials`         | Testimonials   |
+| `/privacy-policy`       | Privacy Policy |
+| `/sitemap-page`         | HTML Sitemap   |
+| `/explore/projects`     | Projects       |
+| `/explore/rd-blogs`     | R&D Blogs      |
+| `/explore/ai-topics`    | AI Topics      |
+| `/explore/careers`       | Careers        |
 
 ## Services and Inquiry Flow
 
@@ -205,7 +202,7 @@ The services page:
 - Displays service stats from the same `SERVICES` data source
 - Shows up to six service cards per page
 - Uses animated `Discuss Service` links
-- Routes users to `/en/contact?service={service-slug}`
+- Routes users to `/contact?service={service-slug}`
 
 The contact page:
 
@@ -260,10 +257,10 @@ UI success only means the API route accepted Resend’s response. Use the Resend
 ## SEO and Crawl Files
 
 - `app/layout.tsx` defines global metadata, `metadataBase`, canonical URL, keywords, Open Graph, Twitter cards, and indexing robots directives.
-- `app/[lang]/services/page.tsx` defines services-specific metadata.
-- `app/[lang]/contact/layout.tsx` defines contact-specific metadata while keeping the page interactive.
-- `app/sitemap.ts` automatically discovers public `page.tsx` files under `app/[lang]/` and assigns priorities (home highest; services/contact/products elevated; legal/sitemap pages lower). Lottie files under `public/lottie/` are static assets and are **not** sitemap entries.
-- `app/[lang]/sitemap-page/page.tsx` is the human-readable HTML sitemap; keep its link groups aligned with public routes.
+- `app/services/page.tsx` defines services-specific metadata.
+- `app/contact/layout.tsx` defines contact-specific metadata while keeping the page interactive.
+- `app/sitemap.ts` automatically discovers public `page.tsx` files under `app/` and assigns priorities (home highest; services/contact/products elevated; legal/sitemap pages lower). Lottie files under `public/lottie/` are static assets and are **not** sitemap entries.
+- `app/sitemap-page/page.tsx` is the human-readable HTML sitemap; keep its link groups aligned with public routes.
 - `app/robots.ts` allows public content and disallows `/api/`, `/_next/`, `/bugs/`, and `/research/`.
 - `SITE_URL` must match the public origin so sitemap URLs, robots `host`/`sitemap`, and canonical metadata stay consistent.
 - When routes, crawl rules, email, or modal/Lottie conventions change, also update `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and the matching `research/` note.

@@ -129,6 +129,8 @@ export function Footer() {
                   alt="Sababisha Solutions Logo" 
                   fill
                   unoptimized
+                  priority
+                  loading="eager"
                   className="object-contain rounded-full p-1 relative z-10"
                 />
               </div>
@@ -228,7 +230,7 @@ export function Footer() {
                   }}
                   placeholder="Email address"
                   autoComplete="email"
-                  maxLength={120}
+                  maxLength={9999}
                   aria-invalid={Boolean(newsletterError)}
                   aria-describedby={newsletterError ? "newsletter-error" : undefined}
                   className={`w-full rounded-full border bg-white px-5 py-3 pr-12 text-sm text-[#111111] placeholder:text-gray-400 outline-none transition-colors focus:border-[#FF5A36] interactive cursor-none shadow-sm dark:bg-card dark:text-foreground dark:placeholder:text-muted ${newsletterError ? "border-[#FF5A36]" : "border-gray-300 dark:border-border"}`}

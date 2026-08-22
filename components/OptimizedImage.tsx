@@ -12,7 +12,7 @@ interface OptimizedImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElem
 }
 
 export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
-  ({ src, alt, wrapperClassName = "", imageClassName = "", style, priority = false, loading, ...props }, ref) => {
+  ({ src, alt, wrapperClassName = "", imageClassName = "", style, priority = false, loading = "eager", ...props }, ref) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const hasObjectFitClass = /\bobject-(contain|cover|fill|none|scale-down)\b/.test(imageClassName);
     const resolvedImageClassName = hasObjectFitClass ? imageClassName : `object-cover ${imageClassName}`;
