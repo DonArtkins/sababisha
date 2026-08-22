@@ -35,12 +35,9 @@ const TESTIMONIALS = [
   }
 ];
 
-// Total number of "pages" (each page shows 2 cards)
-const TOTAL_PAGES = Math.ceil(TESTIMONIALS.length / 2);
-
 function TestimonialCard({ t }: { t: typeof TESTIMONIALS[number] }) {
   return (
-    <div className="group relative bg-card border border-border rounded-2xl p-8 shadow-sm hover:shadow-lg hover:border-accent/30 transition-all duration-300 interactive cursor-none flex flex-col h-full">
+    <div className="group relative bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-accent/30 transition-all duration-300 interactive cursor-none flex flex-col h-full min-h-[280px] md:min-h-[340px]">
       {/* Quote Icon */}
       <Quote className="w-8 h-8 text-accent/20 mb-4 shrink-0" />
 
@@ -49,13 +46,13 @@ function TestimonialCard({ t }: { t: typeof TESTIMONIALS[number] }) {
         Project: {t.project}
       </span>
 
-      {/* Quote Text */}
-      <p className="font-sans text-base leading-relaxed text-foreground/80 mb-6 flex-1">
+      {/* Quote Text — clamped to 4 lines with ellipses */}
+      <p className="font-sans text-base leading-relaxed text-foreground/80 mb-6 flex-1 line-clamp-4">
         {t.quote}&rdquo;
       </p>
 
       {/* Author */}
-      <div className="flex items-center gap-3 pt-4 border-t border-border/60">
+      <div className="flex items-center gap-3 pt-4 border-t border-border/60 shrink-0">
         <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent font-bold text-sm shrink-0">
           {t.author.charAt(0)}
         </div>
@@ -73,12 +70,26 @@ export function TestimonialsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
 
-  // Get the pair of testimonials for a given page index (wraps around)
-  const getPageItems = useCallback((pageIndex: number) => {
-    const startIdx = (pageIndex * 2) % TESTIMONIALS.length;
+  // Responsive items per page — 1 on mobile, 2 on md+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handleChange = () => setItemsPerPage(mq.matches ? 2 : 1);
+    handleChange();
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
+
+  // Total number of pages — recalculated when itemsPerPage changes
+  const totalPages = Math.ceil(TESTIMONIALS.length / itemsPerPage);
+
+  // Get the items for a given page index (wraps around)
+  const getPageItems = useCallback((pageIndex: number, count: number) => {
+    const startIdx = (pageIndex * count) % TESTIMONIALS.length;
     const items = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < count; i++) {
       items.push(TESTIMONIALS[(startIdx + i) % TESTIMONIALS.length]);
     }
     return items;
@@ -112,14 +123,14 @@ export function TestimonialsSection() {
   }, [isAnimating]);
 
   const handleNext = useCallback(() => {
-    const nextPage = (currentPage + 1) % TOTAL_PAGES;
+    const nextPage = (currentPage + 1) % totalPages;
     animateTransition("left", nextPage);
-  }, [currentPage, animateTransition]);
+  }, [currentPage, animateTransition, totalPages]);
 
   const handlePrev = useCallback(() => {
-    const prevPage = (currentPage - 1 + TOTAL_PAGES) % TOTAL_PAGES;
+    const prevPage = (currentPage - 1 + totalPages) % totalPages;
     animateTransition("right", prevPage);
-  }, [currentPage, animateTransition]);
+  }, [currentPage, animateTransition, totalPages]);
 
   const handlePageChange = useCallback((page: number) => {
     if (page === currentPage || isAnimating) return;
@@ -127,17 +138,16 @@ export function TestimonialsSection() {
     animateTransition(direction, page);
   }, [currentPage, isAnimating, animateTransition]);
 
-
   // Autoplay — advances page every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isAnimating && trackRef.current) {
-        const nextPage = (currentPage + 1) % TOTAL_PAGES;
+        const nextPage = (currentPage + 1) % totalPages;
         animateTransition("left", nextPage);
       }
     }, 6000);
     return () => clearInterval(interval);
-  }, [currentPage, isAnimating, animateTransition]);
+  }, [currentPage, isAnimating, animateTransition, totalPages]);
 
   // Initial entrance animation
   useEffect(() => {
@@ -160,12 +170,12 @@ export function TestimonialsSection() {
     return () => ctx.revert();
   }, []);
 
-  const currentItems = getPageItems(currentPage);
+  const currentItems = getPageItems(currentPage, itemsPerPage);
 
   return (
     <section id="testimonials" ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 bg-transparent text-foreground">
       <div className="max-w-6xl mx-auto flex flex-col items-center testimonial-wrapper">
-        
+
         <Reveal className="text-center mb-16 flex flex-col items-center">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] tracking-tight mb-4">
             Our <span className="text-accent relative inline-block">
@@ -179,9 +189,12 @@ export function TestimonialsSection() {
           </p>
         </Reveal>
 
-        {/* Slideshow Track */}
+        {/* Slideshow Track — single column on mobile, 2 columns on md+ */}
         <div className="w-full overflow-hidden mb-12">
-          <div ref={trackRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <div
+            ref={trackRef}
+            className="grid gap-6 w-full grid-cols-1 md:grid-cols-2"
+          >
             {currentItems.map((t, i) => (
               <TestimonialCard key={`${currentPage}-${i}`} t={t} />
             ))}
@@ -197,18 +210,14 @@ export function TestimonialsSection() {
           >
             Previous
           </Button>
-          
+
           <div className="flex space-x-1.5 md:space-x-2">
-            {Array.from({ length: TOTAL_PAGES }, (_, i) => (
+            {Array.from({ length: totalPages }, (_, i) => (
               <button
                 key={i}
                 onClick={() => handlePageChange(i)}
                 aria-label={`Go to page ${i + 1}`}
-                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-sans text-xs md:text-sm transition-colors interactive cursor-none ${
-                  currentPage === i
-                    ? "bg-foreground text-background font-semibold shadow-md"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-white/5 dark:text-muted dark:hover:bg-white/10"
-                }`}
+                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-sans text-xs md:text-sm transition-colors interactive cursor-none ${currentPage === i ? "bg-foreground text-background font-semibold shadow-md" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-white/5 dark:text-muted dark:hover:bg-white/10"}`}
               >
                 {i + 1}
               </button>
